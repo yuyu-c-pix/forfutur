@@ -11,8 +11,8 @@
     .sw{width:100%;position:relative}
     .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
     .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
-    .nl{left:40px;gap:28px}.nr{right:40px}
-    .nl .g{display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:18px;padding:8px 20px 8px 10px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:28px}
     .nn,.lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
     .nn:hover,.lb:hover{color:#fff}
     .nn.active,.lb.on{padding:6px 10px;background:#454545;color:#fff}
@@ -47,22 +47,29 @@
     .rn.pending{opacity:0}
     .rn.big{background:#888;cursor:pointer}
     .rn:hover{z-index:5}
-    .rn .tip{display:none;position:absolute;z-index:10;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px 12px;white-space:nowrap;pointer-events:none;font-size:12px;line-height:1.5;left:100%;top:50%;transform:translate(8px,-50%)}
-    .rn:hover .tip{display:block}
+    .rn .tip{display:none;position:absolute;z-index:10;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);padding:8px 12px;white-space:nowrap;pointer-events:none;left:100%;top:50%;transform:translate(8px,-50%);flex-direction:column;gap:2px}
+    .rn:hover .tip{display:flex}
     .rl{position:absolute;z-index:4;font-weight:500;font-size:12px;color:#8a9199;letter-spacing:-0.18px;white-space:nowrap;pointer-events:none;transition:opacity .6s .3s}
     .rl.pending{opacity:0}
     .cn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:19.677px;height:19.677px;background:#fff;z-index:3;box-shadow:0 0 24px rgba(255,255,255,.5)}
     .cl{position:absolute;left:50%;top:50%;transform:translate(-50%,18px);font-weight:500;font-size:12px;letter-spacing:-0.18px;z-index:4;transition:opacity .6s .5s}
     .cl.pending{opacity:0}
-    .dp2{display:none;position:absolute;width:260px;background:#111;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;z-index:20}
+    .dp2{display:none;position:absolute;width:204px;height:205px;background:#111;border:1px solid rgba(255,255,255,.1);z-index:20;overflow:hidden}
     .dp2.open{display:block}
-    .dp2-c{position:absolute;top:12px;right:14px;background:none;border:none;color:#8a9199;font-size:16px;cursor:pointer}
-    .dp2-n{font-weight:600;font-size:18px;margin-bottom:4px}
-    .dp2-r{font-size:12px;color:#8a9199;margin-bottom:16px}
-    .dp2-s{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-    .dp2-s .k{color:#8a9199}.dp2-s .v{font-weight:600}
-    .dp2-tg{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
-    .dp2-t{font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border-radius:999px;color:#8a9199}
+    .dp2-c{position:absolute;top:20px;left:166px;background:none;border:none;color:#8a9199;font-size:14px;cursor:pointer;padding:0;line-height:1}
+    .dp2-inner{position:absolute;left:23px;top:28px;width:156px;display:flex;flex-direction:column;gap:32px}
+    .dp2-name{display:flex;flex-direction:column;gap:4px}
+    .dp2-n{font-weight:600;font-size:18px;letter-spacing:-0.45px;color:#fff;line-height:normal}
+    .dp2-r{font-size:12px;color:#8a9199;letter-spacing:-0.3px;line-height:normal}
+    .dp2-stats{display:flex;flex-direction:column;gap:15px}
+    .dp2-sim-wrap{display:flex;flex-direction:column;gap:4px}
+    .dp2-s{display:flex;justify-content:space-between;font-size:13px}
+    .dp2-s .k{color:#8a9199;font-weight:400}.dp2-s .v{font-weight:600;color:#fff}
+    .dp2-div{height:1px;background:rgba(255,255,255,.06)}
+    .dp2-traits{display:flex;flex-direction:column;gap:6px}
+    .dp2-traits-lbl{font-size:13px;color:#8a9199}
+    .dp2-tg{display:flex;gap:6px;flex-wrap:wrap}
+    .dp2-t{font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);color:#8a9199;letter-spacing:-0.275px}
 
     .cta{position:absolute;left:141px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(243,246,249,.5);font-weight:600;font-size:15px;letter-spacing:-0.3px;color:#fff;text-decoration:none;background:transparent;transition:background .25s}
     .cta:hover{background:#212223}
@@ -72,7 +79,7 @@
 <div class="sw">
 <div class="st" id="stage">
   <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
-  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <div class="nl"><a href="index.html" class="nn nn-home">Home</a><div class="g"><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
   <a href="saju-data.html" class="bk">← Saju Data</a>
   <p class="stag">SAJU DATA</p>
@@ -107,11 +114,22 @@
       <span class="cl pending" id="cLabel">MU EARTH</span>
       <div class="dp2" id="dp2">
         <button class="dp2-c" onclick="cDt()">✕</button>
-        <p class="dp2-n" id="dp2n"></p>
-        <p class="dp2-r" id="dp2r"></p>
-        <div class="dp2-s"><span class="k">유사도</span><span class="v" id="dp2s"></span></div>
-        <div class="dp2-s" style="border:none"><span class="k">대표 특성</span></div>
-        <div class="dp2-tg" id="dp2t"></div>
+        <div class="dp2-inner">
+          <div class="dp2-name">
+            <p class="dp2-n" id="dp2n"></p>
+            <p class="dp2-r" id="dp2r"></p>
+          </div>
+          <div class="dp2-stats">
+            <div class="dp2-sim-wrap">
+              <div class="dp2-s"><span class="k">유사도</span><span class="v" id="dp2s"></span></div>
+              <div class="dp2-div"></div>
+            </div>
+            <div class="dp2-traits">
+              <span class="dp2-traits-lbl">대표 특성</span>
+              <div class="dp2-tg" id="dp2t"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -180,7 +198,7 @@ for(var i=0;i<59;i++){
 
   var tip=document.createElement('div');
   tip.className='tip';
-  tip.innerHTML='<span style="color:#fff;font-weight:600">'+nm+'</span><br><span style="color:#8a9199">유사도 '+Math.round(sim)+'%</span>';
+  tip.innerHTML='<span style="color:#fff;font-weight:600;font-size:12px;letter-spacing:-0.3px">'+nm+'</span><span style="color:#8a9199;font-size:12px;letter-spacing:-0.3px">유사도 '+Math.round(sim)+'%</span>';
   nd.appendChild(tip);
 
   nd.addEventListener('mouseenter',(function(idx){return function(){hovIdx=idx;drawL();};})(ri));
@@ -276,7 +294,7 @@ function oDt(nm,sim,nodeEl){
   // Position popup near clicked node
   var nx=parseInt(nodeEl.style.left)||0;
   var ny=parseInt(nodeEl.style.top)||0;
-  var pw=260,ph=220;
+  var pw=204,ph=205;
   // Place to right of node, or left if too close to right edge
   var px=nx+20,py=ny-ph/2;
   if(px+pw>radW-20)px=nx-pw-20;

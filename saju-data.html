@@ -86,6 +86,9 @@
 
     .no-data-btn{position:absolute;left:139px;top:639px;display:inline-flex;align-items:center;border:1px solid rgba(243,246,249,.5);background:transparent;padding:16px 28px 15px;font-family:'Pretendard Variable',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;transition:background .25s}
     .no-data-btn:hover{background:#212223}
+    .cta-row{position:absolute;left:141px;top:848px;display:flex;gap:16px}
+    .cta-btn{display:inline-flex;align-items:center;padding:16px 28px 15px;border:1px solid rgba(243,246,249,.5);font-weight:500;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;background:transparent;transition:background .25s;white-space:nowrap;font-family:'Pretendard Variable',sans-serif;cursor:pointer}
+    .cta-btn:hover{background:#212223}
   </style>
 </head>
 <body>
@@ -138,6 +141,12 @@
       <span class="ec-cta">경향 살펴보기 <span class="arrow">→</span></span>
     </div>
   </a>
+
+  <!-- CTAs -->
+  <div class="cta-row" id="ctaRow">
+    <a href="saju-enhance.html" class="cta-btn">기운 보완하기 →</a>
+    <a href="saju-analysis.html" class="cta-btn" onclick="resetAll(event)">다시 분석하기 →</a>
+  </div>
 
   <!-- Card 2 -->
   <a href="annual-fortune-flow.html" class="entry-card ec2">
@@ -193,10 +202,11 @@
 
 function fit(){
   var hasData=false;
-  try{var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');hasData=!!(r&&r.lacking&&sessionStorage.getItem('ff_result_ready'));}catch(e){}
+  try{var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');hasData=!!(r&&r.lacking);}catch(e){}
   if(!hasData){
     document.getElementById('noDataScreen').style.display='block';
     document.querySelectorAll('.entry-card').forEach(function(el){el.style.display='none';});
+    document.getElementById('ctaRow').style.display='none';
     document.querySelector('.tt').style.display='none';
     document.querySelector('.ds').style.display='none';
     document.querySelector('.tg').style.display='none';
@@ -208,13 +218,21 @@ function fit(){
     document.querySelector('.sw').style.height=(stageH*s)+'px';
     return;
   }
-  var stageH=1080;
+  var stageH=980;
   var s=Math.min(1,window.innerWidth/1920);
   document.documentElement.style.setProperty('--sc',s);
   document.getElementById('stage').style.height=stageH+'px';
   document.querySelector('.sw').style.height=(stageH*s)+'px';
 }
 window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+function resetAll(e){
+  e.preventDefault();
+  localStorage.removeItem('ff_saju_result');
+  localStorage.removeItem('ff_saju_input');
+  sessionStorage.removeItem('ff_result_ready');
+  location.href='saju-analysis.html';
+}
 </script>
 </body>
 </html>

@@ -329,7 +329,8 @@
   <!-- CTAs (Figma: both same style) -->
   <div class="cta-row" id="ctaRow" style="top:2130px">
     <a href="saju-enhance.html" class="cta-btn">기운 보완하기 →</a>
-    <a href="saju-analysis.html" class="cta-btn">다른 정보로 다시 분석하기 →</a>
+    <a href="saju-data.html" class="cta-btn">데이터 살펴보기 →</a>
+    <a href="saju-analysis.html" class="cta-btn" onclick="resetAll(event)">다시 분석하기 →</a>
   </div>
 
 </div>
@@ -577,6 +578,14 @@ function loadResult(){
 }
 
 loadResult();
+
+function resetAll(e){
+  e.preventDefault();
+  localStorage.removeItem('ff_saju_result');
+  localStorage.removeItem('ff_saju_input');
+  sessionStorage.removeItem('ff_result_ready');
+  location.href='saju-analysis.html';
+}
 
 /* ? 버튼 클릭으로 tooltip 토글 */
 document.addEventListener('click', function(e) {

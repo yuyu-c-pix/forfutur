@@ -466,7 +466,7 @@
   <!-- CTAs -->
   <div class="ctas" style="flex-direction:row;align-items:flex-start;gap:16px">
     <a href="saju-data.html" class="cta-btn">데이터 살펴보기 →</a>
-    <a href="saju-analysis.html" class="cta-btn">다시 분석하기 →</a>
+    <a href="saju-analysis.html" class="cta-btn" onclick="resetAll(event)">다시 분석하기 →</a>
   </div>
 
 </div>
@@ -513,7 +513,7 @@ const EL_DESC  = {
 };
 
 function getLackingElement(){
-  try{ const r=JSON.parse(localStorage.getItem('ff_saju_result')||'null'); if(r&&EL_TITLE[r.lacking]&&sessionStorage.getItem('ff_result_ready')) return r.lacking; }catch(e){}
+  try{ const r=JSON.parse(localStorage.getItem('ff_saju_result')||'null'); if(r&&EL_TITLE[r.lacking]) return r.lacking; }catch(e){}
   return null;
 }
 
@@ -565,6 +565,14 @@ applyFilter(lacking);
 updateLayout();
 })();
 fit();
+
+function resetAll(e){
+  e.preventDefault();
+  localStorage.removeItem('ff_saju_result');
+  localStorage.removeItem('ff_saju_input');
+  sessionStorage.removeItem('ff_result_ready');
+  location.href='saju-analysis.html';
+}
 </script>
 </body>
 </html>

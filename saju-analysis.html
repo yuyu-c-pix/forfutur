@@ -220,6 +220,14 @@
 </div>
 
 <script>
+/* 기존 분석 결과가 있으면 결과 페이지로 리다이렉트 */
+(function(){
+  try{
+    var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');
+    if(r&&r.lacking) location.replace('saju-result.html');
+  }catch(e){}
+})();
+
 /* Scale */
 var SH=1127;
 function fit(){var s=Math.min(1,window.innerWidth/1920);document.documentElement.style.setProperty('--sc',s);document.getElementById('stage').style.height=SH+'px';document.querySelector('.sw').style.height=(SH*s)+'px';}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Master Tendencies — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn,.lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .nn:hover,.lb:hover{color:#fff}
+    .nn.active,.lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
+    .lo img{width:100%;height:100%;display:block}
+
+    /* SIDEBAR — exact Figma positions */
+    .bk{position:absolute;left:141px;top:150px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px}
+    .s-tag{position:absolute;left:141px;top:194px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .s-title{position:absolute;left:140px;top:229px;font-weight:400;font-size:53px;line-height:58px;letter-spacing:-1.325px;width:540px}
+    .s-sub{position:absolute;left:140px;top:360px;font-weight:400;font-size:16px;line-height:22px;letter-spacing:-0.4px;width:337px;color:#8a9199}
+
+    /* PANELS — exact Figma positions */
+    .panel{
+      position:absolute;left:679px;width:1100px;
+      background:#060606;border:2px solid rgba(243,246,249,.2);
+      padding:32px 100px;
+      overflow:hidden;
+    }
+    .p1{top:237px;height:403px}
+    .p2{top:660px;height:auto;padding-bottom:32px}
+
+    .p-head{display:flex;flex-direction:column;gap:4px;margin-bottom:34px}
+    .p-head.p2h{margin-bottom:33px}
+    .p-title{font-weight:400;font-size:27px;line-height:38px;letter-spacing:-0.54px}
+    .p-sub{font-weight:400;font-size:17px;line-height:22px;letter-spacing:-0.34px;color:#8a9199}
+
+    /* Chart image: dual-layer for animation */
+    .chart-wrap{position:relative;width:100%;aspect-ratio:1875/403}
+    /* Gray background layer — always visible, dimmed */
+    .chart-gray{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.25);opacity:0.6}
+    /* White reveal layer — animates from bottom */
+    .chart-white{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0);animation:revealUp 1.8s cubic-bezier(.22,1,.36,1) forwards}
+    .p2 .chart-white{animation-delay:0s}
+    @keyframes revealUp{to{clip-path:inset(0 0 0 0)}}
+
+    /* Labels */
+    .labels-abs{position:relative;height:16px;margin-top:10px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;letter-spacing:-0.18px;color:#8a9199;white-space:nowrap}
+    .labels-abs span{position:absolute;top:0}
+    .labels-flex{display:flex;gap:69px;margin-top:10px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;letter-spacing:-0.18px;color:#8a9199;white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+
+  <a href="saju-data.html" class="bk">← Saju Data</a>
+  <p class="s-tag">SAJU DATA</p>
+  <h1 class="s-title">The Day Master<br>Decision Tendencies</h1>
+  <p class="s-sub">10개 일간이 각각 어떤 결정 성향을 보이는지, 그 안에서 당신의 일간은 어떤 수치인지 비교해보세요.</p>
+
+  <!-- Panel 1: Day Masters -->
+  <div class="panel p1">
+    <div class="p-head">
+      <p class="p-title">무토 일간은 변화보다 안정을 택하는 경향이 강합니다.</p>
+      <p class="p-sub">아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>무토는 모든 일간 중 이 경향이 가장 두드러져요.</p>
+    </div>
+    <div class="chart-wrap">
+      <img class="chart-gray" src="assets/chart-dm.png" alt="">
+      <img class="chart-white" src="assets/chart-dm.png" alt="">
+    </div>
+    <div class="labels-abs">
+      <span style="left:3px">Byeong Fire</span>
+      <span style="left:96px">Jeong Fire</span>
+      <span style="left:195px">Mu Earth</span>
+      <span style="left:289px">Gi Earth</span>
+      <span style="left:366px">Gyeong Metal</span>
+      <span style="left:471px">Sin Metal</span>
+      <span style="left:559px">Gap Wood</span>
+      <span style="left:654px">Eul Wood</span>
+      <span style="left:748px">Im Water</span>
+      <span style="left:836px">Gye Water</span>
+    </div>
+  </div>
+
+  <!-- Panel 2: Years -->
+  <div class="panel p2">
+    <div class="p-head p2h">
+      <p class="p-title">2026년, 무토 일간에게 변화가 더 자주 찾아오고 있습니다.</p>
+      <p class="p-sub">2020년부터 2023년까지 변화 시도가 눈에 띄게 줄었다가, 2024년부터 빠르게 올라오고 있어요. 올해 2026년은 불의 기운이 강한 해로, 무토 일간에게 평소보다 변화가 많이 찾아오는 시기예요.</p>
+    </div>
+    <div class="chart-wrap">
+      <img class="chart-gray" src="assets/chart-yr.png" alt="">
+      <img class="chart-white" src="assets/chart-yr.png" alt="">
+    </div>
+    <div class="labels-flex">
+      <span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span>
+      <span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+const STAGE_H=1200;
+function fit(){
+  const s=Math.min(1,window.innerWidth/1920);
+  document.documentElement.style.setProperty('--sc',s);
+  document.getElementById('stage').style.height=STAGE_H+'px';
+  document.querySelector('.sw').style.height=(STAGE_H*s)+'px';
+}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+(function(){
+  var r=null;try{r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');}catch(e){}
+  if(!r||!r.dayMasterElement)return;
+  var el=r.dayMasterElement,nm=r.dayMasterName||'무토';
+  var TXT={
+    wood:{
+      p1t:nm+' 일간은 변화와 성장을 적극적으로 받아들이는 경향이 강합니다.',
+      p1s:'아래는 10개 일간이 얼마나 자주 변화형 결정을 하는지 나타낸 분포예요.<br>'+nm+'은 모든 일간 중 이 경향이 두드러지는 편입니다.',
+      p2t:'2026년, '+nm+' 일간에게 새로운 흐름이 더 강하게 찾아오고 있습니다.',
+      p2s:'올해 2026년은 불의 기운이 강한 해로, 목(木) 기운과의 시너지로 '+nm+' 일간에게 확장과 시도가 자주 찾아오는 시기예요. 2024년부터 빠르게 올라오고 있는 변화 흐름이 올해 정점에 가깝게 이어집니다.'
+    },
+    fire:{
+      p1t:nm+' 일간은 즉각적인 표현과 주도적인 결정을 택하는 경향이 강합니다.',
+      p1s:'아래는 10개 일간이 얼마나 자주 주도형 결정을 하는지 나타낸 분포예요.<br>'+nm+'은 감정과 생각을 외부로 드러내는 결정 빈도가 높은 편입니다.',
+      p2t:'2026년, '+nm+' 일간에게 발산과 표현의 기회가 더 자주 찾아오고 있습니다.',
+      p2s:'올해 2026년은 불의 기운이 강한 해로, 화(火) 일간에게 특히 표현하고 드러내는 시도가 집중되는 시기예요. 에너지를 잘 배분하면, 한 해 중반에 가장 큰 결실을 만들어낼 수 있습니다.'
+    },
+    earth:{
+      p1t:nm+' 일간은 변화보다 안정을 택하는 경향이 강합니다.',
+      p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+'는 모든 일간 중 이 경향이 가장 두드러집니다.',
+      p2t:'2026년, '+nm+' 일간에게 변화가 더 자주 찾아오고 있습니다.',
+      p2s:'2020년부터 2023년까지 변화 시도가 눈에 띄게 줄었다가, 2024년부터 빠르게 올라오고 있어요. 올해 2026년은 불의 기운이 강한 해로, '+nm+' 일간에게 평소보다 변화가 많이 찾아오는 시기입니다.'
+    },
+    metal:{
+      p1t:nm+' 일간은 정밀한 판단과 기준 중심의 결정을 택하는 경향이 강합니다.',
+      p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+'은 즉흥적 변화보다 누적된 판단을 신뢰하는 경향이 두드러집니다.',
+      p2t:'2026년, '+nm+' 일간에게 선택의 순간이 더 자주 찾아오고 있습니다.',
+      p2s:'올해 2026년은 불의 기운이 강한 해로, 금(金)에게 마찰과 전환의 흐름이 더 자주 들어오는 시기예요. 빠른 판단보다 원칙을 지키는 결정이 한 해를 안정적으로 이끌어줍니다.'
+    },
+    water:{
+      p1t:nm+' 일간은 유연한 흐름 읽기와 직관적 결정을 택하는 경향이 강합니다.',
+      p1s:'아래는 10개 일간이 얼마나 자주 조화형 결정을 하는지 나타낸 분포예요.<br>'+nm+'은 환경에 맞춰 방향을 바꾸는 결정 빈도가 높은 편입니다.',
+      p2t:'2026년, '+nm+' 일간에게 관계와 흐름의 변화가 더 자주 찾아오고 있습니다.',
+      p2s:'올해 2026년은 불의 기운이 강한 해로, 수(水)에게 외부 자극에 반응하는 상황이 더 많이 찾아오는 시기예요. 직관을 믿고 유연하게 방향을 잡아가는 것이 이 시기를 가장 잘 활용하는 방법입니다.'
+    }
+  };
+  var t=TXT[el]||TXT.earth;
+  var pts=document.querySelectorAll('.p-title');
+  var sbs=document.querySelectorAll('.p-sub');
+  if(pts[0])pts[0].textContent=t.p1t;
+  if(sbs[0])sbs[0].innerHTML=t.p1s;
+  if(pts[1])pts[1].textContent=t.p2t;
+  if(sbs[1])sbs[1].textContent=t.p2s;
+})();
+</script>
+</body>
+</html>

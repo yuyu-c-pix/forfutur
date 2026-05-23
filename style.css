@@ -1,0 +1,738 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+
+:root {
+  --bg: #0f0f0f;
+  --nav-bg: #212121;
+  --active-bg: #454545;
+  --border-subtle: rgba(243, 246, 249, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.85);
+  --text-white: #ffffff;
+  --text-muted: #8a9199;
+  --text-inactive: #464646;
+  --card-w: 530px;
+  --card-h: 578px;
+  --card-gap: 27px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text-white);
+  font-family: 'Pretendard Variable', 'Pretendard', 'DM Sans', 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ───────────── NAV ───────────── */
+.nav {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  pointer-events: none;
+}
+
+.nav-left,
+.nav-right {
+  background: var(--nav-bg);
+  border-radius: 8px;
+  padding: 8px 20px 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  pointer-events: all;
+}
+
+.nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: all;
+}
+
+.nav-logo img { height: 30px; width: auto; display: block; }
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-inactive);
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  line-height: 18px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: var(--active-bg);
+  color: var(--text-white);
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-inactive);
+  font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.4px;
+  line-height: 18px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  background: var(--active-bg);
+  color: var(--text-white);
+}
+
+/* ───────────── PAGE WRAPPER ───────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ───────────── HERO ───────────── */
+.hero {
+  position: absolute;
+  top: 17%;
+  left: 7.5%;
+  max-width: 600px;
+  z-index: 5;
+}
+
+.hero h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(36px, 3.5vw, 63px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
+  font-size: clamp(15px, 1.15vw, 21px);
+  line-height: 1.55;
+  letter-spacing: -0.025em;
+  color: white;
+}
+
+/* ───────────── CARDS SECTION ───────────── */
+.cards-section {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--card-gap);
+  align-items: flex-start;
+  z-index: 2;
+  /* allow slight horizontal overflow for glow */
+  padding: 4px;
+}
+
+/* ───────────── SINGLE CARD ───────────── */
+.card {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  cursor: pointer;
+  flex-shrink: 0;
+  /* Scale effect is controlled per element */
+}
+
+/* Background fill + border */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,20,20,0.1) 0%, rgba(122,122,122,0.1) 100%);
+  border: 2px solid var(--border-subtle);
+  box-shadow: 0 0 12px 0 rgba(0,0,0,0.15);
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  pointer-events: none;
+}
+
+.card:hover .card-bg {
+  border-color: var(--border-hover);
+  background: linear-gradient(180deg, rgba(115,115,115,0.42) 0%, rgba(217,217,217,0.04) 100%);
+  box-shadow: 0 0 40px 0 rgba(255,255,255,0.06);
+}
+
+/* Featured (SAJU DATA) always lit */
+.card-featured .card-bg {
+  border-color: rgba(255,255,255,0.9);
+  background: linear-gradient(180deg, rgba(115,115,115,0.77) 0%, rgba(217,217,217,0) 100%);
+}
+
+/* ───────────── CORNER BRACKETS ───────────── */
+.corner {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .corner,
+.card-featured .corner { opacity: 1; }
+
+.corner.tl {
+  top: -1px; left: -1px;
+  border-top: 1.5px solid rgba(255,255,255,0.9);
+  border-left: 1.5px solid rgba(255,255,255,0.9);
+}
+.corner.tr {
+  top: -1px; right: -1px;
+  border-top: 1.5px solid rgba(255,255,255,0.9);
+  border-right: 1.5px solid rgba(255,255,255,0.9);
+}
+.corner.bl {
+  bottom: -1px; left: -1px;
+  border-bottom: 1.5px solid rgba(255,255,255,0.9);
+  border-left: 1.5px solid rgba(255,255,255,0.9);
+}
+.corner.br {
+  bottom: -1px; right: -1px;
+  border-bottom: 1.5px solid rgba(255,255,255,0.9);
+  border-right: 1.5px solid rgba(255,255,255,0.9);
+}
+
+/* ───────────── CARD GRAPHIC ───────────── */
+.card-graphic {
+  position: absolute;
+  top: 6%;
+  left: 0;
+  right: 0;
+  height: 53%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-graphic img {
+  max-height: 100%;
+  max-width: 88%;
+  object-fit: contain;
+  transition: transform 0.45s ease;
+  display: block;
+}
+
+.card:hover .card-graphic img { transform: scale(1.04); }
+
+/* ───────────── CARD TEXT AREA ───────────── */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 46px;
+  right: 46px;
+  padding-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.card-text { display: flex; flex-direction: column; gap: 14px; }
+
+.card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: white;
+  line-height: normal;
+}
+
+.card-desc {
+  font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: -0.35px;
+  color: var(--text-muted);
+  max-width: 300px;
+}
+
+.card-cta {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 24px;
+  border-bottom: 1px solid white;
+  padding-bottom: 1px;
+  width: fit-content;
+  transition: opacity 0.2s;
+}
+
+.card-cta:hover { opacity: 0.65; }
+
+/* ───────────── DATA DOTS (SAJU DATA) ───────────── */
+.data-viz {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-viz img { max-height: 90%; max-width: 82%; object-fit: contain; }
+
+.data-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #d9d9d9;
+}
+
+/* ───────────── INNER PAGE LAYOUT ───────────── */
+.inner-page {
+  min-height: 100vh;
+  padding: 140px 80px 80px;
+  position: relative;
+}
+
+.inner-hero {
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+
+.inner-hero .tag {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.inner-hero h1 {
+  font-size: clamp(36px, 4vw, 62px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.inner-hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: -0.025em;
+  color: var(--text-muted);
+  font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 48px 0;
+}
+
+/* ───────────── FORM ───────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin-bottom: 48px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form-field input,
+.form-field select {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s, color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Unified gray state — empty inputs and selects look the same */
+.form-field input::placeholder               { color: rgba(255, 255, 255, 0.45); }
+.form-field input.is-empty,
+.form-field input:placeholder-shown,
+.form-field select.is-empty                  { color: rgba(255, 255, 255, 0.45); }
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: rgba(255,255,255,0.4);
+}
+
+.form-field select option { background: #1a1a1a; color: #ffffff; }
+.form-field select option[value=""] { color: rgba(255,255,255,0.45); }
+
+/* Error state (used for out-of-range date entries) */
+.form-field input.error,
+.form-field select.error {
+  border-color: #D62E2D;
+  color: #D62E2D;
+  animation: ff-shake 0.32s ease;
+}
+.form-field .error-msg {
+  font-size: 12px;
+  color: #D62E2D;
+  font-family: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+  margin-top: 4px;
+  display: none;
+  letter-spacing: -0.2px;
+}
+.form-field .error-msg.visible { display: block; }
+
+@keyframes ff-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  50%      { transform: translateX(4px);  }
+  75%      { transform: translateX(-2px); }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: #0f0f0f;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  padding: 13px 28px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.04);
+}
+
+/* ───────────── PILLARS (Analysis) ───────────── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 860px;
+  margin-bottom: 48px;
+}
+
+.pillar-card {
+  background: #171717;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.2s;
+}
+
+.pillar-card:hover { border-color: rgba(255,255,255,0.2); }
+
+.pillar-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.pillar-char {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pillar-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.5);
+}
+
+/* ───────────── STATS GRID (Data) ───────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 1000px;
+  margin-bottom: 48px;
+}
+
+.stat-card {
+  background: #161616;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+
+.stat-number {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.4;
+}
+
+/* ───────────── BAR CHART ───────────── */
+.bar-chart {
+  max-width: 860px;
+  margin-bottom: 48px;
+}
+
+.bar-chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.bar-label {
+  width: 60px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: rgba(255,255,255,0.55);
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+
+.bar-pct {
+  width: 42px;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ───────────── PRODUCT GRID (Enhance) ───────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin-bottom: 48px;
+}
+
+.product-card {
+  background: #141414;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.product-card:hover {
+  border-color: rgba(255,255,255,0.22);
+  transform: translateY(-3px);
+}
+
+.product-visual {
+  height: 200px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-symbol {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 64px;
+  color: rgba(255,255,255,0.15);
+  user-select: none;
+  transition: color 0.25s;
+}
+
+.product-card:hover .product-symbol { color: rgba(255,255,255,0.25); }
+
+.product-body {
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-element {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.product-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: -0.3px;
+}
+
+.product-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 4px;
+}
+
+.product-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin-top: 8px;
+}
+
+/* ───────────── BACK BUTTON ───────────── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  transition: color 0.2s;
+  margin-bottom: 40px;
+}
+
+.back-link:hover { color: white; }
+
+.back-link svg { flex-shrink: 0; }
+
+/* ───────────── RESPONSIVE ───────────── */
+@media (max-width: 1500px) {
+  :root {
+    --card-w: 420px;
+    --card-h: 458px;
+    --card-gap: 20px;
+  }
+  .card-title { font-size: 20px; }
+  .card-desc  { font-size: 13px; }
+  .card-cta   { font-size: 14px; }
+  .card-content { left: 36px; right: 36px; padding-bottom: 36px; gap: 22px; }
+}
+
+@media (max-width: 1300px) {
+  :root {
+    --card-w: 340px;
+    --card-h: 370px;
+    --card-gap: 16px;
+  }
+  .hero h1 { font-size: 40px; }
+  .cards-section { top: 40%; }
+  .card-title  { font-size: 18px; }
+  .card-desc   { font-size: 12px; line-height: 17px; }
+  .card-content { left: 28px; right: 28px; padding-bottom: 28px; gap: 16px; }
+}

@@ -1,0 +1,37 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 346.247 281.393" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 372896">
+<path id="Vector 17" d="M155.662 74.798V141.315L210.984 173.255M155.662 74.798L289.925 1.14746L345.247 33.0869M155.662 74.798L210.984 106.738M210.984 173.255L345.247 99.6042V33.0869M210.984 173.255V106.738M345.247 33.0869L210.984 106.738" stroke="url(#paint0_linear_0_206)" stroke-width="2"/>
+<path id="Vector 15" d="M1 74.7979V141.315L56.3216 173.255M1 74.7979L56.3216 42.8584L111.643 74.7979M1 74.7979L56.3216 106.738M56.3216 173.255L111.643 141.315V74.7979M56.3216 173.255V106.738M111.643 74.7979L56.3216 106.738" stroke="url(#paint1_linear_0_206)" stroke-width="2"/>
+<rect id="Rectangle 34628754" x="107.589" y="70.944" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628758" x="151.609" y="70.944" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628760" x="207.12" y="102.151" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628761" x="207.12" y="169.202" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628759" x="151.609" y="137.383" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628755" x="107.589" y="137.383" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628756" x="52.2684" y="169.202" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628757" x="52.2684" y="102.151" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<g id="Group 372895">
+<g id="Vector 13">
+<path d="M78.426 246.72V180.202L133.748 148.263L189.069 180.202V246.72L133.748 278.66L78.426 246.72Z" fill="var(--fill-0, #F3F6F9)" fill-opacity="0.2"/>
+<path d="M78.426 180.203V246.72L133.748 278.66M78.426 180.203L133.748 148.263L189.069 180.203M78.426 180.203L133.748 212.142M133.748 278.66L189.069 246.72V180.203M133.748 278.66V212.142M189.069 180.203L133.748 212.142" stroke="var(--stroke-0, #6A6A6C)" stroke-width="2"/>
+</g>
+<rect id="Rectangle 34628747" x="129.696" y="207.096" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628753" x="129.696" y="273.287" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628750" x="129.696" y="145.489" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628748" x="74.3736" y="176.029" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628751" x="74.3736" y="243.517" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628749" x="185.017" y="176.029" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+<rect id="Rectangle 34628752" x="185.017" y="243.517" width="8.10608" height="8.10608" fill="var(--fill-0, #D9D9D9)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_206" x1="304.114" y1="24.0252" x2="26.8166" y2="112.412" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="#999999"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_206" x1="20.3555" y1="100.624" x2="184.784" y2="188.469" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="#999999"/>
+</linearGradient>
+</defs>
+</svg>

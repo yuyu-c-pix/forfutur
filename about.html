@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px;z-index:10}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nn:hover{color:#fff}
+    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb:hover{color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px;z-index:10}
+    .lo img{width:100%;height:100%;display:block}
+
+    .hero-cover{position:absolute;left:347px;top:0;width:1585px;height:1237px;overflow:hidden;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 100%);
+      mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 100%)}
+    .hero-cover img{width:100%;height:100%;object-fit:cover}
+
+    .hero-tag{position:absolute;left:137px;top:498px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .hero-title{position:absolute;left:137px;top:528px;font-weight:400;font-size:63px;line-height:62px;letter-spacing:-1.575px;color:#fff;width:569px}
+    .hero-desc{position:absolute;left:137px;top:662px;font-weight:400;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:#8a9199;width:560px}
+
+    .divider{position:absolute;left:140px;height:1px;background:rgba(255,255,255,.08)}
+    .dw{width:1638px}
+    .dh{left:140px;right:143px}
+
+    .bk{position:absolute;left:140px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px;transition:color .2s}
+    .bk:hover{color:#fff}
+
+    .p-label{position:absolute;font-weight:500;font-size:14px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
+    .p-title{position:absolute;font-weight:500;font-size:26px;letter-spacing:-0.65px;color:#fff;width:560px}
+    .p-desc{position:absolute;font-weight:400;font-size:14px;line-height:19px;letter-spacing:-0.28px;color:#8a9199}
+
+    .section-tag{position:absolute;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .section-title{position:absolute;font-weight:400;font-size:53px;letter-spacing:-1.325px;color:#fff}
+    .section-desc{position:absolute;font-weight:400;font-size:16px;line-height:22px;letter-spacing:-0.4px;color:#8a9199;width:527px}
+
+    .vcard{position:absolute;border:1px solid rgba(243,246,249,.1);padding:32px;overflow:hidden;transition:border-color .25s}
+    .vcard:hover{border-color:rgba(255,255,255,.22)}
+    .vcard-bg{position:absolute;inset:0;width:103%;height:269%;left:-1.5%;top:-85%;object-fit:cover;pointer-events:none}
+    .vcard-inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:40px}
+    .vcard-num{font-weight:500;font-size:14px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
+    .vcard-title{font-weight:500;font-size:26px;letter-spacing:-0.65px;color:#f5f5f5}
+    .vcard-desc{font-weight:400;font-size:14px;line-height:19px;letter-spacing:-0.28px;color:#8a9199;width:281px;margin-top:4px}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn active">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+
+  <!-- Hero cover image with left→right fade mask -->
+  <div class="hero-cover"><img src="assets/cover-about.png" alt=""></div>
+
+  <p class="hero-tag">ABOUT US</p>
+  <h1 class="hero-title">We Orient The Future<br>Be Systematic</h1>
+  <p class="hero-desc">사주라는 오래된 언어를 오늘의 데이터로 다시 읽습니다. 개인의 패턴을 분석하고, 집단의 흐름으로 확장해, 우리가 향하는 방향을 함께 가늠합니다.</p>
+
+  <!-- Divider between hero and content -->
+  <div class="divider dh" style="top:1126px"></div>
+
+  <a href="index.html" class="bk" style="top:1220px">← Home</a>
+  <p class="section-tag" style="left:140px;top:1263px">ABOUT FOUR FUTUR</p>
+  <h2 class="section-title" style="left:140px;top:1291px;width:1000px">Saju By Its Nature, Data</h2>
+  <p class="section-desc" style="left:140px;top:1358px">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
+
+  <!-- Pillar dividers -->
+  <div class="divider dw" style="top:1512px"></div>
+  <div class="divider dw" style="top:1642px"></div>
+  <div class="divider dw" style="top:1772px"></div>
+  <div class="divider dw" style="top:1902px"></div>
+  <div class="divider dw" style="top:2032px"></div>
+
+  <!-- 01 / SYSTEM -->
+  <span class="p-label" style="left:169px;top:1540px">01 / SYSTEM</span>
+  <p class="p-title" style="left:347px;top:1537px">3,000년의 관찰이 쌓은 신뢰</p>
+  <p class="p-desc" style="left:347px;top:1580px;width:637px">사주는 오랜 시간 수많은 삶의 패턴이 관찰되고 기록되어 온 체계입니다. FOUR FUTUR의 모든 해석은 이 축적된 데이터 위에서 시작됩니다.</p>
+
+  <!-- 02 / ANALYSIS -->
+  <span class="p-label" style="left:168px;top:1670px">02 / ANALYSIS</span>
+  <p class="p-title" style="left:347px;top:1668px">사주 속 네 기둥으로 분석하는 개인</p>
+  <p class="p-desc" style="left:348px;top:1711px;width:665px">생년월일시에서 도출된 네 기둥과 오행의 비율을 분석합니다. 나의 성향과 강점, 부족한 기운, 그리고 올해의 흐름까지 하나의 리포트로 정리해 확인할 수 있습니다.</p>
+
+  <!-- 03 / DATA -->
+  <span class="p-label" style="left:168px;top:1800px">03 / DATA</span>
+  <p class="p-title" style="left:347px;top:1800px">데이터로 관찰하는 사주의 흐름</p>
+  <p class="p-desc" style="left:347px;top:1843px;width:672px">나와 비슷한 사주를 가진 사람들이 얼마나 있고, 어떤 경향을 보이는지 함께 살펴봅니다. 혼자만의 해석을 넘어, 집단의 데이터 속에서 나의 위치를 확인할 수 있습니다.</p>
+
+  <!-- 04 / ENHANCE -->
+  <span class="p-label" style="left:168px;top:1930px">04 / ENHANCE</span>
+  <p class="p-title" style="left:347px;top:1929px">기운의 균형을 맞추는 오브젝트</p>
+  <p class="p-desc" style="left:348px;top:1972px;width:940px">분석만으로는 충분하지 않습니다. 내 사주에 맞게 설계된 오브젝트와 실천으로, 부족한 기운을 일상에서 채워갈 수 있습니다.</p>
+
+  <!-- Values section -->
+  <p class="section-tag" style="left:140px;top:2126px">OUR VALUES</p>
+  <h2 class="section-title" style="left:138px;top:2154px">Our Core Values</h2>
+  <p class="section-desc" style="left:140px;top:2221px">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
+
+  <!-- Value card 1 -->
+  <div class="vcard" style="left:139px;top:2375px;width:523px">
+    <img class="vcard-bg" src="assets/value-card-1.png" alt="">
+    <div class="vcard-inner">
+      <span class="vcard-num">01</span>
+      <div>
+        <p class="vcard-title">Built On Structure</p>
+        <p class="vcard-desc">모호함이 아닌 구조. 모든 해석은 사주의 네 기둥 구조에서 시작됩니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Value card 2 -->
+  <div class="vcard" style="left:697px;top:2375px;width:524px">
+    <img class="vcard-bg" src="assets/value-card-2.png" alt="">
+    <div class="vcard-inner">
+      <span class="vcard-num">02</span>
+      <div>
+        <p class="vcard-title">Trust Through Data</p>
+        <p class="vcard-desc">해석이 아닌 데이터. 축적된 패턴을 기반으로 개인의 경향을 읽어냅니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Value card 3 -->
+  <div class="vcard" style="left:1256px;top:2375px;width:522px">
+    <img class="vcard-bg" src="assets/value-card-3.png" alt="">
+    <div class="vcard-inner">
+      <span class="vcard-num">03</span>
+      <div>
+        <p class="vcard-title">Depth Over Time</p>
+        <p class="vcard-desc">한 번으로 끝나지 않습니다. 매년 누적되는 데이터가 해석을 더 깊게 만듭니다.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+var SH=2815;
+function fit(){
+  var s=Math.min(1,window.innerWidth/1920);
+  document.documentElement.style.setProperty('--sc',s);
+  document.getElementById('stage').style.height=SH+'px';
+  document.querySelector('.sw').style.height=(SH*s)+'px';
+}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+</script>
+</body>
+</html>

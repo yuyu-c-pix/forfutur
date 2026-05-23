@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Four Futur — How we orient the future</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      background: #0f0f0f;
+      overflow-x: hidden;
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      color: #ffffff;
+    }
+
+    /* ── 1920×1080 stage, scaled to viewport ── */
+    .stage-wrap {
+      width: 100%;
+      position: relative;
+    }
+    .stage {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      background: #0f0f0f;
+      transform: translateX(-50%) scale(var(--scale, 1));
+      transform-origin: top center;
+    }
+
+    /* ═════════════ NAV ═════════════ */
+    .nav-left, .nav-right {
+      position: absolute;
+      top: 40px;
+      background: #212121;
+      border-radius: 8px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-left  { left: 40px; gap: 28px; }
+    .nav-right { right: 40px; }
+
+    .nav-left .group { display: flex; align-items: center; gap: 18px; }
+
+    .nav-link {
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      letter-spacing: -0.4px;
+      color: #464646;
+      text-decoration: none;
+      padding: 6px 0;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #ffffff; }
+    .nav-link.active {
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: #454545;
+      color: #ffffff;
+    }
+    .lang-btn {
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      letter-spacing: -0.4px;
+      color: #464646;
+      text-decoration: none;
+      padding: 6px 0;
+      border-radius: 6px;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn.active {
+      padding: 6px 10px;
+      background: #454545;
+      color: #ffffff;
+    }
+    .lang-btn:hover { color: #ffffff; }
+
+    /* Logo */
+    .logo {
+      position: absolute;
+      left: 915.01px;
+      top: 48.87px;
+      width: 90px;
+      height: 30px;
+    }
+    .logo img { width: 100%; height: 100%; display: block; }
+
+    /* ═════════════ HERO ═════════════ */
+    .hero {
+      position: absolute;
+      left: 140px;
+      top: 181.67px;
+      width: 620px;
+      height: 135px;
+    }
+    .hero h1 {
+      position: absolute;
+      left: -3px;
+      top: 0;
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 400;
+      font-size: 63px;
+      line-height: normal;
+      letter-spacing: -1.89px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+    .hero p {
+      position: absolute;
+      left: 0;
+      top: 81px;
+      width: 473.543px;
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: -0.5px;
+      color: #8a9199;
+    }
+
+    /* ═════════════ CARDS ROW ═════════════ */
+    .cards-row {
+      position: absolute;
+      top: 428px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1640px;
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+    .card {
+      position: relative;
+      width: 530.779px;
+      height: 578.055px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.35s ease;
+    }
+    .card:hover { transform: translateY(-8px); }
+
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20,20,20,0.1) 0%, rgba(122,122,122,0.1) 100%);
+      border: 2px solid rgba(243,246,249,0.1);
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+      pointer-events: none;
+    }
+    .card:hover .card-bg {
+      border: 1px solid rgba(255,255,255,0.75);
+      background: linear-gradient(180deg, rgba(115,115,115,0.62) 0%, rgba(217,217,217,0) 100%);
+      box-shadow: 0 0 60px rgba(255,255,255,0.10), 0 20px 48px rgba(0,0,0,0.35);
+    }
+
+    /* Top corner brackets */
+    .card-corner {
+      position: absolute;
+      width: 10.095px;
+      height: 10.094px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .card:hover .card-corner { opacity: 1; }
+    .card-corner img { width: 100%; height: 100%; display: block; }
+    .card-corner.tl { top: 0; left: 0; }
+    .card-corner.tr { top: 0; left: 520.68px; }
+
+    /* Bottom corner brackets — anchored at card's own bottom */
+    .card-corner-bottom {
+      position: absolute;
+      height: 10.094px;
+      top: 567.961px;             /* 578.055 − 10.094 */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .card:hover .card-corner-bottom { opacity: 1; }
+    .card-corner-bottom img { width: 100%; height: 100%; display: block; }
+    .card-corner-bottom.bl { left: 0;        width: 10.095px; }
+    .card-corner-bottom.br { left: 470.239px; width: 60.54px;  }   /* 530.779 − 60.54 */
+
+    /* Text block */
+    .card-text {
+      position: absolute;
+      top: 361.43px;
+      width: 358.267px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .card:nth-child(1) .card-text { left: 46.12px; }
+    .card:nth-child(2) .card-text { left: 46.34px; }
+    .card:nth-child(3) .card-text { left: 46.56px; }
+
+    .card-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+    .card-heading h2 {
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: normal;
+      letter-spacing: -0.6px;
+      color: #ffffff;
+    }
+    .card-heading p {
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: -0.35px;
+      color: #8a9199;
+    }
+    .card:nth-child(1) .card-heading p { width: 301.331px; }
+    .card:nth-child(2) .card-heading p { width: 321.604px; }
+    .card:nth-child(3) .card-heading p { width: 321.604px; }
+
+    /* CTA — bordered box, fills on hover */
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border: 1px solid rgba(243, 246, 249, 0.5);
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: -0.4px;
+      line-height: normal;
+      white-space: nowrap;
+      width: fit-content;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .card-cta:hover {
+      background: #ffffff;
+      color: #0f0f0f;
+      border-color: #ffffff;
+    }
+    .card-cta .arrow { font-weight: 500; }
+
+    /* ═════════════ GRAPHICS ═════════════ */
+    .graphic-cube, .graphic-chart, .graphic-hex {
+      position: absolute;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .graphic-cube  { left: 127.23px; top: 39.19px;  width: 344.247px; height: 280.246px; }
+    .graphic-chart { left: 78.83px;  top: 113.51px; width: 377.186px; height: 175.38px;  }
+    .graphic-hex   { left: 138.38px; top: 56.36px;  width: 254.029px; height: 291.984px; }
+
+    .graphic-cube img,
+    .graphic-chart img,
+    .graphic-hex img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Scale the WRAPPER so dots inside move with the graphic */
+    .graphic-cube,
+    .graphic-chart,
+    .graphic-hex {
+      transform-origin: center center;
+      transition: transform 0.5s ease;
+    }
+    .card:hover .graphic-cube,
+    .card:hover .graphic-chart,
+    .card:hover .graphic-hex {
+      transform: scale(1.06);
+    }
+
+    /* Data dots */
+    .chart-dot, .hex-dot {
+      position: absolute;
+      background: #d9d9d9;
+      width: 8.106px;
+      height: 8.106px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage-wrap">
+    <div class="stage">
+
+      <!-- Nav right -->
+      <div class="nav-right">
+        <button class="lang-btn active" onclick="setLang(this)">KR</button>
+        <button class="lang-btn" onclick="setLang(this)">EN</button>
+      </div>
+
+      <!-- Nav left -->
+      <div class="nav-left">
+        <div class="group">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="logo" aria-label="Home">
+        <img src="assets/logo.svg" alt="Four Futur">
+      </a>
+
+      <!-- Hero -->
+      <div class="hero">
+        <h1>How We Orient The Future</h1>
+        <p>FOUR FUTUR는 개인의 패턴을 기반으로 사주를 분석하고, 집단의 흐름까지 확장해 미래의 방향을 예측합니다.</p>
+      </div>
+
+      <!-- Cards row -->
+      <div class="cards-row">
+
+        <!-- 01: SAJU ANALYSIS -->
+        <div class="card" onclick="location.href='saju-analysis.html'">
+          <div class="card-bg"></div>
+          <span class="card-corner tl"><img src="assets/corner-tl.svg" alt=""></span>
+          <span class="card-corner tr"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom bl"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom br"><img src="assets/corner-bottom.svg" alt=""></span>
+
+          <div class="graphic-cube"><img src="assets/cube.svg" alt="Saju Analysis"></div>
+
+          <div class="card-text">
+            <div class="card-heading">
+              <h2>SAJU ANALYSIS</h2>
+              <p>생년월일로 만들어진 네 개의 축을 분석해, 나에게 반복되는 패턴과 경향이 무엇인지 파악합니다. 나만의 리포트로 결과를 확인할 수 있습니다.</p>
+            </div>
+            <a href="saju-analysis.html" class="card-cta" onclick="event.stopPropagation()">
+              분석 시작하기 <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 02: SAJU DATA -->
+        <div class="card" onclick="location.href='saju-data.html'">
+          <div class="card-bg"></div>
+          <span class="card-corner tl"><img src="assets/corner-tl.svg" alt=""></span>
+          <span class="card-corner tr"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom bl"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom br"><img src="assets/corner-bottom.svg" alt=""></span>
+
+          <div class="graphic-chart">
+            <img src="assets/chart.svg" alt="Saju Data">
+            <span class="chart-dot" style="left: 41.86px;  top: 40.40px;"></span>
+            <span class="chart-dot" style="left: 19.18px;  top: 18.17px;"></span>
+            <span class="chart-dot" style="left: -3.51px;  top: -3.24px;"></span>
+            <span class="chart-dot" style="left: 41.86px;  top: 170.41px;"></span>
+            <span class="chart-dot" style="left: 19.18px;  top: 148.18px;"></span>
+            <span class="chart-dot" style="left: -3.51px;  top: 126.77px;"></span>
+          </div>
+
+          <div class="card-text">
+            <div class="card-heading">
+              <h2>SAJU DATA</h2>
+              <p>나와 비슷한 사주 패턴을 가진 사람들이 얼마나 되는지 확인할 수 있습니다. 분포와 겹치는 지점, 그리고 개인을 넘어선 집단의 경향을 함께 볼 수 있습니다.</p>
+            </div>
+            <a href="saju-data.html" class="card-cta" onclick="event.stopPropagation()">
+              데이터 살펴보기 <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 03: SAJU ENHANCE -->
+        <div class="card" onclick="location.href='saju-enhance.html'">
+          <div class="card-bg"></div>
+          <span class="card-corner tl"><img src="assets/corner-tl.svg" alt=""></span>
+          <span class="card-corner tr"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom bl"><img src="assets/corner-tr.svg" alt=""></span>
+          <span class="card-corner-bottom br"><img src="assets/corner-bottom.svg" alt=""></span>
+
+          <div class="graphic-hex">
+            <img src="assets/hexagon.svg" alt="Saju Enhance">
+            <span class="hex-dot" style="left: 50.91px;  top: 101.11px;"></span>
+            <span class="hex-dot" style="left: 122.78px; top: 58.98px;"></span>
+            <span class="hex-dot" style="left: 122.78px; top: 229.32px;"></span>
+            <span class="hex-dot" style="left: 195.42px; top: 101.11px;"></span>
+            <span class="hex-dot" style="left: 50.91px;  top: 188.11px;"></span>
+            <span class="hex-dot" style="left: 195.42px; top: 188.11px;"></span>
+          </div>
+
+          <div class="card-text">
+            <div class="card-heading">
+              <h2>SAJU ENHANCE</h2>
+              <p>내 사주에서 약하게 나타나는 축을 파악하고, 균형을 되찾을 수 있도록 설계된 오브젝트입니다. 부족한 기운을 채워 더 안정적인 흐름을 경험해보세요.</p>
+            </div>
+            <a href="saju-enhance.html" class="card-cta" onclick="event.stopPropagation()">
+              기운 보완하기 <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function fitStage() {
+      const s = Math.min(1, window.innerWidth / 1920);
+      document.documentElement.style.setProperty('--scale', s);
+      document.querySelector('.stage-wrap').style.height = (1080 * s) + 'px';
+    }
+    window.addEventListener('resize', fitStage);
+    window.addEventListener('load', fitStage);
+    fitStage();
+
+    function setLang(el) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+</body>
+</html>

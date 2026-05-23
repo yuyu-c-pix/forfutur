@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saju Result — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+
+    /* NAV */
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nn:hover{color:#fff}
+    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb:hover{color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
+    .lo img{width:100%;height:100%;display:block}
+
+    .bk{position:absolute;left:141px;top:151px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px;transition:color .2s}
+    .bk:hover{color:#fff}
+    .tg{position:absolute;left:141px;top:194px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .tt{position:absolute;left:141px;top:226px;font-weight:400;font-size:53px;letter-spacing:-1.325px;white-space:nowrap}
+    .ds{position:absolute;left:141px;top:293px;font-size:16px;line-height:22px;letter-spacing:-0.4px;width:460px;color:#8a9199}
+    .dv{position:absolute;left:141px;right:141px;height:1px;background:rgba(255,255,255,.08)}
+    .dv1{top:396px}
+
+    /* ═══ MAIN DAY PILLAR (full-width merged card) ═══ */
+    .main-card{
+      position:absolute;left:141px;top:527px;width:1640px;
+      border:1px solid rgba(243,246,249,.1);
+      padding:32px;
+      display:flex;justify-content:space-between;align-items:flex-start;
+      overflow:hidden;
+      --el-rgb: 206,207,211;
+      background:
+        linear-gradient(23.48deg, rgba(0,0,0,.2) 53.006%, rgba(102,102,102,.2) 93.166%),
+        linear-gradient(-19.63deg, rgba(0,0,0,0) 14.91%, rgba(102,102,102,.2) 74.413%),
+        linear-gradient(104.96deg, rgba(0,0,0,.2) 59.085%, rgba(38,38,38,.2) 101.76%),
+        linear-gradient(119.76deg, rgba(102,102,102,.2) 2.0569%, rgba(0,0,0,.2) 36.233%),
+        linear-gradient(18.29deg, rgba(102,102,102,.2) 28.492%, rgba(0,0,0,.2) 69.442%),
+        radial-gradient(ellipse 619px 2540px at 713px 297px,
+          rgba(20,20,20,0.10) 0%,rgba(43,43,44,0.10) 12.5%,
+          rgba(67,67,68,0.10) 25%,rgba(90,90,92,0.10) 37.5%,
+          rgba(113,114,116,0.10) 50%,rgba(160,160,163,0.10) 75%,
+          rgba(var(--el-rgb),0.10) 100%);
+      box-shadow: inset 8px 1px 19.9px rgba(var(--el-rgb),0.25);
+    }
+    /* background vector — organic blurred shape (Figma 1275:127) */
+    .main-vec-wrap{position:absolute;left:-45.68px;top:-99.18px;width:864.677px;height:618.662px;pointer-events:none;z-index:0}
+    .main-vec-inner{position:absolute;top:-14.35%;bottom:-14.35%;left:-10.27%;right:-10.27%}
+    .main-vec-inner svg{width:100%;height:100%;display:block}
+    .main-card.el-earth .main-vec-inner{--fill-0:rgba(243,214,75,0.21)}
+    .main-card.el-wood .main-vec-inner{--fill-0:rgba(11,131,118,0.21)}
+    .main-card.el-fire .main-vec-inner{--fill-0:rgba(214,46,45,0.21)}
+    .main-card.el-water .main-vec-inner{--fill-0:rgba(132,154,230,0.21)}
+    /* per-element full gradient overrides (Figma 1275:127) — linear layers first, radial last */
+    .main-card.el-wood{--el-rgb:11,131,118;background:
+      linear-gradient(23.4806deg,rgba(0,0,0,.2) 53.006%,rgba(11,131,118,.2) 93.166%),
+      linear-gradient(-19.6292deg,rgba(0,0,0,0) 14.91%,rgba(11,131,118,.2) 74.413%),
+      linear-gradient(104.961deg,rgba(0,0,0,.2) 59.085%,rgba(5,56,51,.2) 101.76%),
+      linear-gradient(119.763deg,rgba(11,131,118,.2) 2.0569%,rgba(0,0,0,.2) 36.233%),
+      linear-gradient(18.2915deg,rgba(11,131,118,.2) 28.492%,rgba(0,0,0,.2) 69.442%),
+      radial-gradient(ellipse 612px 2539px at 714px 297px,rgba(20,20,20,.10) 0%,rgba(18,48,45,.10) 25%,rgba(16,76,69,.10) 50%,rgba(13,103,94,.10) 75%,rgba(11,131,118,.10) 100%);}
+    .main-card.el-fire{--el-rgb:214,46,45;background:
+      linear-gradient(23.4806deg,rgba(0,0,0,.2) 53.006%,rgba(214,46,45,.2) 93.166%),
+      linear-gradient(-19.6292deg,rgba(0,0,0,0) 14.91%,rgba(214,46,45,.2) 74.413%),
+      linear-gradient(104.961deg,rgba(0,0,0,.2) 59.085%,rgba(76,3,3,.2) 101.76%),
+      linear-gradient(119.763deg,rgba(214,46,45,.2) 2.0569%,rgba(0,0,0,.2) 36.233%),
+      linear-gradient(18.2915deg,rgba(214,46,45,.2) 28.492%,rgba(0,0,0,.2) 69.442%),
+      radial-gradient(ellipse 612px 2539px at 714px 297px,rgba(20,20,20,.10) 0%,rgba(44,23,23,.10) 12.5%,rgba(69,27,26,.10) 25%,rgba(117,33,33,.10) 50%,rgba(166,40,39,.10) 75%,rgba(214,46,45,.10) 100%);}
+    .main-card.el-earth{--el-rgb:243,214,75;background:
+      linear-gradient(23.4806deg,rgba(0,0,0,.2) 53.006%,rgba(102,102,102,.2) 93.166%),
+      linear-gradient(-19.6292deg,rgba(0,0,0,0) 14.91%,rgba(243,214,75,.2) 74.413%),
+      linear-gradient(104.961deg,rgba(0,0,0,.2) 59.085%,rgba(38,38,38,.2) 101.76%),
+      linear-gradient(119.763deg,rgba(243,214,75,.2) 2.0569%,rgba(0,0,0,.2) 36.233%),
+      linear-gradient(18.2915deg,rgba(243,214,75,.2) 28.492%,rgba(0,0,0,.2) 69.442%),
+      radial-gradient(ellipse 612px 2539px at 714px 297px,rgba(20,20,20,.10) 0%,rgba(48,44,27,.10) 12.5%,rgba(76,69,34,.10) 25%,rgba(104,93,41,.10) 37.5%,rgba(132,117,48,.10) 50%,rgba(187,166,61,.10) 75%,rgba(243,214,75,.10) 100%);}
+    .main-card.el-metal{--el-rgb:206,207,211;}
+    .main-card.el-water{--el-rgb:132,154,230;background:
+      linear-gradient(23.4806deg,rgba(0,0,0,.2) 53.006%,rgba(132,154,230,.2) 93.166%),
+      linear-gradient(-19.6292deg,rgba(0,0,0,0) 14.91%,rgba(132,154,230,.2) 74.413%),
+      linear-gradient(104.961deg,rgba(0,0,0,.2) 59.085%,rgba(21,32,72,.2) 101.76%),
+      linear-gradient(119.763deg,rgba(132,154,230,.2) 2.0569%,rgba(0,0,0,.2) 36.233%),
+      linear-gradient(18.2915deg,rgba(132,154,230,.2) 28.492%,rgba(0,0,0,.2) 69.442%),
+      radial-gradient(ellipse 612px 2539px at 714px 297px,rgba(20,20,20,.10) 0%,rgba(34,37,46,.10) 12.5%,rgba(48,54,73,.10) 25%,rgba(62,70,99,.10) 37.5%,rgba(76,87,125,.10) 50%,rgba(104,121,178,.10) 75%,rgba(132,154,230,.10) 100%);}
+
+    /* right-pane tint — per element (Figma angles) */
+    .main-right{--el-rgb:206,207,211;background:linear-gradient(-72.55deg,rgba(53,52,52,.2) 63.4%,rgba(206,207,211,.22) 151.2%);}
+    .main-right.el-wood{--el-rgb:11,131,118;background:linear-gradient(-68.70deg,rgba(53,52,52,.2) 32.88%,rgba(11,131,118,.2) 122.68%);}
+    .main-right.el-fire{--el-rgb:214,46,45;background:linear-gradient(-70.50deg,rgba(53,52,52,.2) 37.16%,rgba(214,46,45,.2) 136.72%);}
+    .main-right.el-earth{--el-rgb:243,214,75;background:linear-gradient(-67.67deg,rgba(53,52,52,.2) 14.32%,rgba(243,214,75,.2) 129.33%);}
+    .main-right.el-metal{--el-rgb:206,207,211;}
+    .main-right.el-water{--el-rgb:132,154,230;background:linear-gradient(-72.10deg,rgba(53,52,52,.2) 35.42%,rgba(132,154,230,.2) 134.19%);}
+
+    .main-left{width:460px;display:flex;flex-direction:column;min-height:358px;gap:80px}
+    .main-left .ml-top{display:flex;flex-direction:column;gap:4px}
+    .ml-top-head{display:flex;flex-direction:column;gap:12px;font-weight:500}
+    .ml-label{font-weight:400;font-size:12px;letter-spacing:-0.3px;color:#8a9199}
+    .ml-name{font-weight:500;font-size:53px;letter-spacing:-1.325px;color:#fff;line-height:1}
+
+    .ml-desc{font-size:16px;line-height:22px;letter-spacing:-0.4px;color:#fff;overflow:hidden;max-height:66px}
+    .ml-info{font-size:16px;letter-spacing:-0.4px;line-height:26px}
+    .ml-info .k{color:#8a9199}
+
+    .main-right{
+      width:359px;height:358px;overflow:hidden;position:relative;
+      backdrop-filter:blur(2px);
+    }
+    /* default (wood/metal): centered, left 19.39%+right 19.39% → width 61.22% */
+    .main-right img{position:absolute;top:51px;left:50%;transform:translateX(-50%);width:61.22%;height:auto;z-index:1}
+    /* EARTH: 246×246 centered */
+    .main-right.el-earth img{top:50%;transform:translate(-50%,-50%);width:246px;height:246px}
+    /* FIRE: inset ~14.72% top, width 70.36% */
+    .main-right.el-fire img{top:14.72%;width:70.36%}
+    /* WATER: left 15.74%+right 15.74% → width 68.52%, top 56px */
+    .main-right.el-water img{top:56px;width:68.52%}
+
+    /* ═══ GENERAL OVERVIEW ═══ */
+    .ov-title{position:absolute;left:141px;font-weight:400;font-size:43px;letter-spacing:-1.075px}
+
+    /* ═══ PILLAR CONSIST ═══ */
+    .pillars-wrap{
+      position:absolute;left:141px;
+      border:1px solid rgba(243,246,249,.1);
+      padding:32px;display:flex;flex-direction:column;gap:44px;
+    }
+    .pw-header{display:flex;flex-direction:column;gap:16px;width:460px}
+    .pw-label{font-weight:400;font-size:12px;letter-spacing:-0.3px;color:#8a9199}
+    .pw-desc{font-size:16px;line-height:22px;letter-spacing:-0.4px;color:#fff}
+    .pw-row{display:flex;gap:20px}
+
+    .pc{width:241px;border:1px solid rgba(255,255,255,.08);background:rgba(106,106,106,.1);padding:20px;position:relative;display:flex;flex-direction:column;gap:21px;align-items:center}
+    .pc-top{display:flex;justify-content:space-between;align-items:flex-start;width:100%}
+    .pc-labels{display:flex;flex-direction:column;gap:2px}
+    .pc-name{font-weight:500;font-size:16px;letter-spacing:-0.18px}
+    .pc-meaning{font-size:12px;letter-spacing:-0.3px;color:#fff}
+    .pc-info{width:20px;height:20px;border-radius:100px;background:linear-gradient(-36deg,rgba(0,0,0,0) 0%,rgb(122,122,122) 88%);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:11px;box-shadow:inset 0 0 3px rgba(255,255,255,.15);position:relative;cursor:pointer;flex-shrink:0}
+    .pc-info::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);right:0;width:200px;background:#1c1c1c;border:1px solid rgba(255,255,255,.15);border-radius:0;padding:12px;font-size:12px;font-weight:400;line-height:1.6;color:#e0e0e0;white-space:normal;z-index:20;pointer-events:none;display:none}
+    .pc-info.tt-on::after{display:block}
+    .pc-icon{width:110px;height:110px}.pc-icon img{width:100%;height:100%;object-fit:contain}
+    .pc-el{font-weight:500;font-size:12px;letter-spacing:-0.3px;width:100%;color:#fff}
+
+    .pc.el-wood{box-shadow:inset 0 0 32.5px rgba(11,131,118,.25)}
+    .pc.el-fire{box-shadow:inset 0 0 32.5px rgba(214,46,45,.24)}
+    .pc.el-metal{box-shadow:inset 0 0 32.5px rgba(206,207,211,.25)}
+    .pc.el-water{box-shadow:inset 0 0 32.5px rgba(132,154,230,.25)}
+    .pc.el-earth{box-shadow:inset 0 0 32.5px rgba(243,214,75,.2)}
+
+    /* ═══ PILLAR BALANCE ═══ */
+    .balance-card{
+      position:absolute;
+      border:1px solid rgba(243,246,249,.1);
+      padding:32px;display:flex;flex-direction:column;gap:101px;height:423px;
+    }
+    .bc-label{font-weight:400;font-size:12px;letter-spacing:-0.3px;color:#8a9199}
+    .bc-bars{display:flex;flex-direction:column;gap:22px}
+    .bar-row{display:flex;flex-direction:column;gap:6px;width:465px}
+    .bar-hdr{display:flex;justify-content:space-between;font-size:16px;letter-spacing:-0.4px;font-weight:500;color:#fff}
+    .bar-trk{position:relative;width:100%;height:6px;background:rgba(255,255,255,.06)}
+    .bar-fl{position:absolute;top:0;left:0;height:6px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+    .bar-fl.go{transform:scaleX(1)}
+    .bar-fl.wood{background:linear-gradient(to right,#000,#0B8376)}.bar-fl.fire{background:linear-gradient(to right,#000,#D62E2D)}.bar-fl.earth{background:linear-gradient(to right,#000,#F3D64B)}.bar-fl.metal{background:linear-gradient(to right,#000,#CECFD3)}.bar-fl.water{background:linear-gradient(to right,rgba(0,0,0,.8),#849AE6)}
+
+    /* ═══ 2026 GUIDANCE ═══ */
+    .dv2{top:1463px}
+    .guid-title{position:absolute;left:141px;font-weight:400;font-size:43px;letter-spacing:-1.075px;color:#fff}
+    .guid-card{
+      position:absolute;width:530px;
+      background:#060606;border:1px solid rgba(243,246,249,.1);
+      padding:32px;display:flex;flex-direction:column;
+    }
+    .guid-card.sm{height:218px;overflow:hidden}
+    .guid-card.wide{width:531px}
+    /* tall card: same total span as 2 small cards stacked (218 + 22 gap + 218 = 458) */
+    .guid-card.tall{height:458px;overflow:hidden}
+    .gc-label{font-weight:400;font-size:12px;letter-spacing:-0.3px;color:#8a9199;margin-bottom:40px}
+    .gc-big{font-weight:500;font-size:48px;letter-spacing:-1.2px;margin-bottom:12px;color:#fff;line-height:1}
+    .gc-med{font-weight:500;font-size:24px;letter-spacing:-0.6px;margin-bottom:12px;color:#fff;line-height:normal}
+    .gc-body{font-size:16px;letter-spacing:-0.4px;line-height:22px;color:#8a9199}
+    .guid-card.tall .gc-label{margin-bottom:81px}
+    .guid-card.tall .gc-body{font-size:15px;line-height:21px}
+
+    /* ═══ CTAs (Figma: both same style, padding 16/15/28, border 0.5 opacity, Medium 16 white) ═══ */
+    .cta-row{position:absolute;left:141px;display:flex;gap:16px}
+    .cta-btn{display:inline-flex;align-items:center;padding:16px 28px 15px;border:1px solid rgba(243,246,249,.5);font-weight:500;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;background:transparent;transition:background .25s;white-space:nowrap;font-family:'Pretendard Variable',sans-serif;cursor:pointer}
+    .cta-btn:hover{background:#212223}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+
+  <!-- NAV -->
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+
+  <a href="saju-analysis.html" class="bk">← Saju Analyzer</a>
+  <p class="tg">SAJU ANALYSIS</p>
+  <h1 class="tt">Saju Analysis Report</h1>
+  <p class="ds">사주의 네 기둥을 바탕으로 분석한 미래의 방향들입니다. 자신의 메인 기운과 부족한 기운을 이해하고 고민 사항을 보완해보세요.</p>
+  <div class="dv dv1"></div>
+
+  <!-- NO DATA SCREEN -->
+  <div id="noDataScreen" style="display:none;position:absolute;left:141px;top:300px;width:900px">
+    <p style="font-weight:500;font-size:13px;letter-spacing:-0.195px;color:#8a9199;margin-bottom:20px">SAJU ANALYSIS</p>
+    <h2 style="font-weight:400;font-size:53px;letter-spacing:-1.325px;line-height:1;margin-bottom:24px;color:#fff">분석 결과 없음</h2>
+    <p style="font-size:16px;line-height:22px;letter-spacing:-0.4px;color:#8a9199;width:371px;margin-bottom:48px">사주 분석을 먼저 완료해야 결과를 확인할 수 있습니다.<br>아래 버튼을 눌러 분석을 시작해 주세요.</p>
+    <a href="saju-analysis.html" style="display:inline-block;border:1px solid rgba(243,246,249,.5);background:transparent;padding:16px 28px 15px;font-family:'Pretendard Variable',sans-serif;font-weight:500;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;transition:background .25s">사주 분석 시작하기 →</a>
+  </div>
+
+  <!-- GENERAL OVERVIEW -->
+  <p class="ov-title" id="ovTitle" style="top:444px">General Overview</p>
+
+  <!-- MAIN DAY PILLAR (full-width card) -->
+  <div class="main-card" id="mainCard" style="top:527px">
+    <div class="main-vec-wrap"><div class="main-vec-inner"><svg preserveAspectRatio="none" overflow="visible" viewBox="0 0 1042.28 796.262" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#mvf)"><path d="M562.836 652.224C-146.463 469.572 527.722 244.693 953.477 155.085L870.082 88.8L88.8 110.895V707.462H400.435L562.836 652.224Z" fill="var(--fill-0, rgba(206,207,211,0.21))"/></g><defs><filter id="mvf" x="0" y="0" width="1042.28" height="796.262" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="44.4" result="effect1_foregroundBlur"/></filter></defs></svg></div></div>
+    <div class="main-left">
+      <div class="ml-top">
+        <div class="ml-top-head">
+          <span class="ml-label">MAIN DAY PILLAR</span>
+          <span class="ml-name" id="mlName">METAL</span>
+        </div>
+        <p class="ml-desc" id="mlDesc">신금 일주는 전반적으로 안정성과 지속성을 중시하는 경향이 있습니다. 빠른 변화보다는 이미 구축된 환경을 다듬고 유지하며, 형태와 기존을 만들어가는 데 강점을 보입니다. 즉흥적 선택보다는 누적된 판단을 신뢰하는 타입입니다.</p>
+      </div>
+      <div class="ml-info" id="mlInfo">
+        <p><span class="k">NAME.</span> 홍길동</p>
+        <p><span class="k">POB.</span> 서울, 대한민국</p>
+        <p><span class="k">SEX.</span> 남성</p>
+        <p><span class="k">DOB.</span> 2000.01.01</p>
+        <p><span class="k">TOB.</span> 23:30</p>
+      </div>
+    </div>
+    <div class="main-right" id="mainVisual">
+      <img src="assets/pillar-main.svg" alt="">
+    </div>
+  </div>
+
+  <!-- PILLAR CONSIST -->
+  <div class="pillars-wrap" id="pillarsWrap" style="top:972px">
+    <div class="pw-header">
+      <span class="pw-label">PILLAR CONSIST</span>
+      <p class="pw-desc" id="pwDesc">사주명리학에서 사주 팔자는 네 기둥으로 이루어지며, 오행(다섯 가지 기운)의 배치로 구성됩니다. 홍길동님의 사주는 네 가지 오행으로 구성되어 있습니다.</p>
+    </div>
+    <div class="pw-row" id="pillarsRow">
+      <div class="pc el-wood" id="p-year">
+        <div class="pc-top"><div class="pc-labels"><span class="pc-name">Year</span><span class="pc-meaning">태어나기 전의 기원</span></div><div class="pc-info" data-tip="년주 · 태어난 해로 결정되는 첫 번째 기둥입니다. 사회적 환경과 조상과의 연결, 인생의 초기 토대를 나타냅니다.">?</div></div>
+        <div class="pc-icon"><img src="assets/el-tree-v2.svg" alt=""></div>
+        <span class="pc-el">Gap Tree · 木</span>
+      </div>
+      <div class="pc el-fire" id="p-month">
+        <div class="pc-top"><div class="pc-labels"><span class="pc-name">Month</span><span class="pc-meaning">성장기의 환경</span></div><div class="pc-info" data-tip="월주 · 태어난 달로 결정되는 두 번째 기둥입니다. 성장기의 환경과 부모와의 관계, 직업적 성향을 나타냅니다.">?</div></div>
+        <div class="pc-icon"><img src="assets/el-fire-v2.svg" alt=""></div>
+        <span class="pc-el">Jeong Fire · 火</span>
+      </div>
+      <div class="pc el-metal" id="p-day">
+        <div class="pc-top"><div class="pc-labels"><span class="pc-name">Day</span><span class="pc-meaning">현재의 자아</span></div><div class="pc-info" data-tip="일주 · 태어난 날로 결정되는 세 번째 기둥입니다. 현재의 자아와 본성을 나타내며, 사주 분석의 핵심이 되는 기둥입니다.">?</div></div>
+        <div class="pc-icon"><img src="assets/el-metal-pillar.svg" alt=""></div>
+        <span class="pc-el">Gyeong Metal · 金</span>
+      </div>
+      <div class="pc el-water" id="p-hour">
+        <div class="pc-top"><div class="pc-labels"><span class="pc-name">Hour</span><span class="pc-meaning">미래의 방향</span></div><div class="pc-info" data-tip="시주 · 태어난 시간으로 결정되는 네 번째 기둥입니다. 자녀와의 관계, 노년의 환경, 미래의 방향을 나타냅니다.">?</div></div>
+        <div class="pc-icon"><img src="assets/el-water-pillar.svg" alt=""></div>
+        <span class="pc-el">Im Water · 水</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR BALANCE -->
+  <div class="balance-card" id="balanceCard" style="left:1253px;top:972px">
+    <span class="bc-label">PILLAR BALANCE</span>
+    <div class="bc-bars" id="bcBars"></div>
+  </div>
+
+  <!-- DIVIDER 2 -->
+  <div class="dv" id="dv2" style="top:1463px"></div>
+
+  <!-- 2026 GUIDANCE -->
+  <p class="guid-title" id="guidTitle" style="top:1519px">2026 Guidance</p>
+
+  <!-- Row 1: General (tall left) + 2 small cards filled from user's concerns -->
+  <div class="guid-card tall wide" id="gc-general" style="left:141px;top:1602px">
+    <span class="gc-label">2026 GENERAL</span>
+    <div>
+      <p class="gc-big" id="g-general-en">SUBTLE CHANGE</p>
+      <p class="gc-body" id="g-general-ko">올해는 화(火)의 영향으로 인해 전환을 시도하려는 내부 움직임이 평소보다 강하게 나타납니다.</p>
+    </div>
+  </div>
+  <div class="guid-card sm" id="gc-sm-1" style="left:692px;top:1602px">
+    <span class="gc-label sm-label"></span>
+    <div>
+      <p class="gc-med sm-en"></p>
+      <p class="gc-body sm-ko"></p>
+    </div>
+  </div>
+  <div class="guid-card sm" id="gc-sm-2" style="left:1242px;top:1602px">
+    <span class="gc-label sm-label"></span>
+    <div>
+      <p class="gc-med sm-en"></p>
+      <p class="gc-body sm-ko"></p>
+    </div>
+  </div>
+
+  <!-- Row 2: 2 small cards -->
+  <div class="guid-card sm" id="gc-sm-3" style="left:692px;top:1841px">
+    <span class="gc-label sm-label"></span>
+    <div>
+      <p class="gc-med sm-en"></p>
+      <p class="gc-body sm-ko"></p>
+    </div>
+  </div>
+  <div class="guid-card sm" id="gc-sm-4" style="left:1242px;top:1841px">
+    <span class="gc-label sm-label"></span>
+    <div>
+      <p class="gc-med sm-en"></p>
+      <p class="gc-body sm-ko"></p>
+    </div>
+  </div>
+
+  <!-- CTAs (Figma: both same style) -->
+  <div class="cta-row" id="ctaRow" style="top:2130px">
+    <a href="saju-enhance.html" class="cta-btn">기운 보완하기 →</a>
+    <a href="saju-analysis.html" class="cta-btn">다른 정보로 다시 분석하기 →</a>
+  </div>
+
+</div>
+</div>
+
+<script>
+const STAGE_H = 2400;
+function fit(){
+  const s=Math.min(1,window.innerWidth/1920);
+  document.documentElement.style.setProperty('--sc',s);
+  document.getElementById('stage').style.height=STAGE_H+'px';
+  document.querySelector('.sw').style.height=(STAGE_H*s)+'px';
+}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+/* ── PRNG ── */
+function hashString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function mulberry32(seed){return function(){seed=(seed+0x6D2B79F5)>>>0;let t=seed;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
+
+const STEMS=[
+  {char:'甲',name:'갑목',enName:'Gap Tree',element:'wood',ko:'木',icon:'el-tree-v2.svg',trait:'GROWING\nFLOW',strength:'CREATIVE\nDRIVE',
+   desc:'갑목 일주는 위로 힘차게 뻗어 오르는 기운입니다. 직선적인 추진력으로 새로운 도전을 향해 나아가며, 한번 정한 목표를 끝까지 밀어붙이는 타입입니다.'},
+  {char:'乙',name:'을목',enName:'Eul Tree',element:'wood',ko:'木',icon:'el-tree-v2.svg',trait:'GENTLE\nGROWTH',strength:'ADAPTIVE\nVISION',
+   desc:'을목 일주는 유연하게 환경에 적응하며 자기 자리를 만들어가는 기운입니다. 사람 사이를 연결하는 감각이 발달해 관계 안에서 진가를 발휘합니다.'},
+  {char:'丙',name:'병화',enName:'Byeong Fire',element:'fire',ko:'火',icon:'el-fire-v2.svg',trait:'RADIANT\nFORCE',strength:'PASSIONATE\nLEAD',
+   desc:'병화 일주는 자기 빛을 환하게 드러내며 주변을 비추는 기운입니다. 사람들 앞에서 에너지를 발산할 때 가장 자연스러운 표현형 타입입니다.'},
+  {char:'丁',name:'정화',enName:'Jeong Fire',element:'fire',ko:'火',icon:'el-fire-v2.svg',trait:'FOCUSED\nFLAME',strength:'EXPRESSIVE\nPOWER',
+   desc:'정화 일주는 꺼지지 않는 불처럼 한 곳에 깊이 집중하는 기운입니다. 섬세한 감성과 꾸준한 몰입으로 자기 영역을 정교하게 다듬어가는 타입입니다.'},
+  {char:'戊',name:'무토',enName:'Mu Earth',element:'earth',ko:'土',icon:'el-earth-pillar.svg',trait:'STEADY\nGROUND',strength:'RELIABLE\nSTABILITY',
+   desc:'무토 일주는 흔들리지 않는 큰 산 같은 안정감의 기운입니다. 신뢰를 바탕으로 관계를 쌓으며, 다른 사람들이 기댈 수 있는 존재감을 발산합니다.'},
+  {char:'己',name:'기토',enName:'Gi Earth',element:'earth',ko:'土',icon:'el-earth-pillar.svg',trait:'NURTURING\nCORE',strength:'TRUSTFUL\nBASE',
+   desc:'기토 일주는 다른 기운을 품고 키워내는 양육의 기운입니다. 묵묵히 받쳐주는 데 익숙하며, 포용력과 꾸준함으로 결실을 만들어갑니다.'},
+  {char:'庚',name:'경금',enName:'Gyeong Metal',element:'metal',ko:'金',icon:'el-metal-pillar.svg',trait:'FOCUSED\nRESOLVE',strength:'DECISIVE\nEXECUTION',
+   desc:'경금 일주는 단단한 쇠처럼 결단력 있게 행동하는 기운입니다. 명확한 기준으로 상황을 정리하며, 어려운 결정 앞에서도 망설임이 적은 타입입니다.'},
+  {char:'辛',name:'신금',enName:'Sin Metal',element:'metal',ko:'金',icon:'el-metal-pillar.svg',trait:'REFINED\nEDGE',strength:'PRECISE\nJUDGMENT',
+   desc:'신금 일주는 안정성과 지속성을 중시하는 기운입니다. 기존 환경을 정교하게 다듬으며, 즉흥보다 누적된 판단을 신뢰하는 타입입니다.'},
+  {char:'壬',name:'임수',enName:'Im Water',element:'water',ko:'水',icon:'el-water-pillar.svg',trait:'FLOWING\nDEPTH',strength:'INTUITIVE\nSENSE',
+   desc:'임수 일주는 큰 강처럼 흐름이 깊고 멈추지 않는 기운입니다. 맥락을 읽는 직관이 발달해 환경에 맞춰 자유롭게 형태를 바꾸는 타입입니다.'},
+  {char:'癸',name:'계수',enName:'Gye Water',element:'water',ko:'水',icon:'el-water-pillar.svg',trait:'QUIET\nSTREAM',strength:'ADAPTIVE\nWISDOM',
+   desc:'계수 일주는 섬세한 빗물처럼 어디든 자연스럽게 스며드는 기운입니다. 흐름을 읽고 맞춰가는 감각이 뛰어나며, 예민한 직관을 가진 타입입니다.'},
+];
+const EL_EN={wood:'TREE',fire:'FIRE',earth:'EARTH',metal:'METAL',water:'WATER'};
+const EL_FULL={wood:'木 (목)',fire:'火 (화)',earth:'土 (토)',metal:'金 (금)',water:'水 (수)'};
+const EL_NAMES={wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
+const SUMMARY={
+  wood:'갑목 일주는 성장과 확장을 중시합니다. 새로운 시작에 강하며, 아이디어를 현실로 만드는 데 뛰어납니다.',
+  fire:'병화 일주는 열정과 표현을 중시합니다. 자신의 에너지를 주변에 전달하며 사람들을 이끄는 능력이 있습니다.',
+  earth:'무토 일주는 안정과 신뢰를 중시합니다. 맡은 일에 책임감을 갖고 꾸준히 성과를 만들어냅니다.',
+  metal:'신금 일주는 전반적으로 안정성과 지속성을 중시하는 경향이 있습니다. 빠른 변화보다는 이미 구축된 환경을 다듬고 유지하며, 형태와 기존을 만들어가는 데 강점을 보입니다. 즉흥적 선택보다는 누적된 판단을 신뢰하는 타입입니다.',
+  water:'임수 일주는 유연함과 직관을 중시합니다. 변화하는 환경에 적응하며 깊이 있는 판단을 내립니다.',
+};
+const EL_ICON={wood:'el-tree-v2.svg',fire:'el-fire-v2.svg',earth:'el-earth-figma.svg',metal:'el-metal-pillar.svg',water:'el-water-v2.svg'};
+const TEMPERAMENT={wood:'성장 · 확장',fire:'추진 · 열정',earth:'안정 · 균형',metal:'결단 · 집중',water:'유연 · 지혜'};
+const STRENGTH={wood:'아이디어, 추진',fire:'열정, 표현력',earth:'신뢰감, 책임감',metal:'판단력, 실행력',water:'직관, 적응력'};
+
+/* Concern key → label */
+const CONCERN_LABEL={career:'2026 CAREER',relationship:'2026 RELATIONSHIP',finance:'2026 FINANCE',health:'2026 HEALTH',love:'2026 LOVE',family:'2026 FAMILY'};
+
+/* 2026 Guidance: per-element content
+   - general: 3 paragraphs (similar length, similar structure)
+   - 6 concerns: en title + ko body */
+const GUIDANCE={
+  wood:{
+    general:{en:'FRESH GROWTH', ko:[
+      '올해는 목(木)의 기운이 강하게 작용해 새로운 시작과 확장의 흐름이 두드러지는 시기입니다. 외부 환경과의 접점을 적극적으로 만들어가는 한 해이며, 안에 머물기보다 적극적으로 움직이는 에너지가 자연스럽게 흘러나옵니다. 이제껏 뒤로 미뤄왔던 시도를 꺼내기에 좋은 타이밍입니다.',
+      '결정보다 시도가, 검토보다 실행이 중심이 됩니다. 사방으로 가지를 뻗으며 서로 다른 영역의 가능성을 동시에 가늠해보는 흐름이 강해지며, 방향이 완전히 정해지지 않아도 움직임 자체가 길을 만들어줍니다.',
+      '결과는 다소 분산되어 보일 수 있으나, 한 해를 정리해보면 새롭게 자리잡힌 영역들이 드러납니다. 빠르게 뻗어나간 가지들을 주기적으로 정돈해두는 작업이 다음 단계의 도약을 가능하게 하며, 올해 심어둔 씨앗이 몇 년 후 결실로 돌아오게 됩니다.'
+    ]},
+    career:{en:'STRETCHING REACH', ko:'올해 커리어는 새로운 영역으로 가지를 뻗어가는 시기입니다. 익숙한 틀을 벗어나 도전적인 시도가 결실로 이어지며, 성장의 폭이 크게 확장됩니다.'},
+    relationship:{en:'OPENING CONNECTIONS', ko:'관계에서는 새로운 인연이 시작되거나 기존 관계가 확장되는 흐름이 강합니다. 솔직한 표현이 신뢰를 키우고, 함께 성장할 동료를 만나는 해입니다.'},
+    finance:{en:'EXPANDING ASSETS', ko:'재정에서는 수입의 새 줄기가 만들어지는 흐름이 강합니다. 기존 자산보다 새로운 기회 발굴에 시간을 쓸 때, 한 해의 성장 폭이 커집니다.'},
+    health:{en:'VITAL RHYTHM', ko:'전반적인 활력이 살아나는 해입니다. 의욕이 앞서 무리하지 않도록, 규칙적인 휴식과 가벼운 운동으로 몸의 리듬을 유지하는 것이 핵심입니다.'},
+    love:{en:'BLOOMING ROMANCE', ko:'연애에서 새로운 시작이나 관계의 다음 단계로 나아가는 흐름이 활발합니다. 솔직한 감정 표현이 관계의 폭을 넓히는 해입니다.'},
+    family:{en:'BRANCHING TIES', ko:'가족 안에서 각자의 자리를 다시 정의해보는 시기입니다. 새로운 관계의 결을 만들거나, 가족과 함께 새로운 경험을 쌓아가는 흐름이 두드러집니다.'}
+  },
+  fire:{
+    general:{en:'RADIANT SHIFT', ko:[
+      '올해는 화(火)의 영향으로 표현과 발산의 에너지가 평소보다 강하게 나타납니다. 안에 머무르던 생각이 밖으로 드러나고, 인상을 남기는 자리에서의 존재감이 선명해지는 한 해입니다. 무언가를 공개하거나 드러내려는 충동이 자주 일어나며, 이를 통해 새로운 국면이 열립니다.',
+      '안정보다 즉각적인 반응과 판단이 결정적인 순간이 늘어납니다. 강한 인상을 남기는 만남과 발표의 자리가 자기 위치를 다시 인식시켜주고, 한 번의 결정이 생각보다 큰 파급력을 발휘하는 경험을 하게 됩니다.',
+      '빠르게 타오르는 만큼 쉽게 꺼질 수 있어, 에너지 조절과 호흡 관리가 중요합니다. 흐름은 한 해의 중반에 정점을 찍고 후반부는 수렴과 회복의 시기로 이어지므로, 초반의 열기를 지속시키려는 욕심보다 적절한 멈춤을 배치하는 전략이 유효합니다.'
+    ]},
+    career:{en:'SPARKING MOMENTUM', ko:'커리어에서는 자기 영향력을 발휘할 기회가 늘어납니다. 발표나 협업처럼 외부와 만나는 자리가 성과로 이어지며, 새로운 추진력이 만들어집니다.'},
+    relationship:{en:'BRIGHT EXCHANGE', ko:'감정과 생각을 적극적으로 표현하는 시기입니다. 가까운 사이일수록 솔직함이 관계를 단단하게 만들고, 새로운 인연도 강한 인상으로 시작됩니다.'},
+    finance:{en:'BURNING OPPORTUNITY', ko:'재정에서는 빠른 결정이 결과를 가르는 해입니다. 흐름을 읽는 즉각적인 판단이 기회를 잡아주고, 망설임이 길어지면 손실로 이어질 수 있습니다.'},
+    health:{en:'MANAGING HEAT', ko:'에너지가 위로 쏠리기 쉬운 해입니다. 두통이나 수면 부족, 심혈관 계열의 미세한 변화에 주의하며, 호흡과 휴식으로 열을 조절하는 것이 중요합니다.'},
+    love:{en:'PASSIONATE TURN', ko:'연애에서 강한 끌림이나 분명한 결심이 일어나는 시기입니다. 감정의 온도가 높아지는 만큼, 한순간의 선택이 관계의 방향을 결정하는 해입니다.'},
+    family:{en:'WARM DECLARATIONS', ko:'가족에게 자기 감정을 솔직하게 드러내는 시기입니다. 묻혀있던 이야기를 꺼내며 관계가 한 단계 깊어지는 흐름이 들어옵니다.'}
+  },
+  earth:{
+    general:{en:'STEADY GROUND', ko:[
+      '올해는 토(土)의 기운이 중심을 잡아주는 해입니다. 빠른 변화보다 안정과 축적이 강조되며, 흩어진 흐름이 한 곳으로 모이는 시기입니다. 바닥을 다지는 작업이 눈에 띄지 않아도, 한 해가 지나고 나면 쌓인 것들의 무게가 실감됩니다.',
+      '새로운 영역보다 이미 자리잡은 환경 안에서 책임의 무게를 받아들이는 한 해입니다. 한 번의 약속이 다음 일 년의 기반을 결정짓는 만큼, 말과 행동의 일관성이 어느 때보다 중요해집니다.',
+      '가시적 결과보다 단단해진 기반이 진짜 성과로 남습니다. 매일의 일관성을 지키는 것이 다음 해를 위한 가장 큰 자산이 되며, 올해의 느린 걸음이 결국 가장 멀리 도달하는 경로가 됩니다.'
+    ]},
+    career:{en:'BUILDING THE BASE', ko:'커리어에서는 기반을 다지는 해입니다. 외형적 변화보다 내실을 다지고, 신뢰를 쌓아가는 데 집중하면 다음 단계로 도약할 기반이 만들어집니다.'},
+    relationship:{en:'GROUNDED TRUST', ko:'관계에서는 신뢰와 책임이 핵심 키워드입니다. 새로운 인연보다 기존 관계를 단단히 다지는 흐름이 강하고, 약속과 일관성이 관계의 깊이를 만듭니다.'},
+    finance:{en:'STEADY ACCUMULATION', ko:'재정에서는 큰 수익보다 꾸준한 축적이 핵심입니다. 단기 변동에 흔들리지 않고 일정한 흐름을 유지할 때, 한 해의 잔고가 단단해집니다.'},
+    health:{en:'STEADY PACE', ko:'몸의 안정감을 회복하는 해입니다. 위장과 소화 계열의 리듬을 꾸준히 챙기고, 무리한 변화 대신 일정한 식습관과 수면을 유지하는 것이 좋습니다.'},
+    love:{en:'STEADY DEVOTION', ko:'연애에서는 화려함보다 일상의 안정감이 중심이 되는 해입니다. 약속을 지키는 작은 행동들이 관계의 무게를 한층 더해줍니다.'},
+    family:{en:'ROOTED PRESENCE', ko:'가족 안에서 자기 자리를 단단하게 만드는 시기입니다. 책임을 받아들이고, 묵묵히 자리를 지키는 것만으로도 가족의 중심축 역할을 하게 됩니다.'}
+  },
+  metal:{
+    general:{en:'SUBTLE CHANGE', ko:[
+      '올해는 금(金)의 영향으로 인해 전환을 시도하려는 내부 움직임이 평소보다 강하게 나타납니다. 큰 변화보다는, 기존 구조를 유지한 채 방향만 미세하게 틀려는 흐름이 중심이 됩니다.',
+      '외부적인 사건이나 결정보다, 내면에서 자신의 위치와 방향을 다시 정렬하는 시기입니다. 무언가를 새로 시작하기보다 이미 가진 것을 어떻게 운용할지에 대한 감각이 깊어지며, 결정의 속도는 다소 느려지지만 판단의 정확도는 오히려 높아집니다.',
+      '눈에 보이는 결과는 한 해의 후반부에 드러납니다. 조급하게 방향을 확정하려 하기보다, 작은 조정들을 일상의 리듬 안에서 꾸준히 쌓아가는 것이 올해의 핵심 전략입니다.'
+    ]},
+    career:{en:'EXPANDING THE FOUNDATION', ko:'커리어 측면에서는 이미 쌓아온 경험과 기준을 활용해 자신만의 방식으로 정리·확장하는 해입니다. 새로운 직무나 역할보다는 현재 위치에서의 전문성 재정의가 더 큰 성과로 이어집니다.'},
+    relationship:{en:'CONSISTENCY WITH TRUST', ko:'연애에서는 감정보다 신뢰와 지속성을 우선시합니다. 올해는 관계를 유지하는 방식에 대해 돌아보는 시기로, 대화를 통해 관계의 구조를 재정의하려는 경향이 나타납니다.'},
+    finance:{en:'REFINING DECISIONS', ko:'재정에서는 결단의 정확도가 결과를 가르는 해입니다. 즉흥적 판단보다 누적된 분석에 기반한 결정을 내릴 때, 안정적인 자산 관리가 가능해집니다.'},
+    health:{en:'KEEPING THE RHYTHM', ko:'과도한 긴장 상태가 누적되기 쉬운 해입니다. 눈에 띄는 문제보다는 지속적인 피로, 소화·근육 계열의 불균형에 주의가 필요합니다. 리듬을 일정하게 유지하는 것이 핵심입니다.'},
+    love:{en:'CLEAR INTENTIONS', ko:'연애에서는 감정보다 명확한 의사 표현이 중요해지는 시기입니다. 모호한 관계를 정리하고, 분명한 입장을 정해두는 것이 한 해의 흐름을 단단하게 만듭니다.'},
+    family:{en:'ROLE REALIGNMENT', ko:'가족이나 오래된 관계에서 책임을 다시 인식하게 되는 흐름이 들어옵니다. 거리감보다는 역할 조정이 주요 테마이며, 감정적 대응보다는 구조적인 정리가 효과적입니다.'}
+  },
+  water:{
+    general:{en:'FLOWING DEPTH', ko:[
+      '올해는 수(水)의 영향으로 내면의 흐름이 깊어지는 시기입니다. 보이지 않는 곳에서 사유가 쌓이고, 직관과 통찰이 한층 예민해지면서 지금까지와는 다른 방식으로 사물을 바라보게 됩니다. 표면보다 깊이를, 속도보다 방향을 먼저 읽으려는 감각이 자연스럽게 따라옵니다.',
+      '외부의 자극에 즉시 반응하기보다, 흐름을 지켜보다가 결정을 내리는 방식이 자연스러워집니다. 결정 이전의 관찰이 가장 중요한 작업이 되며, 서두름 없이 정보를 모으고 판단을 숙성시키는 과정이 결과의 정밀도를 높여줍니다.',
+      '가시적인 변화는 후반부에 드러나지만, 내면의 변화는 초반부터 시작됩니다. 흘러가는 과정 자체에 집중할 때 올해의 가능성이 가장 잘 드러나며, 성급하게 결과를 확인하려는 시도보다 꾸준히 흐름을 쌓아가는 것이 올해의 핵심 전략입니다.'
+    ]},
+    career:{en:'QUIET INTUITION', ko:'커리어에서는 큰 결정보다 흐름을 읽는 감각이 더 결정적입니다. 외부 변화에 유연하게 반응하면서도 깊은 분석을 통해 차별화된 판단을 내리게 됩니다.'},
+    relationship:{en:'READING BETWEEN LINES', ko:'관계에서는 직설적인 표현보다 분위기와 맥락을 읽어내는 감각이 중요해집니다. 깊은 대화를 통해 서로의 이면을 이해하게 되는 흐름이 강합니다.'},
+    finance:{en:'FLEXIBLE FLOW', ko:'재정에서는 한 곳에 묶어두기보다 흐름에 따라 유연하게 분산해두는 것이 유리한 해입니다. 시장의 변화를 깊이 관찰하는 시간이 결정적인 기회를 만들어줍니다.'},
+    health:{en:'FLUID BALANCE', ko:'수분과 신장·방광 계열의 흐름에 신경 써야 하는 해입니다. 잠을 충분히 자고, 차분한 호흡으로 정신적 에너지를 회복하는 것이 핵심입니다.'},
+    love:{en:'SUBTLE UNDERSTANDING', ko:'연애에서는 말로 다 표현되지 않는 감정의 흐름이 중요해집니다. 서로를 이해하는 깊이가 깊어지지만, 동시에 오해의 여지도 늘어나는 한 해입니다.'},
+    family:{en:'DEEPENING BOND', ko:'가족과의 관계에서 말로 표현되지 않는 부분까지 이해하게 되는 시기입니다. 함께 보내는 조용한 시간이 관계의 깊이를 한층 더해줍니다.'}
+  }
+};
+
+function renderBalance(elements){
+  const html=elements.map(el=>`
+    <div class="bar-row"><div class="bar-hdr"><span>${{wood:'Tree',fire:'Fire',earth:'Earth',metal:'Metal',water:'Water'}[el.key]}</span><span>${el.pct}%</span></div>
+    <div class="bar-trk"><div class="bar-fl ${el.key}" style="width:${el.pct*465/100}px"></div></div></div>
+  `).join('');
+  document.getElementById('bcBars').innerHTML=html;
+  setTimeout(function(){
+    document.querySelectorAll('.bar-fl').forEach(function(b){ b.classList.add('go'); });
+  }, 50);
+}
+
+function loadResult(){
+  let input;
+  try{input=JSON.parse(localStorage.getItem('ff_saju_input')||'null');}catch(e){input=null;}
+  if(!input||!input.birthdate){
+    document.getElementById('noDataScreen').style.display='block';
+    document.getElementById('ovTitle').style.display='none';
+    document.getElementById('mainCard').style.display='none';
+    document.getElementById('pillarsWrap').style.display='none';
+    document.getElementById('balanceCard').style.display='none';
+    document.getElementById('dv2').style.display='none';
+    document.getElementById('guidTitle').style.display='none';
+    document.getElementById('gc-general').style.display='none';
+    document.getElementById('gc-sm-1').style.display='none';
+    document.getElementById('gc-sm-2').style.display='none';
+    document.getElementById('gc-sm-3').style.display='none';
+    document.getElementById('gc-sm-4').style.display='none';
+    document.getElementById('ctaRow').style.display='none';
+    document.getElementById('stage').style.height='800px';
+    document.querySelector('.sw').style.height=(800*parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sc')||'1'))+'px';
+    return;
+  }
+
+  const{name,birthdate,birthtime,gender,birthplace}=input;
+  const seed=hashString(`${name}|${birthdate}|${birthtime}|${gender}`);
+  const rand=mulberry32(seed);
+  const pick=()=>STEMS[Math.floor(rand()*10)];
+  const yearS=pick(),monthS=pick(),dayStem=pick(),hourS=pick();
+
+  // Main card — element-tinted gradient + per-stem description + dynamic icon
+  const mainCard=document.getElementById('mainCard');
+  mainCard.classList.remove('el-wood','el-fire','el-earth','el-metal','el-water');
+  mainCard.classList.add('el-'+dayStem.element);
+  document.getElementById('mlName').textContent=EL_EN[dayStem.element];
+
+  document.getElementById('mlDesc').textContent=dayStem.desc||SUMMARY[dayStem.element]||SUMMARY.metal;
+  const mainVisual=document.getElementById('mainVisual');
+  mainVisual.classList.remove('el-wood','el-fire','el-earth','el-metal','el-water');
+  mainVisual.classList.add('el-'+dayStem.element);
+  const visualImg=mainVisual.querySelector('img');
+  if(visualImg) visualImg.src='assets/'+(EL_ICON[dayStem.element]||'pillar-main.svg');
+
+  // 2026 Guidance — element-specific content
+  const g=GUIDANCE[dayStem.element]||GUIDANCE.metal;
+  // Big GENERAL card (always shown, 3 paragraphs)
+  document.getElementById('g-general-en').textContent=g.general.en;
+  const generalKo=document.getElementById('g-general-ko');
+  generalKo.innerHTML=Array.isArray(g.general.ko)
+    ? g.general.ko.join('<br><br>')
+    : g.general.ko;
+  // Small cards: dynamically based on user's selected concerns (4 of 6)
+  let concerns=[];
+  if(Array.isArray(input.concerns)) concerns=input.concerns.slice();
+  else if(typeof input.concern==='string' && input.concern) concerns=input.concern.split(',').filter(Boolean);
+  // Filter to valid concern keys only (handle stale data with 'general' or other invalid keys)
+  const VALID_CONCERNS=['career','relationship','finance','health','love','family'];
+  concerns=concerns.filter(c=>VALID_CONCERNS.includes(c));
+  // Pad to 4 if user has fewer (e.g., stale/incomplete localStorage from before update)
+  if(concerns.length<4){
+    const defaults=['relationship','career','health','family'];
+    defaults.forEach(c=>{ if(concerns.length<4 && !concerns.includes(c)) concerns.push(c); });
+  }
+  console.log('[saju-result] dayStem.element=', dayStem.element, 'concerns=', concerns);
+  concerns.slice(0,4).forEach((cKey,i)=>{
+    const card=document.getElementById('gc-sm-'+(i+1));
+    if(!card){ console.warn('Missing card gc-sm-'+(i+1)); return; }
+    const data=g[cKey];
+    if(!data){ console.warn('Missing GUIDANCE entry for', dayStem.element, cKey); return; }
+    const labelEl=card.querySelector('.sm-label');
+    const enEl=card.querySelector('.sm-en');
+    const koEl=card.querySelector('.sm-ko');
+    if(labelEl) labelEl.textContent=CONCERN_LABEL[cKey]||('2026 '+cKey.toUpperCase());
+    if(enEl) enEl.textContent=data.en;
+    if(koEl) koEl.textContent=data.ko;
+  });
+  document.getElementById('mlInfo').innerHTML=
+    `<p><span class="k">NAME.</span> ${name}</p>`+
+    `<p><span class="k">SEX.</span> ${gender==='남'?'남성':'여성'}</p>`+
+    `<p><span class="k">DOB.</span> ${birthdate.replace(/-/g,'.')}</p>`+
+    `<p><span class="k">TOB.</span> ${birthtime}</p>`+
+    (birthplace?`<p><span class="k">POB.</span> ${birthplace}</p>`:'');
+
+  // Pillar cards
+  [{id:'p-year',s:yearS},{id:'p-month',s:monthS},{id:'p-day',s:dayStem},{id:'p-hour',s:hourS}].forEach(p=>{
+    const el=document.getElementById(p.id);
+    el.className='pc el-'+p.s.element;
+    el.querySelector('.pc-icon img').src='assets/'+p.s.icon;
+    el.querySelector('.pc-el').textContent=p.s.enName+' · '+p.s.ko;
+  });
+
+  document.getElementById('pwDesc').textContent=
+    `사주명리학에서 사주 팔자는 네 기둥으로 이루어지며, 오행(다섯 가지 기운)의 배치로 구성됩니다. ${name}님의 사주는 네 가지 오행으로 구성되어 있습니다.`;
+
+  // Element distribution
+  const counts={wood:0,fire:0,earth:0,metal:0,water:0};
+  [yearS,monthS,dayStem,hourS].forEach(s=>counts[s.element]+=20);
+  Object.keys(counts).forEach(k=>{counts[k]+=rand()*35;if(counts[k]<3)counts[k]=3;});
+  const total=Object.values(counts).reduce((a,b)=>a+b,0);
+  const elements=Object.keys(counts).map(k=>({key:k,pct:Math.round(counts[k]/total*100)}));
+  let diff=100-elements.reduce((a,e)=>a+e.pct,0);elements[0].pct+=diff;
+  renderBalance(elements);
+
+  // Save lacking for enhance page
+  const lacking=elements.reduce((a,b)=>a.pct<b.pct?a:b);
+  try{localStorage.setItem('ff_saju_result',JSON.stringify({name,birthdate,birthtime,gender,lacking:lacking.key,lackingLabel:EL_FULL[lacking.key],dayMasterElement:dayStem.element,dayMasterName:dayStem.name}));sessionStorage.setItem('ff_result_ready','1');}catch(e){}
+}
+
+loadResult();
+
+/* ? 버튼 클릭으로 tooltip 토글 */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.pc-info');
+  if (btn) {
+    const isOn = btn.classList.contains('tt-on');
+    document.querySelectorAll('.pc-info.tt-on').forEach(function(el){ el.classList.remove('tt-on'); });
+    if (!isOn) btn.classList.add('tt-on');
+    e.stopPropagation();
+  } else {
+    document.querySelectorAll('.pc-info.tt-on').forEach(function(el){ el.classList.remove('tt-on'); });
+  }
+});
+</script>
+</body>
+</html>

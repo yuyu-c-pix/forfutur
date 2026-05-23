@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saju Enhance — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+
+    /* NAV */
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nn:hover{color:#fff}
+    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb:hover{color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
+    .lo img{width:100%;height:100%;display:block}
+
+    /* HEADER */
+    .bk{position:absolute;left:141px;top:151px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px;transition:color .2s}
+    .bk:hover{color:#fff}
+    .tg{position:absolute;left:141px;top:194px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .tt{position:absolute;left:141px;top:226px;font-weight:400;font-size:53px;letter-spacing:-1.325px;width:900px}
+    .ds{position:absolute;left:141px;top:293px;font-size:16px;line-height:22px;letter-spacing:-0.4px;color:#8a9199;width:900px}
+
+    /* DEFICIENT DAY PILLAR BANNER */
+    .banner{
+      --el-rgb: 214,46,45;
+      position:absolute;left:141px;top:527px;width:860px;
+      padding:32px;
+      display:flex;align-items:center;gap:114px;
+      background:
+        radial-gradient(ellipse 603px 2219px at 374px 202px,rgba(20,20,20,.10) 0%,rgba(44,23,23,.10) 12.5%,rgba(69,27,26,.10) 25%,rgba(117,33,33,.10) 50%,rgba(166,40,39,.10) 75%,rgba(214,46,45,.10) 100%),
+        linear-gradient(113.735deg,rgba(214,46,45,.2) 2.06%,rgba(0,0,0,.2) 36.23%),
+        linear-gradient(115.382deg,rgba(214,46,45,.2) 9.71%,rgba(0,0,0,.2) 27.97%),
+        linear-gradient(15.68deg,rgba(214,46,45,.2) 19.29%,rgba(0,0,0,.2) 64.59%),
+        linear-gradient(29.46deg,rgba(0,0,0,.2) 53.01%,rgba(214,46,45,.2) 93.17%),
+        linear-gradient(-24.88deg,rgba(0,0,0,0) 14.91%,rgba(214,46,45,.2) 74.41%),
+        linear-gradient(90deg,rgba(74,74,74,.2) 0%,rgba(74,74,74,.2) 100%);
+      box-shadow: 0 0 0 1px rgba(var(--el-rgb),.12), inset 0 0 32.5px rgba(var(--el-rgb),0.24);
+    }
+    .banner.el-fire{--el-rgb:214,46,45}
+    .banner.el-earth{
+      --el-rgb:243,214,75;
+      background:
+        radial-gradient(ellipse 603px 2219px at 374px 202px,rgba(20,20,20,.10) 0%,rgba(48,44,27,.10) 12.5%,rgba(76,69,34,.10) 25%,rgba(104,93,41,.10) 37.5%,rgba(132,117,48,.10) 50%,rgba(187,166,61,.10) 75%,rgba(243,214,75,.10) 100%),
+        linear-gradient(113.735deg,rgba(243,214,75,.2) 2.06%,rgba(0,0,0,.2) 36.23%),
+        linear-gradient(115.382deg,rgba(243,214,75,.2) 9.71%,rgba(0,0,0,.2) 27.97%),
+        linear-gradient(15.68deg,rgba(243,214,75,.2) 19.29%,rgba(0,0,0,.2) 64.59%),
+        linear-gradient(29.46deg,rgba(0,0,0,.2) 53.01%,rgba(243,214,75,.2) 93.17%),
+        linear-gradient(-24.88deg,rgba(0,0,0,0) 14.91%,rgba(243,214,75,.2) 74.41%),
+        linear-gradient(90deg,rgba(74,74,74,.2) 0%,rgba(74,74,74,.2) 100%);
+    }
+    .banner.el-wood{
+      --el-rgb:11,131,118;
+      background:
+        radial-gradient(ellipse 603px 2219px at 374px 202px,rgba(20,20,20,.10) 0%,rgba(18,48,45,.10) 25%,rgba(16,76,69,.10) 50%,rgba(13,103,94,.10) 75%,rgba(11,131,118,.10) 100%),
+        linear-gradient(113.735deg,rgba(11,131,118,.2) 2.06%,rgba(0,0,0,.2) 36.23%),
+        linear-gradient(115.382deg,rgba(11,131,118,.2) 9.71%,rgba(0,0,0,.2) 27.97%),
+        linear-gradient(15.68deg,rgba(11,131,118,.2) 19.29%,rgba(0,0,0,.2) 64.59%),
+        linear-gradient(29.46deg,rgba(0,0,0,.2) 53.01%,rgba(11,131,118,.2) 93.17%),
+        linear-gradient(-24.88deg,rgba(0,0,0,0) 14.91%,rgba(11,131,118,.2) 74.41%),
+        linear-gradient(90deg,rgba(74,74,74,.2) 0%,rgba(74,74,74,.2) 100%);
+    }
+    .banner.el-metal{
+      --el-rgb:206,207,211;
+      background:
+        radial-gradient(ellipse 603px 2219px at 374px 202px,rgba(20,20,20,.10) 0%,rgba(43,43,44,.10) 12.5%,rgba(67,67,68,.10) 25%,rgba(90,90,92,.10) 37.5%,rgba(113,114,116,.10) 50%,rgba(160,160,163,.10) 75%,rgba(206,207,211,.10) 100%),
+        linear-gradient(113.735deg,rgba(102,102,102,.2) 2.06%,rgba(0,0,0,.2) 36.23%),
+        linear-gradient(115.382deg,rgba(102,102,102,.2) 9.71%,rgba(0,0,0,.2) 27.97%),
+        linear-gradient(15.68deg,rgba(102,102,102,.2) 19.29%,rgba(0,0,0,.2) 64.59%),
+        linear-gradient(29.46deg,rgba(0,0,0,.2) 53.01%,rgba(206,207,211,.2) 93.17%),
+        linear-gradient(-24.88deg,rgba(0,0,0,0) 14.91%,rgba(206,207,211,.2) 74.41%),
+        linear-gradient(90deg,rgba(74,74,74,.2) 0%,rgba(74,74,74,.2) 100%);
+    }
+    .banner.el-water{
+      --el-rgb:132,154,230;
+      background:
+        radial-gradient(ellipse 603px 2219px at 374px 202px,rgba(20,20,20,.10) 0%,rgba(34,37,46,.10) 12.5%,rgba(48,54,73,.10) 25%,rgba(62,70,99,.10) 37.5%,rgba(76,87,125,.10) 50%,rgba(104,121,178,.10) 75%,rgba(132,154,230,.10) 100%),
+        linear-gradient(113.735deg,rgba(132,154,230,.2) 2.06%,rgba(0,0,0,.2) 36.23%),
+        linear-gradient(115.382deg,rgba(132,154,230,.2) 9.71%,rgba(0,0,0,.2) 27.97%),
+        linear-gradient(15.68deg,rgba(132,154,230,.2) 19.29%,rgba(0,0,0,.2) 64.59%),
+        linear-gradient(29.46deg,rgba(0,0,0,.2) 53.01%,rgba(132,154,230,.2) 93.17%),
+        linear-gradient(-24.88deg,rgba(0,0,0,0) 14.91%,rgba(132,154,230,.2) 74.41%),
+        linear-gradient(90deg,rgba(74,74,74,.2) 0%,rgba(74,74,74,.2) 100%);
+    }
+
+    .banner-left{display:flex;flex-direction:column;gap:50px;width:460px;flex-shrink:0}
+    .banner-top{display:flex;flex-direction:column;gap:8px;font-weight:500}
+    .banner-label{height:14px;color:#8a9199;font-size:12px;letter-spacing:-0.3px}
+    .banner-title{font-size:53px;color:#fff;letter-spacing:-1.325px;line-height:1}
+    .banner-body{display:flex;flex-direction:column;gap:4px;width:383.167px}
+    .banner-headline{font-weight:500;font-size:18px;color:#fff;line-height:normal}
+    .banner-desc{font-weight:400;font-size:14px;color:#8a9199;line-height:19px}
+    .banner-visual{height:224px;width:222px;flex-shrink:0;position:relative;background:rgba(30,30,30,.3);box-shadow:inset 0 0 32.5px rgba(var(--el-rgb),.24)}
+    .banner-visual img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:148px;height:148px}
+
+    /* DIVIDERS */
+    .dv{position:absolute;left:141px;right:141px;height:1px;background:rgba(255,255,255,.08)}
+
+    /* SECTION HEADINGS (43px Regular white, like 02b "General Overview") */
+    .section-heading{position:absolute;left:141px;font-weight:400;font-size:43px;letter-spacing:-1.075px;color:#fff;line-height:normal}
+
+    /* SEARCH BY ELEMENTS */
+    .sbe-label{position:absolute;left:141px;top:1009px;font-weight:500;font-size:12px;letter-spacing:-0.18px;color:#8a9199;text-transform:uppercase}
+    .chips{position:absolute;left:141px;top:1039px;display:flex;gap:10px}
+    .chip{position:relative;background:#1a1a1a;border:1px solid rgba(255,255,255,.1);font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:15px;letter-spacing:-0.225px;color:#8a9199;padding:12px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .25s}
+    .chip:hover{border-color:rgba(255,255,255,.3);color:#fff}
+    .chip .dot{width:8px;height:8px;border-radius:4px;background:#fff}
+
+    /* Inactive subtle element-tinted glow */
+    .chip[data-filter="all"]{box-shadow:inset 0 0 27.1px rgba(158,158,158,.25)}
+    .chip[data-filter="wood"]{box-shadow:inset 0 0 32.5px rgba(11,131,118,.18)}
+    .chip[data-filter="fire"]{box-shadow:inset 0 0 32.5px rgba(214,46,45,.18)}
+    .chip[data-filter="earth"]{box-shadow:inset 0 0 32.5px rgba(243,214,75,.18)}
+    .chip[data-filter="metal"]{box-shadow:inset 0 0 32.5px rgba(217,217,217,.18)}
+    .chip[data-filter="water"]{box-shadow:inset 0 0 32.5px rgba(132,154,230,.18)}
+
+    /* Active: dark bg + brighter element-color border + stronger element-tinted inner glow */
+    .chip.on{color:#fff}
+    .chip.on[data-filter="all"]   {border-color:rgba(255,255,255,.7);box-shadow:inset 0 0 32.5px rgba(255,255,255,.30)}
+    .chip.on[data-filter="wood"]  {border-color:#0B8376;box-shadow:inset 0 0 32.5px rgba(11,131,118,.55)}
+    .chip.on[data-filter="fire"]  {border-color:#D62E2D;box-shadow:inset 0 0 32.5px rgba(214,46,45,.55)}
+    .chip.on[data-filter="earth"] {border-color:#F3D64B;box-shadow:inset 0 0 32.5px rgba(243,214,75,.55)}
+    .chip.on[data-filter="metal"] {border-color:#CECFD3;box-shadow:inset 0 0 32.5px rgba(206,207,211,.55)}
+    .chip.on[data-filter="water"] {border-color:#849AE6;box-shadow:inset 0 0 32.5px rgba(132,154,230,.55)}
+
+    /* COUNTER */
+    .count{position:absolute;left:141px;top:1113px;font-weight:500;font-size:12px;letter-spacing:-0.18px}
+    .count .n{color:#fff}
+    .count .lbl{color:#8a9199;margin-left:6px}
+
+    /* PRODUCT GRID — 4 columns, absolute positioned cards */
+    .prod{
+      position:absolute;width:398px;background:#141414;
+      border:1px solid rgba(243,246,249,.1);
+      padding:24px;display:flex;flex-direction:column;gap:24px;
+      text-decoration:none;color:inherit;
+      transition:border-color .25s, transform .25s;
+    }
+    .prod:hover{border-color:rgba(255,255,255,.22);transform:translateY(-3px)}
+    .prod-img{width:350px;height:232px;overflow:hidden;position:relative;background:#0f0f0f}
+    .prod-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .prod-body{display:flex;flex-direction:column;gap:16px;width:350px}
+    .prod-element{font-weight:500;font-size:12px;letter-spacing:-0.18px;color:#8a9199}
+    .prod-name-block{display:flex;flex-direction:column;gap:6px}
+    .prod-name-inner{display:flex;flex-direction:column;gap:2px}
+    .prod-name{font-weight:500;font-size:16px;letter-spacing:-0.18px;color:#fff;line-height:normal}
+    .prod-desc{font-weight:400;font-size:13px;letter-spacing:-0.325px;color:#8a9199;line-height:19px}
+    .prod-price{font-weight:500;font-size:15px;letter-spacing:-0.18px;color:#fff;line-height:normal}
+
+    /* Column positions */
+    .prod.c1{left:141px}
+    .prod.c2{left:555px}
+    .prod.c3{left:964px}
+    .prod.c4{left:1378px}
+
+    /* Row positions */
+    .prod.r1{top:1149px}
+    .prod.r2{top:1567px}
+    .prod.r3{top:1985px}
+    .prod.r4{top:2404px}
+
+    .prod.hidden{display:none}
+
+    /* CTAs at bottom */
+    .ctas{position:absolute;left:141px;display:flex;gap:16px}
+    .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px 16px;border:1px solid rgba(243,246,249,.5);font-weight:700;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;background:transparent;transition:background .25s;white-space:nowrap;font-family:'Pretendard Variable',sans-serif;cursor:pointer}
+    .cta-btn:hover{background:#212223}
+    .cta-btn.sec{border-color:rgba(255,255,255,.15);font-weight:500;font-size:14px;color:#8a9199}
+    .cta-btn.sec:hover{background:#212223;color:#fff}
+
+    /* NO DATA button */
+    .no-data-btn{display:inline-block;border:1px solid rgba(243,246,249,.5);background:transparent;padding:16px 28px 15px;font-family:'Pretendard Variable',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.4px;color:#fff;text-decoration:none;transition:background .25s}
+    .no-data-btn:hover{background:#212223}
+
+    /* NAV CARDS (home-style interaction) */
+    .se-card-row{display:flex;gap:16px;margin-bottom:16px}
+    .se-card{
+      position:relative;width:800px;padding:28px 32px;
+      background:linear-gradient(180deg,rgba(20,20,20,.1) 0%,rgba(122,122,122,.1) 100%);
+      border:2px solid rgba(243,246,249,.1);
+      text-decoration:none;color:#fff;
+      display:flex;flex-direction:column;gap:10px;
+      transition:border-color .35s,background .35s,box-shadow .35s,transform .35s;
+    }
+    .se-card:hover{
+      border-color:#ffffff;
+      background:linear-gradient(180deg,rgba(115,115,115,.42) 0%,rgba(217,217,217,.04) 100%);
+      box-shadow:0 0 40px rgba(255,255,255,.06);
+      transform:translateY(-4px);
+    }
+    .se-corner{position:absolute;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2}
+    .se-corner img{width:100%;height:100%;display:block}
+    .se-card:hover .se-corner{opacity:1}
+    .se-corner.tl{top:0;left:0;width:10.095px;height:10.094px}
+    .se-corner.tr{top:0;right:0;width:10.095px;height:10.094px}
+    .se-corner.bl{bottom:0;left:0;width:10.095px;height:10.094px}
+    .se-corner.br{bottom:0;right:0;width:60.54px;height:10.094px}
+    .se-card-label{font-weight:600;font-size:13px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
+    .se-card-title{font-weight:700;font-size:16px;letter-spacing:-0.4px;color:#fff}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+
+  <!-- NAV -->
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+
+  <a href="saju-result.html" class="bk">← Home</a>
+  <p class="tg">SAJU ENHANCE</p>
+  <h1 class="tt">Enhance Saju Balance</h1>
+  <p class="ds">리포트를 기반으로 사주에서 부족한 기운을 파악하고,<br>균형을 회복할 수 있도록 설계된 오브젝트를 제안합니다.</p>
+
+  <!-- NO DATA SCREEN -->
+  <div id="noDataScreen" style="display:none">
+    <a href="index.html" style="position:absolute;left:141px;top:391px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px;transition:color .2s">← Home</a>
+    <h2 style="position:absolute;left:138px;top:420px;font-weight:400;font-size:53px;letter-spacing:-1.325px;line-height:1;color:#fff">Nothing Here Yet</h2>
+    <p style="position:absolute;left:141px;top:491px;font-weight:400;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:#8a9199;width:447px">아직 사주 분석 전이에요. 분석을 마치면 내게 부족한 오행을 채워줄 오브제를 추천받을 수 있습니다.</p>
+    <a href="saju-analysis.html" class="no-data-btn" style="position:absolute;left:139px;top:639px">분석 시작하기 →</a>
+  </div>
+
+  <!-- Divider above Imbalanced Energy -->
+  <div class="dv" style="top:396px"></div>
+  <!-- IMBALANCED ENERGY heading -->
+  <p class="section-heading" style="top:444px">Imbalanced Energy</p>
+
+  <!-- DEFICIENT DAY PILLAR BANNER -->
+  <div class="banner el-fire" id="banner">
+    <div class="banner-left">
+      <div class="banner-top">
+        <span class="banner-label">DEFICIENT DAY PILLAR</span>
+        <span class="banner-title" id="bannerTitle">FIRE</span>
+      </div>
+      <div class="banner-body">
+        <p class="banner-headline" id="bannerHeadline">당신에게 부족한 기운은 FIRE 입니다.</p>
+        <p class="banner-desc" id="bannerDesc">화의 기운이 부족하면, 표현력이나 추진력, 외부로 드러나는 에너지가 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.</p>
+      </div>
+    </div>
+    <div class="banner-visual">
+      <img id="bannerIcon" src="assets/el-fire-v2.svg" alt="">
+    </div>
+  </div>
+
+  <!-- Divider above Selected Objects -->
+  <div class="dv" style="top:878px"></div>
+  <!-- SELECTED OBJECTS heading -->
+  <p class="section-heading" style="top:926px">Selected Objects</p>
+
+  <!-- SEARCH BY ELEMENTS -->
+  <p class="sbe-label">Search By Elements</p>
+  <div class="chips" id="chips">
+    <button class="chip on" data-filter="all"><span class="dot"></span>ALL</button>
+    <button class="chip" data-filter="wood"><span class="dot" style="background:#0B8376"></span>TREE</button>
+    <button class="chip" data-filter="fire"><span class="dot" style="background:#D62E2D"></span>FIRE</button>
+    <button class="chip" data-filter="earth"><span class="dot" style="background:#F3D64B"></span>EARTH</button>
+    <button class="chip" data-filter="metal"><span class="dot" style="background:#CECFD3"></span>METAL</button>
+    <button class="chip" data-filter="water"><span class="dot" style="background:#849AE6"></span>WATER</button>
+  </div>
+
+  <!-- COUNTER -->
+  <p class="count"><span class="n" id="countVisible">14</span><span class="lbl">Objects</span></p>
+
+  <!-- PRODUCT GRID (4 columns × ~4 rows, 14 products) -->
+  <!-- Row 1: TREE -->
+  <a class="prod c1 r1" data-element="wood" href="#">
+    <div class="prod-img"><img src="assets/products/prod-verdant-diffuser.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">TREE · 木</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">VERDANT DIFFUSER</p>
+          <p class="prod-desc">편백과 삼나무 향으로 목의 기운을 확장시키는 디퓨저</p>
+        </div>
+        <p class="prod-price">₩ 56,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c2 r1" data-element="wood" href="#">
+    <div class="prod-img"><img src="assets/products/prod-canopy-essential-oil.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">TREE · 木</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">CANOPY ESSENTIAL OIL</p>
+          <p class="prod-desc">우드 패널이 품은 글래스 보틀에 담긴 에센셜 오일</p>
+        </div>
+        <p class="prod-price">₩ 68,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c3 r1" data-element="wood" href="#">
+    <div class="prod-img"><img src="assets/products/prod-grove-tree-pot.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">TREE · 木</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">GROVE TREE POT</p>
+          <p class="prod-desc">새벽 숲의 향을 담은 큐빅 우드 화기, 목의 흐름을 불러옵니다</p>
+        </div>
+        <p class="prod-price">₩ 52,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c4 r1" data-element="wood" href="#">
+    <div class="prod-img"><img src="assets/products/prod-forge-candle.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">TREE · 木</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">FORGE CANDLE</p>
+          <p class="prod-desc">고요한 밤의 단단한 침묵을 태우는 큐빅 캔들</p>
+        </div>
+        <p class="prod-price">₩ 48,000</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Row 2: FIRE / FIRE / FIRE / EARTH -->
+  <a class="prod c1 r2" data-element="fire" href="#">
+    <div class="prod-img"><img src="assets/products/prod-ember-incense-holder.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">FIRE · 火</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">EMBER INCENSE HOLDER</p>
+          <p class="prod-desc">한 줄기 연기로 화의 기운을 응축시키는 인센스</p>
+        </div>
+        <p class="prod-price">₩ 88,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c2 r2" data-element="fire" href="#">
+    <div class="prod-img"><img src="assets/products/prod-solaris-vibrant-light.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">FIRE · 火</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">SOLARIS VIBRANT LIGHT</p>
+          <p class="prod-desc">픽셀 코어가 빛나는 다층 큐빅 무드 라이트</p>
+        </div>
+        <p class="prod-price">₩ 148,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c3 r2" data-element="fire" href="#">
+    <div class="prod-img"><img src="assets/products/prod-crimson-lighter.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">FIRE · 火</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">CRIMSON LIGHTER</p>
+          <p class="prod-desc">결단의 불씨를 담은 정밀 큐빅 라이터</p>
+        </div>
+        <p class="prod-price">₩ 78,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c4 r2" data-element="earth" href="#">
+    <div class="prod-img"><img src="assets/products/prod-golden-orb.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">EARTH · 土</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">GOLDEN ORB</p>
+          <p class="prod-desc">밸런스를 잡아주는 무게추가 담긴 오브</p>
+        </div>
+        <p class="prod-price">₩ 56,000</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Row 3: EARTH / EARTH / METAL / METAL -->
+  <a class="prod c1 r3" data-element="earth" href="#">
+    <div class="prod-img"><img src="assets/products/prod-earthen-tea-set.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">EARTH · 土</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">EARTHEN TEA SET</p>
+          <p class="prod-desc">손에 쥐는 큐빅 다구로 토의 안정을 일상에 들이는 세트</p>
+        </div>
+        <p class="prod-price">₩ 78,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c2 r3" data-element="earth" href="#">
+    <div class="prod-img"><img src="assets/products/prod-sediment-paper-weight.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">EARTH · 土</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">SEDIMENT PAPER WEIGHT</p>
+          <p class="prod-desc">사각 보이드와 균형 구체로 중심을 회복하는 문진</p>
+        </div>
+        <p class="prod-price">₩ 88,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c3 r3" data-element="metal" href="#">
+    <div class="prod-img"><img src="assets/products/prod-platinum-shear-scissor.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">SILVER · 金</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">PLATINUM SHEAR SCISSOR</p>
+          <p class="prod-desc">단호한 절단의 의례를 위한 일체형 정밀 가위</p>
+        </div>
+        <p class="prod-price">₩ 98,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c4 r3" data-element="metal" href="#">
+    <div class="prod-img"><img src="assets/products/prod-precision-index-ruler.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">SILVER · 金</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">PRECISION INDEX RULER</p>
+          <p class="prod-desc">정밀한 눈금이 결단과 집중의 기준을 잡아주는 자</p>
+        </div>
+        <p class="prod-price">₩ 72,000</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Row 4: WATER / WATER -->
+  <a class="prod c1 r4" data-element="water" href="#">
+    <div class="prod-img"><img src="assets/products/prod-tidal-rotor.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">WATER · 水</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">TIDAL ROTOR</p>
+          <p class="prod-desc">회전하는 흐름으로 수의 기운을 일깨우는 명상 턴테이블</p>
+        </div>
+        <p class="prod-price">₩ 168,000</p>
+      </div>
+    </div>
+  </a>
+  <a class="prod c2 r4" data-element="water" href="#">
+    <div class="prod-img"><img src="assets/products/prod-flow-hourglass.png" alt=""></div>
+    <div class="prod-body">
+      <span class="prod-element">WATER · 水</span>
+      <div class="prod-name-block">
+        <div class="prod-name-inner">
+          <p class="prod-name">FLOW HOURGLASS</p>
+          <p class="prod-desc">검은 모래의 연속된 흐름으로 수의 시간을 시각화하는 큐빅 모래시계</p>
+        </div>
+        <p class="prod-price">₩ 98,000</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- CTAs -->
+  <div class="ctas" style="flex-direction:row;align-items:flex-start;gap:16px">
+    <a href="saju-data.html" class="cta-btn">데이터 살펴보기 →</a>
+    <a href="saju-analysis.html" class="cta-btn">다시 분석하기 →</a>
+  </div>
+
+</div>
+</div>
+
+<script>
+const ROW_TOPS = {1:1149, 2:1567, 3:1985, 4:2403};
+const CARD_H = 398, CTA_GAP = 72, BOTTOM_PAD = 100, NAV_CARD_H = 50;
+
+function updateLayout(){
+  const visible = document.querySelectorAll('.prod:not(.hidden)');
+  let maxRow = 1;
+  visible.forEach(function(c){
+    for(var r=1;r<=4;r++) if(c.classList.contains('r'+r)) maxRow = Math.max(maxRow,r);
+  });
+  const ctaTop = ROW_TOPS[maxRow] + CARD_H + CTA_GAP;
+  document.querySelector('.ctas').style.top = ctaTop + 'px';
+  const stageH = ctaTop + NAV_CARD_H + BOTTOM_PAD;
+  document.getElementById('stage').style.height = stageH + 'px';
+  const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sc')) || 1;
+  document.querySelector('.sw').style.height = (stageH * sc) + 'px';
+}
+
+function fit(){
+  const s = Math.min(1, window.innerWidth/1920);
+  document.documentElement.style.setProperty('--sc', s);
+  const stageH = parseInt(document.getElementById('stage').style.height) || 2620;
+  document.querySelector('.sw').style.height = (stageH*s)+'px';
+}
+window.addEventListener('resize', fit); window.addEventListener('load', fit);
+
+function setLang(el){ document.querySelectorAll('.lb').forEach(b=>b.classList.remove('on')); el.classList.add('on'); }
+
+/* 5-element banner data */
+const EL_TITLE = { wood:'TREE', fire:'FIRE', earth:'EARTH', metal:'METAL', water:'WATER' };
+const EL_KOR   = { wood:'목', fire:'화', earth:'토', metal:'금', water:'수' };
+const EL_ICON  = { wood:'el-tree-v2.svg', fire:'el-fire-v2.svg', earth:'el-earth-v2.svg', metal:'el-metal-v2.svg', water:'el-water-v2.svg' };
+const EL_DESC  = {
+  wood:  '목의 기운이 부족하면, 새로운 시작과 추진하는 힘, 성장의 흐름이 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.',
+  fire:  '화의 기운이 부족하면, 표현력이나 추진력, 외부로 드러나는 에너지가 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.',
+  earth: '토의 기운이 부족하면, 안정감과 중심을 잡는 힘, 신뢰의 기반이 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.',
+  metal: '금의 기운이 부족하면, 결단력이나 분별, 절제의 흐름이 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.',
+  water: '수의 기운이 부족하면, 유연함이나 깊은 사유, 흐름을 읽는 직관이 상대적으로 약하게 나타날 수 있습니다. 아래 오브젝트는 이러한 흐름을 보완하고 균형을 회복할 수 있도록 설계되었습니다.'
+};
+
+function getLackingElement(){
+  try{ const r=JSON.parse(localStorage.getItem('ff_saju_result')||'null'); if(r&&EL_TITLE[r.lacking]&&sessionStorage.getItem('ff_result_ready')) return r.lacking; }catch(e){}
+  return null;
+}
+
+const lacking = getLackingElement();
+(function(){
+if(!lacking){
+  document.getElementById('noDataScreen').style.display='block';
+  document.querySelectorAll('.dv,.section-heading,.banner,.prod,.ctas,.tg,.tt,.ds,.sbe-label,.chips,.count,.bk').forEach(function(el){el.style.display='none';});
+  document.getElementById('stage').style.height='800px';
+  var sc=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sc'))||1;
+  document.querySelector('.sw').style.height=(800*sc)+'px';
+  return;
+}
+const banner = document.getElementById('banner');
+['el-wood','el-fire','el-earth','el-metal','el-water'].forEach(c=>banner.classList.remove(c));
+banner.classList.add('el-'+lacking);
+document.getElementById('bannerTitle').textContent = EL_TITLE[lacking];
+document.getElementById('bannerHeadline').textContent = '당신에게 부족한 기운은 ' + EL_TITLE[lacking] + ' 입니다.';
+document.getElementById('bannerDesc').textContent = EL_DESC[lacking];
+document.getElementById('bannerIcon').src = 'assets/' + EL_ICON[lacking];
+
+/* Filter logic */
+function applyFilter(filter){
+  const cards = document.querySelectorAll('.prod');
+  let visible = 0;
+  cards.forEach(c=>{
+    const m = filter==='all' || c.dataset.element===filter;
+    c.classList.toggle('hidden', !m);
+    if(m) visible++;
+  });
+  document.getElementById('countVisible').textContent = visible;
+  document.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('on', ch.dataset.filter===filter));
+  /* Reflow rows: in absolute grid we keep fixed positions, but if filter active, re-pack */
+  repackVisible();
+}
+function repackVisible(){
+  const cards = Array.from(document.querySelectorAll('.prod:not(.hidden)'));
+  cards.forEach((c, i)=>{
+    const col = i % 4;
+    const row = Math.floor(i / 4);
+    c.classList.remove('c1','c2','c3','c4','r1','r2','r3','r4');
+    c.classList.add(['c1','c2','c3','c4'][col]);
+    c.classList.add(['r1','r2','r3','r4'][row]);
+  });
+  updateLayout();
+}
+document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click', ()=>applyFilter(ch.dataset.filter)));
+applyFilter(lacking);
+updateLayout();
+})();
+fit();
+</script>
+</body>
+</html>

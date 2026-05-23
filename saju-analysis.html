@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saju Analysis — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+
+    /* ── 디자이너 조정용 변수 (Figma 매치) ── */
+    :root{
+      --dp-year-pad-y: 12px;
+      --dp-year-pad-x: 0px;
+      --dp-year-radius: 8px;
+    }
+
+    /* NAV */
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nn:hover{color:#fff}
+    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb:hover{color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
+    .lo img{width:100%;height:100%;display:block}
+
+    /* HEADER */
+    .bk{position:absolute;left:142px;top:151px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px}
+    .tg{position:absolute;left:142px;top:194px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .tt{position:absolute;left:139px;top:222px;font-weight:400;font-size:53px;letter-spacing:-1.325px;white-space:nowrap}
+    .ds{position:absolute;left:139px;top:293px;font-size:16px;line-height:22px;letter-spacing:-0.4px;width:371px;color:#8a9199}
+
+    /* FIELDS — absolute positions matching Figma at 1920×1127 */
+    .fd{position:absolute;width:260px;height:82px}
+    .fd .fl{position:absolute;top:0;left:0;font-weight:400;font-size:12px;line-height:14px;letter-spacing:-0.18px;color:#8a9199}
+    .fd .fw{position:absolute;top:30px;left:0;width:260px;height:52px;background:#060606;border:1px solid rgba(243,246,249,.1);cursor:pointer;transition:border-color .2s}
+    @keyframes fieldFlash{0%,100%{border-color:rgba(243,246,249,.1);box-shadow:none}35%,65%{border-color:#fff;box-shadow:0 0 10px rgba(255,255,255,.22)}}
+    .fw.error{animation:fieldFlash .65s ease}
+    .fd .fw input{position:absolute;inset:0;width:100%;height:100%;background:transparent;border:none;outline:none;font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:15px;letter-spacing:-0.225px;color:#fff;padding:0 16px;cursor:pointer;appearance:none;-webkit-appearance:none}
+    .fd .fw input::placeholder{color:rgba(255,255,255,.45)}
+
+    .f1{left:139px;top:428px}
+    .f2{left:422px;top:428px}
+    .f3{left:139px;top:550px}
+    .f4{left:422px;top:550px}
+    .f5{left:139px;top:672px}
+    .f6{left:422px;top:672px}
+
+    /* SUBMIT */
+    .sb{position:absolute;left:139px;top:854px;border:1px solid rgba(243,246,249,.5);background:transparent;padding:16px 28px 15px;font-family:'Pretendard Variable',sans-serif;font-weight:500;font-size:16px;letter-spacing:-0.4px;color:#fff;cursor:pointer;white-space:nowrap;transition:background .25s}
+    .sb:hover{background:#212223}
+
+    /* DROPDOWNS */
+    .dd{display:none;position:absolute;top:70px;left:0;width:260px;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);border-radius:0;z-index:100;overflow:hidden;max-height:484px;overflow-y:auto}
+    .dd.open{display:block}
+    .dd .di{padding:16px 16px 13px;font-size:15px;letter-spacing:-0.225px;cursor:pointer;transition:background .15s;border-bottom:none;position:relative}
+    .dd .di:not(:last-child)::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:1px;background:rgba(255,255,255,.08)}
+    .dd .di:hover{background:rgba(255,255,255,.06)}
+
+    /* DATE PICKER */
+    .dp{display:none;position:absolute;top:82px;left:0;width:300px;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);border-radius:0;z-index:100;padding:22px}
+    .dp.open{display:block}
+    .dp-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .dp-hd-mo{flex:1;text-align:center}
+    .dp-nv{color:#8a9199;font-size:16px;font-weight:700;cursor:pointer;background:none;border:none;padding:4px 8px}
+    .dp-nv:hover{color:#fff}
+    .dp-mo{font-weight:700;font-size:14px;letter-spacing:-0.21px;cursor:pointer}
+    .dp-mo:hover{color:#8a9199}
+    .dp-dw{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px}
+    .dp-dw span{text-align:center;font-size:11px;color:#8a9199;padding:4px 0}
+    .dp-dy{display:grid;grid-template-columns:repeat(7,1fr)}
+    .dp-dy.yr-mode{display:block}
+    .dp-d{
+      text-align:center;font-size:12px;cursor:pointer;color:#fff;
+      transition:background .15s;
+      width:28px;height:28px;line-height:28px;margin:4px auto;
+      display:block;
+    }
+    .dp-d:hover{background:rgba(255,255,255,.1)}
+    .dp-d.empty{pointer-events:none;color:transparent}
+    .dp-d.dp-disabled{pointer-events:none;color:rgba(255,255,255,.22);cursor:default}
+    /* Selected: 28×28 square white, Bold black text (Figma exact) */
+    .dp-d.sel{background:#fff;color:#0f0f0f;font-weight:700}
+    .dp-d.tdy{box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+    .dp-ft{display:flex;justify-content:flex-start;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+    .dp-ft button{background:none;border:none;color:#8a9199;font-size:13px;cursor:pointer;font-family:'Pretendard Variable',sans-serif}
+    .dp-ft button:hover{color:#fff}
+    .dp-yrs{display:grid;grid-template-columns:repeat(4,1fr);row-gap:16px;column-gap:0;padding:12px 0 4px}
+    .dp-yb:disabled{opacity:0.25;cursor:not-allowed;pointer-events:none}
+    .dp-yb{position:relative;text-align:center;font-size:14px;padding:12px 0;cursor:pointer;color:#fff;background:none;border:none;font-family:'Pretendard Variable',sans-serif;letter-spacing:-0.21px;z-index:0}
+    .dp-yb:hover:not(:disabled)::before{content:'';position:absolute;inset:0 4px;background:rgba(255,255,255,.1);border-radius:0;z-index:-1}
+    .dp-yb.sel{font-weight:700;color:#0f0f0f}
+    .dp-yb.sel::before{content:'';position:absolute;inset:0 4px;background:#fff;border-radius:0;z-index:-1}
+    .dp-ov{display:none;position:fixed;inset:0;z-index:99}
+    .dp-ov.open{display:block}
+
+    /* CONCERN CHIPS */
+    .cc{display:none;position:absolute;top:90px;left:0;width:300px;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);border-radius:0;z-index:100;padding:16px}
+    .cc.open{display:block}
+    .cc-info{font-size:11px;color:#8a9199;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+    .cc-info .ct{font-weight:600;color:#fff}
+    .cc-info.full{color:#7eaaff}
+    .cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .cc-chip{background:#060606;border:1px solid rgba(243,246,249,.1);padding:8px 14px;font-size:13px;letter-spacing:-0.2px;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',sans-serif;white-space:nowrap}
+    .cc-chip:hover{border-color:rgba(255,255,255,.3);color:#fff}
+    .cc-chip.on{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5);color:#fff}
+    .cc-chip.locked{opacity:.4;cursor:not-allowed}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+
+  <a href="index.html" class="bk">← Home</a>
+  <p class="tg">SAJU ANALYSIS</p>
+  <h1 class="tt">Saju Analyzer</h1>
+  <p class="ds">입력된 정보를 활용하여 미래의 방향을 분석하고 제안합니다. 고민 사항에 맞춰 개인화된 리포트를 받아볼 수 있습니다.</p>
+
+  <form id="af" onsubmit="go(event)">
+    <!-- 이름 -->
+    <div class="fd f1">
+      <label class="fl">이름</label>
+      <div class="fw"><input type="text" id="name" placeholder="홍길동" required></div>
+    </div>
+    <!-- 성별 -->
+    <div class="fd f2">
+      <label class="fl">성별</label>
+      <div class="fw" onclick="oDD('gender')"><input type="text" id="gender" placeholder="선택" readonly required></div>
+      <div class="dd" id="dd-gender">
+        <div class="di" onclick="sDD('gender','남','남성')">남성</div>
+        <div class="di" onclick="sDD('gender','여','여성')">여성</div>
+      </div>
+    </div>
+    <!-- 생년월일 -->
+    <div class="fd f3">
+      <label class="fl">생년월일</label>
+      <div class="fw" onclick="oDP()"><input type="text" id="birthdate" placeholder="YYYY-MM-DD" readonly required></div>
+      <div class="dp-ov" id="dpOv" onclick="cDP()"></div>
+      <div class="dp" id="dpEl">
+        <div class="dp-hd">
+          <button class="dp-nv" type="button" onclick="dpN(-1)">‹</button>
+          <span class="dp-hd-mo"><span class="dp-mo" id="dpYr" onclick="dpGoYr()"></span><span class="dp-mo" id="dpMth" onclick="dpGoMth()"></span></span>
+          <button class="dp-nv" type="button" onclick="dpN(1)">›</button>
+        </div>
+        <div class="dp-dw" id="dpDow"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+        <div class="dp-dy" id="dpDy"></div>
+        <div class="dp-ft">
+          <button type="button" onclick="dpTdy()">오늘</button>
+        </div>
+      </div>
+    </div>
+    <!-- 출생 지역 -->
+    <div class="fd f4">
+      <label class="fl">출생 지역</label>
+      <div class="fw" onclick="oDD('bp')"><input type="text" id="bp" placeholder="선택" readonly></div>
+      <div class="dd" id="dd-bp">
+        <div class="di" onclick="sDD('bp','서울','서울')">서울</div><div class="di" onclick="sDD('bp','부산','부산')">부산</div>
+        <div class="di" onclick="sDD('bp','대구','대구')">대구</div><div class="di" onclick="sDD('bp','인천','인천')">인천</div>
+        <div class="di" onclick="sDD('bp','광주','광주')">광주</div><div class="di" onclick="sDD('bp','대전','대전')">대전</div>
+        <div class="di" onclick="sDD('bp','울산','울산')">울산</div><div class="di" onclick="sDD('bp','세종','세종')">세종</div>
+        <div class="di" onclick="sDD('bp','경기','경기')">경기</div><div class="di" onclick="sDD('bp','강원','강원')">강원</div>
+        <div class="di" onclick="sDD('bp','충북','충북')">충북</div><div class="di" onclick="sDD('bp','충남','충남')">충남</div>
+        <div class="di" onclick="sDD('bp','전북','전북')">전북</div><div class="di" onclick="sDD('bp','전남','전남')">전남</div>
+        <div class="di" onclick="sDD('bp','경북','경북')">경북</div><div class="di" onclick="sDD('bp','경남','경남')">경남</div>
+        <div class="di" onclick="sDD('bp','제주','제주')">제주</div><div class="di" onclick="sDD('bp','해외','해외')">해외</div>
+      </div>
+    </div>
+    <!-- 출생 시간 -->
+    <div class="fd f5">
+      <label class="fl">출생 시간</label>
+      <div class="fw" onclick="oDD('bt')"><input type="text" id="bt" placeholder="선택" readonly required></div>
+      <div class="dd" id="dd-bt">
+        <div class="di" onclick="sDD('bt','자시','자시 (23:00–01:00)')">자시 (23:00–01:00)</div>
+        <div class="di" onclick="sDD('bt','축시','축시 (01:00–03:00)')">축시 (01:00–03:00)</div>
+        <div class="di" onclick="sDD('bt','인시','인시 (03:00–05:00)')">인시 (03:00–05:00)</div>
+        <div class="di" onclick="sDD('bt','묘시','묘시 (05:00–07:00)')">묘시 (05:00–07:00)</div>
+        <div class="di" onclick="sDD('bt','진시','진시 (07:00–09:00)')">진시 (07:00–09:00)</div>
+        <div class="di" onclick="sDD('bt','사시','사시 (09:00–11:00)')">사시 (09:00–11:00)</div>
+        <div class="di" onclick="sDD('bt','오시','오시 (11:00–13:00)')">오시 (11:00–13:00)</div>
+        <div class="di" onclick="sDD('bt','미시','미시 (13:00–15:00)')">미시 (13:00–15:00)</div>
+        <div class="di" onclick="sDD('bt','신시','신시 (15:00–17:00)')">신시 (15:00–17:00)</div>
+        <div class="di" onclick="sDD('bt','유시','유시 (17:00–19:00)')">유시 (17:00–19:00)</div>
+        <div class="di" onclick="sDD('bt','술시','술시 (19:00–21:00)')">술시 (19:00–21:00)</div>
+        <div class="di" onclick="sDD('bt','해시','해시 (21:00–23:00)')">해시 (21:00–23:00)</div>
+        <div class="di" onclick="sDD('bt','모름','모름')">모름</div>
+      </div>
+    </div>
+    <!-- 고민사항 (4개 필수 선택, 외부 클릭으로 닫힘) -->
+    <div class="fd f6">
+      <label class="fl">고민사항 (4개 필수)</label>
+      <div class="fw" onclick="oCC(event)"><input type="text" id="cn" placeholder="4개 선택" readonly required></div>
+      <div class="cc" id="ccEl">
+        <div class="cc-info" id="ccInfo"><span>4개를 선택해주세요</span><span><span class="ct" id="ccCount">0</span>/4</span></div>
+        <div class="cc-grid">
+          <button type="button" class="cc-chip" data-v="career" onclick="tCC(this)">진로 · 직업</button>
+          <button type="button" class="cc-chip" data-v="relationship" onclick="tCC(this)">대인관계</button>
+          <button type="button" class="cc-chip" data-v="finance" onclick="tCC(this)">재물 · 재정</button>
+          <button type="button" class="cc-chip" data-v="health" onclick="tCC(this)">건강</button>
+          <button type="button" class="cc-chip" data-v="love" onclick="tCC(this)">연애 · 결혼</button>
+          <button type="button" class="cc-chip" data-v="family" onclick="tCC(this)">가족 · 친지</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="sb">분석 시작하기 →</button>
+  </form>
+
+</div>
+</div>
+
+<script>
+/* Scale */
+var SH=1127;
+function fit(){var s=Math.min(1,window.innerWidth/1920);document.documentElement.style.setProperty('--sc',s);document.getElementById('stage').style.height=SH+'px';document.querySelector('.sw').style.height=(SH*s)+'px';}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+/* Dropdowns */
+function closeAll(){document.querySelectorAll('.dd.open,.cc.open,.dp.open,.dp-ov.open').forEach(function(e){e.classList.remove('open');});}
+var _dch=null;
+function _addDch(fn){if(_dch)document.removeEventListener('click',_dch);_dch=fn;document.addEventListener('click',_dch);}
+function _rmDch(){if(_dch){document.removeEventListener('click',_dch);_dch=null;}}
+function oDD(id){closeAll();document.getElementById('dd-'+id).classList.add('open');setTimeout(function(){_addDch(function(e){if(!e.target.closest('.dd')&&!e.target.closest('.fw')){closeAll();_rmDch();}});},10);}
+function sDD(id,val,label){var inp=document.getElementById(id);inp.value=label;inp.dataset.val=val;closeAll();_rmDch();}
+
+/* Date Picker */
+var dpY=2026,dpM=3,dpMode='days';
+function oDP(){closeAll();document.getElementById('dpEl').classList.add('open');document.getElementById('dpOv').classList.add('open');renderCal();}
+function cDP(){document.getElementById('dpEl').classList.remove('open');document.getElementById('dpOv').classList.remove('open');}
+function dpN(d){if(dpMode==='years'){dpY+=d*12;renderYrs();}else if(dpMode==='months'){dpY+=d;renderMths();}else{dpM+=d;if(dpM>11){dpM=0;dpY++;}if(dpM<0){dpM=11;dpY--;}renderCal();}}
+function dpGoYr(){if(dpMode==='years'){dpMode='days';renderCal();}else{dpMode='years';renderYrs();}}
+function dpGoMth(){if(dpMode==='months'){dpMode='days';renderCal();}else{dpMode='months';renderMths();}}
+function renderCal(){dpMode='days';var dy=document.getElementById('dpDy');dy.classList.remove('yr-mode');document.getElementById('dpDow').style.display='';document.getElementById('dpYr').textContent=dpY+'년';document.getElementById('dpMth').textContent=' '+(dpM+1)+'월';var fd=new Date(dpY,dpM,1).getDay(),dm=new Date(dpY,dpM+1,0).getDate(),t=new Date(),ts=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'),h='';for(var i=0;i<fd;i++)h+='<span class="dp-d empty">.</span>';for(var d=1;d<=dm;d++){var ds=dpY+'-'+String(dpM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),cls='dp-d';if(ds===ts)cls+=' tdy';if(document.getElementById('birthdate').value===ds)cls+=' sel';if(new Date(ds)<new Date('1900-01-01'))cls+=' empty';else if(new Date(ds)>t)cls+=' dp-disabled';h+='<span class="'+cls+'" onclick="dpSel('+d+')">'+d+'</span>';}dy.innerHTML=h;}
+function renderYrs(){var dy=document.getElementById('dpDy');dy.classList.add('yr-mode');document.getElementById('dpDow').style.display='none';var sy=dpY-6,t=new Date(),h='<div class="dp-yrs">';for(var y=sy;y<sy+12;y++){var cls='dp-yb';if(y===dpY)cls+=' sel';h+='<button type="button" class="'+cls+'" '+(y>t.getFullYear()?'disabled':'onclick="selYr('+y+')"')+'>'+y+'</button>';}h+='</div>';dy.innerHTML=h;document.getElementById('dpYr').textContent=sy+'–'+(sy+11);document.getElementById('dpMth').textContent='';}
+function renderMths(){dpMode='months';var dy=document.getElementById('dpDy');dy.classList.add('yr-mode');document.getElementById('dpDow').style.display='none';var h='<div class="dp-yrs">';for(var m=0;m<12;m++){var cls='dp-yb';if(m===dpM)cls+=' sel';h+='<button type="button" class="'+cls+'" onclick="selMth('+m+')">'+(m+1)+'월</button>';}h+='</div>';dy.innerHTML=h;document.getElementById('dpYr').textContent=dpY+'년';document.getElementById('dpMth').textContent=' '+(dpM+1)+'월';}
+function selYr(y){dpY=y;dpMode='days';renderCal();}
+function selMth(m){dpM=m;renderCal();}
+function dpSel(d){var ds=dpY+'-'+String(dpM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');document.getElementById('birthdate').value=ds;cDP();}
+function dpTdy(){var t=new Date();dpY=t.getFullYear();dpM=t.getMonth();dpSel(t.getDate());}
+function dpClr(){document.getElementById('birthdate').value='';cDP();}
+renderCal();
+
+/* Concern: open on click, auto-close on outside click, exactly 4 required */
+function oCC(e){
+  if(e) e.stopPropagation();
+  closeAll();
+  document.getElementById('ccEl').classList.add('open');
+  refreshCC();
+  setTimeout(function(){
+    _addDch(function(ev){
+      if(!ev.target.closest('.cc') && !ev.target.closest('.fw')){
+        applyCC(); _rmDch();
+      }
+    });
+  }, 10);
+}
+function tCC(el){
+  if(el.classList.contains('on')){
+    el.classList.remove('on');
+  } else {
+    if(document.querySelectorAll('.cc-chip.on').length>=4) return;
+    el.classList.add('on');
+  }
+  refreshCC();
+}
+function refreshCC(){
+  var n=document.querySelectorAll('.cc-chip.on').length;
+  document.getElementById('ccCount').textContent=n;
+  var info=document.getElementById('ccInfo');
+  info.classList.toggle('full', n===4);
+  /* lock unselected when 4 reached */
+  document.querySelectorAll('.cc-chip').forEach(function(c){
+    c.classList.toggle('locked', n>=4 && !c.classList.contains('on'));
+  });
+}
+function applyCC(){
+  document.getElementById('ccEl').classList.remove('open');
+  var sel=[].slice.call(document.querySelectorAll('.cc-chip.on')).map(function(c){return c.textContent;});
+  document.getElementById('cn').value=sel.length?sel.join(', '):'';
+}
+
+/* Submit */
+function go(e){
+  e.preventDefault();
+  var nm=document.getElementById('name').value;
+  var bd=document.getElementById('birthdate').value;
+  var bt=document.getElementById('bt').dataset&&document.getElementById('bt').dataset.val||document.getElementById('bt').value;
+  var gn=document.getElementById('gender').dataset&&document.getElementById('gender').dataset.val||document.getElementById('gender').value;
+  var bp=document.getElementById('bp').dataset&&document.getElementById('bp').dataset.val||'';
+  var concerns=[].slice.call(document.querySelectorAll('.cc-chip.on')).map(function(c){return c.dataset.v;});
+  var errs=[];
+  if(!nm) errs.push(document.querySelector('.f1 .fw'));
+  if(!gn) errs.push(document.querySelector('.f2 .fw'));
+  if(!bd) errs.push(document.querySelector('.f3 .fw'));
+  if(!bt) errs.push(document.querySelector('.f5 .fw'));
+  if(concerns.length!==4) errs.push(document.querySelector('.f6 .fw'));
+  if(errs.length){
+    errs.forEach(function(el){if(el){el.classList.remove('error');void el.offsetWidth;el.classList.add('error');}});
+    setTimeout(function(){errs.forEach(function(el){if(el)el.classList.remove('error');});},700);
+    if(concerns.length!==4) oCC();
+    return;
+  }
+  try{localStorage.setItem('ff_saju_input',JSON.stringify({name:nm||'홍길동',birthdate:bd,birthtime:bt,gender:gn,birthplace:bp,concern:concerns.join(','),concerns:concerns,submittedAt:new Date().toISOString()}));}catch(err){}
+  window.location.href='saju-result.html';
+}
+</script>
+</body>
+</html>

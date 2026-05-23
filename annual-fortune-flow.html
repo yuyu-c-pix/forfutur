@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Master Compatibility — Four Futur</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;background:#0f0f0f;color:#fff;font-family:'Pretendard Variable','Pretendard',sans-serif;overflow-x:hidden}
+    .sw{width:100%;position:relative}
+    .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
+    .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
+    .nl{left:40px;gap:28px}.nr{right:40px}
+    .nl .g{display:flex;align-items:center;gap:18px}
+    .nn,.lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .nn:hover,.lb:hover{color:#fff}
+    .nn.active,.lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
+    .lo img{width:100%;height:100%;display:block}
+    .bk{position:absolute;left:141px;top:150px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px}
+    .stag{position:absolute;left:141px;top:194px;font-weight:400;font-size:13px;letter-spacing:-0.195px;color:#8a9199}
+    .stt{position:absolute;left:140px;top:229px;font-weight:400;font-size:53px;line-height:58px;letter-spacing:-1.325px;width:540px}
+    .ssu{position:absolute;left:140px;top:358px;font-weight:400;font-size:16px;line-height:22px;letter-spacing:-0.4px;width:365px;color:#8a9199}
+
+    .panel{position:absolute;left:679px;width:1100px;background:#060606;border:2px solid rgba(243,246,249,.2);overflow:hidden}
+    .p1{top:237px;padding:32px 100px}
+    .p2{top:670px;height:656px}
+    .pt{font-weight:400;font-size:27px;line-height:38px;letter-spacing:-0.54px;margin-bottom:4px}
+    .ps{font-weight:400;font-size:17px;line-height:22px;letter-spacing:-0.34px;color:#8a9199;margin-bottom:28px}
+
+    .chart-row{display:flex;gap:33px;align-items:center}
+    .yr-col{display:flex;flex-direction:column;gap:32px;font-weight:500;font-size:12px;color:#8a9199;letter-spacing:-0.18px;width:29px;flex-shrink:0}
+    .chart-img{width:839px;height:209px;display:block;flex-shrink:0;object-fit:contain;clip-path:inset(0 100% 0 0);animation:fillR 2s cubic-bezier(.22,1,.36,1) forwards .3s}
+    @keyframes fillR{to{clip-path:inset(0)}}
+    .legend{display:flex;gap:32px;margin-top:20px;margin-left:62px}
+    .leg-i{display:flex;gap:4px;align-items:center;font-weight:500;font-size:12px;color:#8a9199;letter-spacing:-0.18px}
+    .leg-sq{width:9px;height:9px;flex-shrink:0}
+
+    /* Panel 2 */
+    .p2-head{position:absolute;left:98px;top:30px;right:98px;z-index:5}
+    .p2-head .pt{margin-bottom:4px}
+    .p2-head .ps{width:675px}
+    .rad{position:absolute;left:0;top:110px;right:0;bottom:0;overflow:hidden}
+    .rad canvas{position:absolute;inset:0;z-index:1}
+    .rn{position:absolute;z-index:2;transform:translate(-50%,-50%);background:#3a3a3a}
+    .rn.pending{opacity:0}
+    .rn.big{background:#888;cursor:pointer}
+    .rn:hover{z-index:5}
+    .rn .tip{display:none;position:absolute;z-index:10;background:#1a1a1a;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px 12px;white-space:nowrap;pointer-events:none;font-size:12px;line-height:1.5;left:100%;top:50%;transform:translate(8px,-50%)}
+    .rn:hover .tip{display:block}
+    .rl{position:absolute;z-index:4;font-weight:500;font-size:12px;color:#8a9199;letter-spacing:-0.18px;white-space:nowrap;pointer-events:none;transition:opacity .6s .3s}
+    .rl.pending{opacity:0}
+    .cn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:19.677px;height:19.677px;background:#fff;z-index:3;box-shadow:0 0 24px rgba(255,255,255,.5)}
+    .cl{position:absolute;left:50%;top:50%;transform:translate(-50%,18px);font-weight:500;font-size:12px;letter-spacing:-0.18px;z-index:4;transition:opacity .6s .5s}
+    .cl.pending{opacity:0}
+    .dp2{display:none;position:absolute;width:260px;background:#111;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;z-index:20}
+    .dp2.open{display:block}
+    .dp2-c{position:absolute;top:12px;right:14px;background:none;border:none;color:#8a9199;font-size:16px;cursor:pointer}
+    .dp2-n{font-weight:600;font-size:18px;margin-bottom:4px}
+    .dp2-r{font-size:12px;color:#8a9199;margin-bottom:16px}
+    .dp2-s{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .dp2-s .k{color:#8a9199}.dp2-s .v{font-weight:600}
+    .dp2-tg{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+    .dp2-t{font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border-radius:999px;color:#8a9199}
+
+    .cta{position:absolute;left:141px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(243,246,249,.5);font-weight:600;font-size:15px;letter-spacing:-0.3px;color:#fff;text-decoration:none;background:transparent;transition:background .25s}
+    .cta:hover{background:#212223}
+  </style>
+</head>
+<body>
+<div class="sw">
+<div class="st" id="stage">
+  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nl"><div class="g"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a></div><a href="contact.html" class="nn">Contact</a></div>
+  <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
+  <a href="saju-data.html" class="bk">← Saju Data</a>
+  <p class="stag">SAJU DATA</p>
+  <h1 class="stt">The Day Master Compatibility</h1>
+  <p class="ssu">올해 당신의 일간에게 찾아오는 관계 경향과, 가장 잘 통하는 일주를 확인해보세요.</p>
+
+  <!-- PANEL 1 -->
+  <div class="panel p1">
+    <p class="pt">화(火)의 해마다, 무토 일간은 관계에서 신뢰와 지속성을 택해왔습니다.</p>
+    <p class="ps">1986부터 2026까지, 다섯 번의 화(火)의 해. 무토 일간의 10명 중 6명이 신뢰와 지속성을 1순위로 택했어요.</p>
+    <div class="chart-row">
+      <div class="yr-col"><span>1986</span><span>1996</span><span>2006</span><span>2016</span><span>2026</span></div>
+      <img class="chart-img" src="assets/chart-stacked.png" alt="Chart">
+    </div>
+    <div class="legend">
+      <div class="leg-i"><div class="leg-sq" style="background:#fff"></div>신뢰·지속성</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#888"></div>조화·소통</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#555"></div>독립·자유</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#3f3f3f"></div>열정·자극</div>
+    </div>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div class="panel p2">
+    <div class="p2-head">
+      <p class="pt">2026년, 무토 일간은 아래 세 일주와 가장 관계 가치가 비슷합니다.</p>
+      <p class="ps">중심의 무토에서 가까울수록 올해 관계가 잘 통해요. 밝게 표시된 셋이 특히 잘 맞는 궁합입니다.</p>
+    </div>
+    <div class="rad" id="radWrap">
+      <canvas id="radCvs"></canvas>
+      <div class="cn"></div>
+      <span class="cl pending" id="cLabel">MU EARTH</span>
+      <div class="dp2" id="dp2">
+        <button class="dp2-c" onclick="cDt()">✕</button>
+        <p class="dp2-n" id="dp2n"></p>
+        <p class="dp2-r" id="dp2r"></p>
+        <div class="dp2-s"><span class="k">유사도</span><span class="v" id="dp2s"></span></div>
+        <div class="dp2-s" style="border:none"><span class="k">대표 특성</span></div>
+        <div class="dp2-tg" id="dp2t"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+var SH=1460;
+function fit(){var s=Math.min(1,window.innerWidth/1920);document.documentElement.style.setProperty('--sc',s);document.getElementById('stage').style.height=SH+'px';document.querySelector('.sw').style.height=(SH*s)+'px';}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+/* Panel 1: Figma PNG image with left→right reveal animation (handled by CSS) */
+
+/* ═══ Panel 2: Radial ═══ */
+var wrap=document.getElementById('radWrap');
+var cvs=document.getElementById('radCvs');
+var ctx=cvs.getContext('2d');
+
+// Wait for DOM layout
+setTimeout(function(){
+var W=wrap.offsetWidth||1096,H=wrap.offsetHeight||542;
+cvs.width=W;cvs.height=H;
+var CX=W/2,CY=H/2;
+
+function sRand(s){return function(){s=(s+0x6D2B79F5)>>>0;var t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
+var rS=sRand(999);
+var STEM_EN=['Gap Wood','Eul Wood','Byeong Fire','Jeong Fire','Mu Earth','Gi Earth','Gyeong Metal','Sin Metal','Im Water','Gye Water'];
+var nodes=[];
+var hovIdx=-1;
+var rotAngle=0;
+var top3Ranks=new Set([0,1,2]);
+var TOP3_LBL=['Jeong Fire','Sin Metal','Gye Water'];
+
+var MARGIN=50;
+radW=W;radH=H;
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+
+var STEM_IDX={'갑목':0,'을목':1,'병화':2,'정화':3,'무토':4,'기토':5,'경금':6,'신금':7,'임수':8,'계수':9};
+var centerStemIdx=-1;
+try{var _r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');if(_r&&_r.dayMasterName!=null)centerStemIdx=STEM_IDX[_r.dayMasterName]!=null?STEM_IDX[_r.dayMasterName]:-1;}catch(e){}
+
+var SX=2.1,SY=0.92;
+for(var i=0;i<59;i++){
+  var ri=(i<28)?i:(i+1);
+  var isT=top3Ranks.has(i);
+  var nm=isT?TOP3_LBL[i]:STEM_EN[ri%10];
+  if(!isT&&centerStemIdx>=0&&ri%10===centerStemIdx)continue;
+  var sim=isT?(85+rS()*10):(15+rS()*70);
+  var angle=(i*137.508)*Math.PI/180;
+  var baseR=40+(1-sim/100)*220*(0.5+rS()*0.8);
+  var pxX=clamp(CX+Math.cos(angle)*baseR*SX,MARGIN,W-MARGIN);
+  var pxY=clamp(CY+Math.sin(angle)*baseR*SY,MARGIN+30,H-MARGIN);
+  var size=isT?14.758:Math.max(5,Math.min(10,rS()*11));
+
+  nodes.push({pxX:pxX,pxY:pxY,size:size,isT:isT,nm:nm,sim:Math.round(sim),idx:ri,angle:angle,baseR:baseR,rank:i});
+
+  var nd=document.createElement('div');
+  nd.className='rn'+(isT?' big':'')+' pending';
+  nd.style.left=pxX+'px';
+  nd.style.top=pxY+'px';
+  nd.style.width=size+'px';
+  nd.style.height=size+'px';
+  nd.style.transition='opacity .6s ease, left 0s, top 0s';
+  nd.setAttribute('data-rank',i);
+
+  var tip=document.createElement('div');
+  tip.className='tip';
+  tip.innerHTML='<span style="color:#fff;font-weight:600">'+nm+'</span><br><span style="color:#8a9199">유사도 '+Math.round(sim)+'%</span>';
+  nd.appendChild(tip);
+
+  nd.addEventListener('mouseenter',(function(idx){return function(){hovIdx=idx;drawL();};})(ri));
+  nd.addEventListener('mouseleave',function(){hovIdx=-1;drawL();});
+  if(isT)nd.addEventListener('click',(function(n,s,nodeEl){return function(){oDt(n,s,nodeEl);};})(nm,Math.round(sim),nd));
+
+  wrap.appendChild(nd);
+
+  if(isT){
+    var lb=document.createElement('span');
+    lb.className='rl pending';
+    lb.style.left=pxX+'px';
+    lb.style.top=(pxY+size/2+6)+'px';
+    lb.style.transform='translateX(-50%)';
+    lb.textContent=TOP3_LBL[i].toUpperCase();
+    lb.setAttribute('data-rank',i);
+    wrap.appendChild(lb);
+  }
+}
+
+function drawL(){
+  ctx.clearRect(0,0,W,H);
+  nodes.forEach(function(n){
+    var isH=n.idx===hovIdx;
+    // Line from center to node center — line end = node center
+    ctx.beginPath();
+    ctx.moveTo(CX,CY);
+    ctx.lineTo(n.pxX,n.pxY);
+    ctx.strokeStyle=isH?'rgba(255,255,255,1)':n.isT?'rgba(136,136,136,0.3)':'rgba(136,136,136,0.18)';
+    ctx.lineWidth=isH?1.5:1.23;
+    ctx.stroke();
+  });
+}
+
+var nodeDoms=[];
+document.querySelectorAll('.rn').forEach(function(nd){nodeDoms.push(nd);});
+var lblDoms=[];
+document.querySelectorAll('.rl').forEach(function(l){lblDoms.push(l);});
+
+var startT=null;
+function anim(ts){
+  if(!startT)startT=ts;
+  var el=ts-startT,dur=1800;
+  var p=Math.min(1,el/dur);
+  var eased=p;
+  if(p>=1)rotAngle+=0.0002;
+
+  ctx.clearRect(0,0,W,H);
+  var lblIdx=0;
+  nodes.forEach(function(n,ni){
+    var a=n.angle+(p>=1?rotAngle:0);
+    var r=p<1?n.baseR*eased:n.baseR;
+    var ex=clamp(CX+Math.cos(a)*r*SX,MARGIN,W-MARGIN);
+    var ey=clamp(CY+Math.sin(a)*r*SY,MARGIN+30,H-MARGIN);
+
+    n.pxX=ex;
+    n.pxY=ey;
+
+    if(nodeDoms[ni]){
+      nodeDoms[ni].style.left=ex+'px';
+      nodeDoms[ni].style.top=ey+'px';
+    }
+
+    if(n.isT&&lblDoms[lblIdx]){
+      lblDoms[lblIdx].style.left=ex+'px';
+      lblDoms[lblIdx].style.top=(ey+n.size/2+6)+'px';
+      lblIdx++;
+    }
+
+    var isH=n.idx===hovIdx;
+    ctx.beginPath();ctx.moveTo(CX,CY);ctx.lineTo(ex,ey);
+    ctx.strokeStyle=isH?'rgba(255,255,255,1)':n.isT?'rgba(136,136,136,0.3)':'rgba(136,136,136,0.18)';
+    ctx.lineWidth=isH?1.5:1.23;
+    ctx.stroke();
+  });
+
+  if(p>0.3){nodeDoms.forEach(function(nd,i){var rk=parseInt(nd.getAttribute('data-rank'));if(el>dur*0.3+rk*12){nd.classList.remove('pending');nd.style.opacity='1';}});}
+  if(p>0.5){lblDoms.forEach(function(l){var rk=parseInt(l.getAttribute('data-rank'));if(el>dur*0.5+rk*30)l.classList.remove('pending');});document.getElementById('cLabel').classList.remove('pending');}
+  requestAnimationFrame(anim);
+}
+setTimeout(function(){requestAnimationFrame(anim);},200);
+},100);
+
+var TRAITS=['결단력','유연함','집중력','확장성','안정성','직관','열정','신뢰감','표현력','적응력','추진력','지속성'];
+var radW=0,radH=0;
+function oDt(nm,sim,nodeEl){
+  var dp=document.getElementById('dp2');
+  document.getElementById('dp2n').textContent=nm;
+  document.getElementById('dp2r').textContent='Day Master Pillar';
+  document.getElementById('dp2s').textContent=sim+'%';
+  var r=function(s){return function(){s=(s+0x6D2B79F5)>>>0;var t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296};}(sim*7);
+  document.getElementById('dp2t').innerHTML=[TRAITS[Math.floor(r()*12)],TRAITS[Math.floor(r()*12)],TRAITS[Math.floor(r()*12)]].map(function(t){return'<span class="dp2-t">'+t+'</span>';}).join('');
+  // Position popup near clicked node
+  var nx=parseInt(nodeEl.style.left)||0;
+  var ny=parseInt(nodeEl.style.top)||0;
+  var pw=260,ph=220;
+  // Place to right of node, or left if too close to right edge
+  var px=nx+20,py=ny-ph/2;
+  if(px+pw>radW-20)px=nx-pw-20;
+  if(py<10)py=10;
+  if(py+ph>radH-10)py=radH-ph-10;
+  dp.style.left=px+'px';
+  dp.style.top=py+'px';
+  dp.classList.add('open');
+}
+function cDt(){document.getElementById('dp2').classList.remove('open');}
+
+(function(){
+  var r=null;try{r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');}catch(e){}
+  if(!r||!r.dayMasterElement)return;
+  var el=r.dayMasterElement,nm=r.dayMasterName||'무토';
+  var LABEL={'갑목':'GAP TREE','을목':'EUL TREE','병화':'BYEONG FIRE','정화':'JEONG FIRE','무토':'MU EARTH','기토':'GI EARTH','경금':'GYEONG METAL','신금':'SIN METAL','임수':'IM WATER','계수':'GYE WATER'};
+  var PVAL={wood:'조화·소통',fire:'열정·자극',earth:'신뢰·지속성',metal:'신뢰·지속성',water:'조화·소통'};
+  var pv=PVAL[el]||'신뢰·지속성';
+  var pts=document.querySelectorAll('.pt'),sbs=document.querySelectorAll('.ps');
+  if(pts[0])pts[0].textContent='화(火)의 해마다, '+nm+' 일간은 관계에서 '+pv+'을 택해왔습니다.';
+  if(sbs[0])sbs[0].textContent='1986부터 2026까지, 다섯 번의 화(火)의 해. '+nm+' 일간의 10명 중 6명이 '+pv+'을 1순위로 택했어요.';
+  if(pts[1])pts[1].textContent='2026년, '+nm+' 일간은 아래 세 일주와 가장 관계 가치가 비슷합니다.';
+  if(sbs[1])sbs[1].textContent='중심의 '+nm+'에서 가까울수록 올해 관계가 잘 통해요. 밝게 표시된 셋이 특히 잘 맞는 궁합입니다.';
+  var lbl=document.getElementById('cLabel');
+  if(lbl)lbl.textContent=LABEL[nm]||el.toUpperCase();
+})();
+</script>
+</body>
+</html>

@@ -60,19 +60,16 @@
     .ec-corner.br{bottom:0;right:0;width:60.54px;height:10.094px}
 
     .ec-inner{display:flex;flex-direction:column;gap:56px;position:relative;z-index:1}
-    .ec-label{font-weight:600;font-size:14px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
+    .ec-label{font-weight:500;font-size:14px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
 
     .ec-content{display:flex;flex-direction:column;gap:12px}
 
     /* Mini bar chart graphic */
     .mini-bars{display:flex;align-items:flex-end;gap:4.1px;height:27px}
-    .mini-bar{width:4.093px;background:linear-gradient(to top,rgba(255,255,255,.15),rgba(153,153,153,.6))}
+    .mini-bar{width:4.093px;background:linear-gradient(to top,rgba(207,207,207,.9) 0%,rgba(112,112,112,.745) 50%,rgba(64,64,64,.66) 100%)}
 
     /* Mini network graphic */
-    .mini-net{width:81px;height:27px;display:block}
-    .mini-net line{stroke:rgba(255,255,255,.35);stroke-width:0.6}
-    .mini-net rect{fill:rgba(204,204,204,.7)}
-    .mini-net rect.center{fill:rgba(255,255,255,.95)}
+    .mini-net{width:78px;height:27px;display:block}
 
 .ec-title{font-weight:500;font-size:24px;letter-spacing:-0.6px;line-height:normal}
     .ec-sub{font-weight:400;font-size:14px;line-height:19px;letter-spacing:-0.35px;color:#8a9199}
@@ -151,28 +148,25 @@
     <div class="ec-inner">
       <span class="ec-label">02 / DAY MASTER COMPATIBILITY</span>
       <div class="ec-content">
-        <svg class="mini-net" viewBox="0 0 81 27" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="40.5" y1="13.5" x2="6"   y2="6"></line>
-          <line x1="40.5" y1="13.5" x2="14"  y2="22"></line>
-          <line x1="40.5" y1="13.5" x2="22"  y2="3"></line>
-          <line x1="40.5" y1="13.5" x2="28"  y2="20"></line>
-          <line x1="40.5" y1="13.5" x2="54"  y2="4"></line>
-          <line x1="40.5" y1="13.5" x2="60"  y2="21"></line>
-          <line x1="40.5" y1="13.5" x2="68"  y2="9"></line>
-          <line x1="40.5" y1="13.5" x2="76"  y2="18"></line>
-          <line x1="40.5" y1="13.5" x2="48"  y2="23"></line>
-          <line x1="40.5" y1="13.5" x2="34"  y2="2"></line>
-          <rect x="4.5"  y="4"  width="3" height="3"></rect>
-          <rect x="12.5" y="20" width="3" height="3"></rect>
-          <rect x="20.5" y="1"  width="3" height="3"></rect>
-          <rect x="26.5" y="18" width="3" height="3"></rect>
-          <rect x="32.5" y="0"  width="3" height="3"></rect>
-          <rect x="46.5" y="21" width="3" height="3"></rect>
-          <rect x="52.5" y="2"  width="3" height="3"></rect>
-          <rect x="58.5" y="19" width="3" height="3"></rect>
-          <rect x="66.5" y="7"  width="3" height="3"></rect>
-          <rect x="74.5" y="16" width="3" height="3"></rect>
-          <rect class="center" x="38" y="11" width="5" height="5"></rect>
+        <svg class="mini-net" viewBox="0 0 77.7732 27" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="rg-net" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(39.365 14.3347) rotate(-2.75374) scale(38.1879 11.9319)">
+              <stop stop-color="white"/>
+              <stop offset="1" stop-color="black" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path d="M38.89 13.5L5.76 6M38.89 13.5L13.44 22M38.89 13.5L21.12 3M38.89 13.5L26.88 20M38.89 13.5L51.85 4M38.89 13.5L57.61 21M38.89 13.5L65.29 9M38.89 13.5L72.97 18M38.89 13.5L46.09 23M38.89 13.5L32.65 2" stroke="url(#rg-net)" stroke-width="0.6" fill="none"/>
+          <rect x="4.32073" y="4"  width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="12.002"  y="20" width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="19.6833" y="1"  width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="25.4443" y="18" width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="31.2053" y="0"  width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="44.6476" y="21" width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="50.4085" y="2"  width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="56.1695" y="19" width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="63.8508" y="7"  width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="71.5321" y="16" width="3" height="3" fill="#CCCCCC" fill-opacity="0.7"/>
+          <rect x="36.4862" y="11" width="5" height="5" fill="white" fill-opacity="0.95"/>
         </svg>
         <div>
           <p class="ec-title">DAY MASTER<br>COMPATIBILITY</p>
@@ -187,6 +181,16 @@
 </div>
 
 <script>
+(function(){
+  try{
+    var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');
+    if(r&&r.dayMasterName){
+      var sub=document.querySelector('.ec2 .ec-sub');
+      if(sub)sub.textContent=sub.textContent.replace('무토',r.dayMasterName);
+    }
+  }catch(e){}
+})();
+
 function fit(){
   var hasData=false;
   try{var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');hasData=!!(r&&r.lacking&&sessionStorage.getItem('ff_result_ready'));}catch(e){}

@@ -189,6 +189,8 @@
     .gc-body{font-size:16px;letter-spacing:-0.4px;line-height:22px;color:#8a9199}
     .guid-card.tall .gc-label{margin-bottom:81px}
     .guid-card.tall .gc-body{font-size:15px;line-height:21px}
+    .guid-card.sm .gc-label{margin-bottom:28px}
+    .guid-card.sm .gc-body{font-size:15px;line-height:21px}
 
     /* ═══ CTAs (Figma: both same style, padding 16/15/28, border 0.5 opacity, Medium 16 white) ═══ */
     .cta-row{position:absolute;left:141px;display:flex;gap:16px}
@@ -231,7 +233,7 @@
           <span class="ml-label">MAIN DAY PILLAR</span>
           <span class="ml-name" id="mlName">METAL</span>
         </div>
-        <p class="ml-desc" id="mlDesc">신금 일주는 전반적으로 안정성과 지속성을 중시하는 경향이 있습니다. 빠른 변화보다는 이미 구축된 환경을 다듬고 유지하며, 형태와 기존을 만들어가는 데 강점을 보입니다. 즉흥적 선택보다는 누적된 판단을 신뢰하는 타입입니다.</p>
+        <p class="ml-desc" id="mlDesc">홍길동님의 주된 기운은 금이며, 신금 일간에 해당합니다. 신금 일간은 안정성과 지속성을 중시하는 기운입니다. 기존 환경을 정교하게 다듬으며, 즉흥보다 누적된 판단을 신뢰하는 타입입니다.</p>
       </div>
       <div class="ml-info" id="mlInfo">
         <p><span class="k">NAME.</span> 홍길동</p>
@@ -353,35 +355,35 @@ function mulberry32(seed){return function(){seed=(seed+0x6D2B79F5)>>>0;let t=see
 
 const STEMS=[
   {char:'甲',name:'갑목',enName:'Gap Tree',element:'wood',ko:'木',icon:'el-tree-v2.svg',trait:'GROWING\nFLOW',strength:'CREATIVE\nDRIVE',
-   desc:'갑목 일주는 위로 힘차게 뻗어 오르는 기운입니다. 직선적인 추진력으로 새로운 도전을 향해 나아가며, 한번 정한 목표를 끝까지 밀어붙이는 타입입니다.'},
+   desc:'갑목 일간은 위로 힘차게 뻗어 오르는 기운입니다. 직선적인 추진력으로 새로운 도전을 향해 나아가며, 한번 정한 목표를 끝까지 밀어붙이는 타입입니다.'},
   {char:'乙',name:'을목',enName:'Eul Tree',element:'wood',ko:'木',icon:'el-tree-v2.svg',trait:'GENTLE\nGROWTH',strength:'ADAPTIVE\nVISION',
-   desc:'을목 일주는 유연하게 환경에 적응하며 자기 자리를 만들어가는 기운입니다. 사람 사이를 연결하는 감각이 발달해 관계 안에서 진가를 발휘합니다.'},
+   desc:'을목 일간은 유연하게 환경에 적응하며 자기 자리를 만들어가는 기운입니다. 사람 사이를 연결하는 감각이 발달해 관계 안에서 진가를 발휘합니다.'},
   {char:'丙',name:'병화',enName:'Byeong Fire',element:'fire',ko:'火',icon:'el-fire-v2.svg',trait:'RADIANT\nFORCE',strength:'PASSIONATE\nLEAD',
-   desc:'병화 일주는 자기 빛을 환하게 드러내며 주변을 비추는 기운입니다. 사람들 앞에서 에너지를 발산할 때 가장 자연스러운 표현형 타입입니다.'},
+   desc:'병화 일간은 자기 빛을 환하게 드러내며 주변을 비추는 기운입니다. 사람들 앞에서 에너지를 발산할 때 가장 자연스러운 표현형 타입입니다.'},
   {char:'丁',name:'정화',enName:'Jeong Fire',element:'fire',ko:'火',icon:'el-fire-v2.svg',trait:'FOCUSED\nFLAME',strength:'EXPRESSIVE\nPOWER',
-   desc:'정화 일주는 꺼지지 않는 불처럼 한 곳에 깊이 집중하는 기운입니다. 섬세한 감성과 꾸준한 몰입으로 자기 영역을 정교하게 다듬어가는 타입입니다.'},
+   desc:'정화 일간은 꺼지지 않는 불처럼 한 곳에 깊이 집중하는 기운입니다. 섬세한 감성과 꾸준한 몰입으로 자기 영역을 정교하게 다듬어가는 타입입니다.'},
   {char:'戊',name:'무토',enName:'Mu Earth',element:'earth',ko:'土',icon:'el-earth-pillar.svg',trait:'STEADY\nGROUND',strength:'RELIABLE\nSTABILITY',
-   desc:'무토 일주는 흔들리지 않는 큰 산 같은 안정감의 기운입니다. 신뢰를 바탕으로 관계를 쌓으며, 다른 사람들이 기댈 수 있는 존재감을 발산합니다.'},
+   desc:'무토 일간은 흔들리지 않는 큰 산 같은 안정감의 기운입니다. 신뢰를 바탕으로 관계를 쌓으며, 다른 사람들이 기댈 수 있는 존재감을 발산합니다.'},
   {char:'己',name:'기토',enName:'Gi Earth',element:'earth',ko:'土',icon:'el-earth-pillar.svg',trait:'NURTURING\nCORE',strength:'TRUSTFUL\nBASE',
-   desc:'기토 일주는 다른 기운을 품고 키워내는 양육의 기운입니다. 묵묵히 받쳐주는 데 익숙하며, 포용력과 꾸준함으로 결실을 만들어갑니다.'},
+   desc:'기토 일간은 다른 기운을 품고 키워내는 양육의 기운입니다. 묵묵히 받쳐주는 데 익숙하며, 포용력과 꾸준함으로 결실을 만들어갑니다.'},
   {char:'庚',name:'경금',enName:'Gyeong Metal',element:'metal',ko:'金',icon:'el-metal-pillar.svg',trait:'FOCUSED\nRESOLVE',strength:'DECISIVE\nEXECUTION',
-   desc:'경금 일주는 단단한 쇠처럼 결단력 있게 행동하는 기운입니다. 명확한 기준으로 상황을 정리하며, 어려운 결정 앞에서도 망설임이 적은 타입입니다.'},
+   desc:'경금 일간은 단단한 쇠처럼 결단력 있게 행동하는 기운입니다. 명확한 기준으로 상황을 정리하며, 어려운 결정 앞에서도 망설임이 적은 타입입니다.'},
   {char:'辛',name:'신금',enName:'Sin Metal',element:'metal',ko:'金',icon:'el-metal-pillar.svg',trait:'REFINED\nEDGE',strength:'PRECISE\nJUDGMENT',
-   desc:'신금 일주는 안정성과 지속성을 중시하는 기운입니다. 기존 환경을 정교하게 다듬으며, 즉흥보다 누적된 판단을 신뢰하는 타입입니다.'},
+   desc:'신금 일간은 안정성과 지속성을 중시하는 기운입니다. 기존 환경을 정교하게 다듬으며, 즉흥보다 누적된 판단을 신뢰하는 타입입니다.'},
   {char:'壬',name:'임수',enName:'Im Water',element:'water',ko:'水',icon:'el-water-pillar.svg',trait:'FLOWING\nDEPTH',strength:'INTUITIVE\nSENSE',
-   desc:'임수 일주는 큰 강처럼 흐름이 깊고 멈추지 않는 기운입니다. 맥락을 읽는 직관이 발달해 환경에 맞춰 자유롭게 형태를 바꾸는 타입입니다.'},
+   desc:'임수 일간은 큰 강처럼 흐름이 깊고 멈추지 않는 기운입니다. 맥락을 읽는 직관이 발달해 환경에 맞춰 자유롭게 형태를 바꾸는 타입입니다.'},
   {char:'癸',name:'계수',enName:'Gye Water',element:'water',ko:'水',icon:'el-water-pillar.svg',trait:'QUIET\nSTREAM',strength:'ADAPTIVE\nWISDOM',
-   desc:'계수 일주는 섬세한 빗물처럼 어디든 자연스럽게 스며드는 기운입니다. 흐름을 읽고 맞춰가는 감각이 뛰어나며, 예민한 직관을 가진 타입입니다.'},
+   desc:'계수 일간은 섬세한 빗물처럼 어디든 자연스럽게 스며드는 기운입니다. 흐름을 읽고 맞춰가는 감각이 뛰어나며, 예민한 직관을 가진 타입입니다.'},
 ];
 const EL_EN={wood:'TREE',fire:'FIRE',earth:'EARTH',metal:'METAL',water:'WATER'};
 const EL_FULL={wood:'木 (목)',fire:'火 (화)',earth:'土 (토)',metal:'金 (금)',water:'水 (수)'};
 const EL_NAMES={wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
 const SUMMARY={
-  wood:'갑목 일주는 성장과 확장을 중시합니다. 새로운 시작에 강하며, 아이디어를 현실로 만드는 데 뛰어납니다.',
-  fire:'병화 일주는 열정과 표현을 중시합니다. 자신의 에너지를 주변에 전달하며 사람들을 이끄는 능력이 있습니다.',
-  earth:'무토 일주는 안정과 신뢰를 중시합니다. 맡은 일에 책임감을 갖고 꾸준히 성과를 만들어냅니다.',
-  metal:'신금 일주는 전반적으로 안정성과 지속성을 중시하는 경향이 있습니다. 빠른 변화보다는 이미 구축된 환경을 다듬고 유지하며, 형태와 기존을 만들어가는 데 강점을 보입니다. 즉흥적 선택보다는 누적된 판단을 신뢰하는 타입입니다.',
-  water:'임수 일주는 유연함과 직관을 중시합니다. 변화하는 환경에 적응하며 깊이 있는 판단을 내립니다.',
+  wood:'갑목 일간은 성장과 확장을 중시합니다. 새로운 시작에 강하며, 아이디어를 현실로 만드는 데 뛰어납니다.',
+  fire:'병화 일간은 열정과 표현을 중시합니다. 자신의 에너지를 주변에 전달하며 사람들을 이끄는 능력이 있습니다.',
+  earth:'무토 일간은 안정과 신뢰를 중시합니다. 맡은 일에 책임감을 갖고 꾸준히 성과를 만들어냅니다.',
+  metal:'신금 일간은 안정성과 지속성을 중시하는 기운입니다. 기존 환경을 정교하게 다듬으며, 즉흥보다 누적된 판단을 신뢰하는 타입입니다.',
+  water:'임수 일간은 유연함과 직관을 중시합니다. 변화하는 환경에 적응하며 깊이 있는 판단을 내립니다.',
 };
 const EL_ICON={wood:'el-tree-v2.svg',fire:'el-fire-v2.svg',earth:'el-earth-figma.svg',metal:'el-metal-pillar.svg',water:'el-water-v2.svg'};
 const TEMPERAMENT={wood:'성장 · 확장',fire:'추진 · 열정',earth:'안정 · 균형',metal:'결단 · 집중',water:'유연 · 지혜'};
@@ -400,12 +402,12 @@ const GUIDANCE={
       '결정보다 시도가, 검토보다 실행이 중심이 됩니다. 사방으로 가지를 뻗으며 서로 다른 영역의 가능성을 동시에 가늠해보는 흐름이 강해지며, 방향이 완전히 정해지지 않아도 움직임 자체가 길을 만들어줍니다.',
       '결과는 다소 분산되어 보일 수 있으나, 한 해를 정리해보면 새롭게 자리잡힌 영역들이 드러납니다. 빠르게 뻗어나간 가지들을 주기적으로 정돈해두는 작업이 다음 단계의 도약을 가능하게 하며, 올해 심어둔 씨앗이 몇 년 후 결실로 돌아오게 됩니다.'
     ]},
-    career:{en:'STRETCHING REACH', ko:'올해 커리어는 새로운 영역으로 가지를 뻗어가는 시기입니다. 익숙한 틀을 벗어나 도전적인 시도가 결실로 이어지며, 성장의 폭이 크게 확장됩니다.'},
-    relationship:{en:'OPENING CONNECTIONS', ko:'관계에서는 새로운 인연이 시작되거나 기존 관계가 확장되는 흐름이 강합니다. 솔직한 표현이 신뢰를 키우고, 함께 성장할 동료를 만나는 해입니다.'},
-    finance:{en:'EXPANDING ASSETS', ko:'재정에서는 수입의 새 줄기가 만들어지는 흐름이 강합니다. 기존 자산보다 새로운 기회 발굴에 시간을 쓸 때, 한 해의 성장 폭이 커집니다.'},
-    health:{en:'VITAL RHYTHM', ko:'전반적인 활력이 살아나는 해입니다. 의욕이 앞서 무리하지 않도록, 규칙적인 휴식과 가벼운 운동으로 몸의 리듬을 유지하는 것이 핵심입니다.'},
-    love:{en:'BLOOMING ROMANCE', ko:'연애에서 새로운 시작이나 관계의 다음 단계로 나아가는 흐름이 활발합니다. 솔직한 감정 표현이 관계의 폭을 넓히는 해입니다.'},
-    family:{en:'BRANCHING TIES', ko:'가족 안에서 각자의 자리를 다시 정의해보는 시기입니다. 새로운 관계의 결을 만들거나, 가족과 함께 새로운 경험을 쌓아가는 흐름이 두드러집니다.'}
+    career:{en:'STRETCHING REACH', ko:'올해 커리어는 새로운 영역으로 가지를 뻗어가는 시기입니다. 익숙한 틀을 벗어나 도전적인 시도가 결실로 이어지며, 성장의 폭이 크게 확장됩니다. 작은 제안이나 시도가 예상보다 큰 반향을 가져올 수 있습니다.'},
+    relationship:{en:'OPENING CONNECTIONS', ko:'관계에서는 새로운 인연이 시작되거나 기존 관계가 확장되는 흐름이 강합니다. 솔직한 표현이 신뢰를 키우고, 함께 성장할 동료를 만나는 해입니다. 관계의 씨앗을 먼저 뿌리는 쪽이 한 해를 풍성하게 만듭니다.'},
+    finance:{en:'EXPANDING ASSETS', ko:'재정에서는 수입의 새 줄기가 만들어지는 흐름이 강합니다. 기존 자산보다 새로운 기회 발굴에 시간을 쓸 때, 한 해의 성장 폭이 커집니다. 한 가지 흐름에 집중하되, 탐색의 반경을 넓혀두는 것이 유효합니다.'},
+    health:{en:'VITAL RHYTHM', ko:'전반적인 활력이 살아나는 해입니다. 의욕이 앞서 무리하지 않도록, 규칙적인 휴식과 가벼운 운동으로 몸의 리듬을 유지하는 것이 핵심입니다. 에너지가 넘칠수록 주기적으로 완급을 조절해야 합니다.'},
+    love:{en:'BLOOMING ROMANCE', ko:'연애에서 새로운 시작이나 관계의 다음 단계로 나아가는 흐름이 활발합니다. 솔직한 감정 표현이 관계의 폭을 넓히는 해입니다. 먼저 다가가는 행동이 예상보다 빠르게 관계를 앞으로 이끌어줍니다.'},
+    family:{en:'BRANCHING TIES', ko:'가족 안에서 각자의 자리를 다시 정의해보는 시기입니다. 새로운 관계의 결을 만들거나 가족과 함께 새로운 경험을 쌓아가는 흐름이 두드러집니다. 가족에게 먼저 말을 건네는 것이 변화를 만들어냅니다.'}
   },
   fire:{
     general:{en:'RADIANT SHIFT', ko:[
@@ -413,12 +415,12 @@ const GUIDANCE={
       '안정보다 즉각적인 반응과 판단이 결정적인 순간이 늘어납니다. 강한 인상을 남기는 만남과 발표의 자리가 자기 위치를 다시 인식시켜주고, 한 번의 결정이 생각보다 큰 파급력을 발휘하는 경험을 하게 됩니다.',
       '빠르게 타오르는 만큼 쉽게 꺼질 수 있어, 에너지 조절과 호흡 관리가 중요합니다. 흐름은 한 해의 중반에 정점을 찍고 후반부는 수렴과 회복의 시기로 이어지므로, 초반의 열기를 지속시키려는 욕심보다 적절한 멈춤을 배치하는 전략이 유효합니다.'
     ]},
-    career:{en:'SPARKING MOMENTUM', ko:'커리어에서는 자기 영향력을 발휘할 기회가 늘어납니다. 발표나 협업처럼 외부와 만나는 자리가 성과로 이어지며, 새로운 추진력이 만들어집니다.'},
-    relationship:{en:'BRIGHT EXCHANGE', ko:'감정과 생각을 적극적으로 표현하는 시기입니다. 가까운 사이일수록 솔직함이 관계를 단단하게 만들고, 새로운 인연도 강한 인상으로 시작됩니다.'},
-    finance:{en:'BURNING OPPORTUNITY', ko:'재정에서는 빠른 결정이 결과를 가르는 해입니다. 흐름을 읽는 즉각적인 판단이 기회를 잡아주고, 망설임이 길어지면 손실로 이어질 수 있습니다.'},
-    health:{en:'MANAGING HEAT', ko:'에너지가 위로 쏠리기 쉬운 해입니다. 두통이나 수면 부족, 심혈관 계열의 미세한 변화에 주의하며, 호흡과 휴식으로 열을 조절하는 것이 중요합니다.'},
-    love:{en:'PASSIONATE TURN', ko:'연애에서 강한 끌림이나 분명한 결심이 일어나는 시기입니다. 감정의 온도가 높아지는 만큼, 한순간의 선택이 관계의 방향을 결정하는 해입니다.'},
-    family:{en:'WARM DECLARATIONS', ko:'가족에게 자기 감정을 솔직하게 드러내는 시기입니다. 묻혀있던 이야기를 꺼내며 관계가 한 단계 깊어지는 흐름이 들어옵니다.'}
+    career:{en:'SPARKING MOMENTUM', ko:'커리어에서는 자기 영향력을 발휘할 기회가 늘어납니다. 발표나 협업처럼 외부와 만나는 자리가 성과로 이어지며, 새로운 추진력이 만들어집니다. 사람들 앞에서 자신을 드러낼수록 기회도 따라옵니다.'},
+    relationship:{en:'BRIGHT EXCHANGE', ko:'감정과 생각을 적극적으로 표현하는 시기입니다. 가까운 사이일수록 솔직함이 관계를 단단하게 만들고, 새로운 인연도 강한 인상으로 시작됩니다. 먼저 표현하는 쪽이 관계의 주도권을 갖게 됩니다.'},
+    finance:{en:'BURNING OPPORTUNITY', ko:'재정에서는 빠른 결정이 결과를 가르는 해입니다. 흐름을 읽는 즉각적인 판단이 기회를 잡아주고, 망설임이 길어지면 손실로 이어질 수 있습니다. 큰 기회 앞에서 우물쭈물하지 않는 것이 중요합니다.'},
+    health:{en:'MANAGING HEAT', ko:'에너지가 위로 쏠리기 쉬운 해입니다. 두통이나 수면 부족, 심혈관 계열의 미세한 변화에 주의하며, 호흡과 휴식으로 열을 조절하는 것이 중요합니다. 하루 한 번 몸의 신호를 살피는 루틴이 도움이 됩니다.'},
+    love:{en:'PASSIONATE TURN', ko:'연애에서 강한 끌림이나 분명한 결심이 일어나는 시기입니다. 감정의 온도가 높아지는 만큼, 한순간의 선택이 관계의 방향을 결정하는 해입니다. 느끼는 것을 표현하되 충동적인 결정은 한 박자 늦추세요.'},
+    family:{en:'WARM DECLARATIONS', ko:'가족에게 자기 감정을 솔직하게 드러내는 시기입니다. 묻혀있던 이야기를 꺼내며 관계가 한 단계 깊어지는 흐름이 들어옵니다. 작은 표현 하나가 가족과의 거리를 예상보다 빠르게 좁혀줍니다.'}
   },
   earth:{
     general:{en:'STEADY GROUND', ko:[
@@ -426,12 +428,12 @@ const GUIDANCE={
       '새로운 영역보다 이미 자리잡은 환경 안에서 책임의 무게를 받아들이는 한 해입니다. 한 번의 약속이 다음 일 년의 기반을 결정짓는 만큼, 말과 행동의 일관성이 어느 때보다 중요해집니다.',
       '가시적 결과보다 단단해진 기반이 진짜 성과로 남습니다. 매일의 일관성을 지키는 것이 다음 해를 위한 가장 큰 자산이 되며, 올해의 느린 걸음이 결국 가장 멀리 도달하는 경로가 됩니다.'
     ]},
-    career:{en:'BUILDING THE BASE', ko:'커리어에서는 기반을 다지는 해입니다. 외형적 변화보다 내실을 다지고, 신뢰를 쌓아가는 데 집중하면 다음 단계로 도약할 기반이 만들어집니다.'},
-    relationship:{en:'GROUNDED TRUST', ko:'관계에서는 신뢰와 책임이 핵심 키워드입니다. 새로운 인연보다 기존 관계를 단단히 다지는 흐름이 강하고, 약속과 일관성이 관계의 깊이를 만듭니다.'},
-    finance:{en:'STEADY ACCUMULATION', ko:'재정에서는 큰 수익보다 꾸준한 축적이 핵심입니다. 단기 변동에 흔들리지 않고 일정한 흐름을 유지할 때, 한 해의 잔고가 단단해집니다.'},
-    health:{en:'STEADY PACE', ko:'몸의 안정감을 회복하는 해입니다. 위장과 소화 계열의 리듬을 꾸준히 챙기고, 무리한 변화 대신 일정한 식습관과 수면을 유지하는 것이 좋습니다.'},
-    love:{en:'STEADY DEVOTION', ko:'연애에서는 화려함보다 일상의 안정감이 중심이 되는 해입니다. 약속을 지키는 작은 행동들이 관계의 무게를 한층 더해줍니다.'},
-    family:{en:'ROOTED PRESENCE', ko:'가족 안에서 자기 자리를 단단하게 만드는 시기입니다. 책임을 받아들이고, 묵묵히 자리를 지키는 것만으로도 가족의 중심축 역할을 하게 됩니다.'}
+    career:{en:'BUILDING THE BASE', ko:'커리어에서는 기반을 다지는 해입니다. 외형적 변화보다 내실을 다지고, 신뢰를 쌓아가는 데 집중하면 다음 단계로 도약할 기반이 만들어집니다. 꾸준함이 지금 당장의 성과보다 훨씬 큰 자산이 됩니다.'},
+    relationship:{en:'GROUNDED TRUST', ko:'관계에서는 신뢰와 책임이 핵심 키워드입니다. 새로운 인연보다 기존 관계를 단단히 다지는 흐름이 강하고, 약속과 일관성이 관계의 깊이를 만듭니다. 오래된 관계에 다시 마음을 쏟는 것이 가장 좋은 투자입니다.'},
+    finance:{en:'STEADY ACCUMULATION', ko:'재정에서는 큰 수익보다 꾸준한 축적이 핵심입니다. 단기 변동에 흔들리지 않고 일정한 흐름을 유지할 때, 한 해의 잔고가 단단해집니다. 지출 패턴을 정리하고 소비의 기준을 명확히 세우는 것이 중요합니다.'},
+    health:{en:'STEADY PACE', ko:'몸의 안정감을 회복하는 해입니다. 위장과 소화 계열의 리듬을 꾸준히 챙기고, 무리한 변화 대신 일정한 식습관과 수면을 유지하는 것이 좋습니다. 하루의 루틴을 고정해두는 것이 컨디션을 지키는 핵심입니다.'},
+    love:{en:'STEADY DEVOTION', ko:'연애에서는 화려함보다 일상의 안정감이 중심이 되는 해입니다. 약속을 지키는 작은 행동들이 관계의 무게를 한층 더해줍니다. 사소한 약속 하나를 지키는 것이 신뢰를 쌓는 가장 빠른 방법입니다.'},
+    family:{en:'ROOTED PRESENCE', ko:'가족 안에서 자기 자리를 단단하게 만드는 시기입니다. 책임을 받아들이고 묵묵히 자리를 지키는 것만으로도 가족의 중심축 역할을 하게 됩니다. 가족에게 필요한 것을 먼저 파악하고 채워주는 것이 중요합니다.'}
   },
   metal:{
     general:{en:'SUBTLE CHANGE', ko:[
@@ -439,12 +441,12 @@ const GUIDANCE={
       '외부적인 사건이나 결정보다, 내면에서 자신의 위치와 방향을 다시 정렬하는 시기입니다. 무언가를 새로 시작하기보다 이미 가진 것을 어떻게 운용할지에 대한 감각이 깊어지며, 결정의 속도는 다소 느려지지만 판단의 정확도는 오히려 높아집니다.',
       '눈에 보이는 결과는 한 해의 후반부에 드러납니다. 조급하게 방향을 확정하려 하기보다, 작은 조정들을 일상의 리듬 안에서 꾸준히 쌓아가는 것이 올해의 핵심 전략입니다.'
     ]},
-    career:{en:'EXPANDING THE FOUNDATION', ko:'커리어 측면에서는 이미 쌓아온 경험과 기준을 활용해 자신만의 방식으로 정리·확장하는 해입니다. 새로운 직무나 역할보다는 현재 위치에서의 전문성 재정의가 더 큰 성과로 이어집니다.'},
-    relationship:{en:'CONSISTENCY WITH TRUST', ko:'연애에서는 감정보다 신뢰와 지속성을 우선시합니다. 올해는 관계를 유지하는 방식에 대해 돌아보는 시기로, 대화를 통해 관계의 구조를 재정의하려는 경향이 나타납니다.'},
-    finance:{en:'REFINING DECISIONS', ko:'재정에서는 결단의 정확도가 결과를 가르는 해입니다. 즉흥적 판단보다 누적된 분석에 기반한 결정을 내릴 때, 안정적인 자산 관리가 가능해집니다.'},
-    health:{en:'KEEPING THE RHYTHM', ko:'과도한 긴장 상태가 누적되기 쉬운 해입니다. 눈에 띄는 문제보다는 지속적인 피로, 소화·근육 계열의 불균형에 주의가 필요합니다. 리듬을 일정하게 유지하는 것이 핵심입니다.'},
-    love:{en:'CLEAR INTENTIONS', ko:'연애에서는 감정보다 명확한 의사 표현이 중요해지는 시기입니다. 모호한 관계를 정리하고, 분명한 입장을 정해두는 것이 한 해의 흐름을 단단하게 만듭니다.'},
-    family:{en:'ROLE REALIGNMENT', ko:'가족이나 오래된 관계에서 책임을 다시 인식하게 되는 흐름이 들어옵니다. 거리감보다는 역할 조정이 주요 테마이며, 감정적 대응보다는 구조적인 정리가 효과적입니다.'}
+    career:{en:'EXPANDING THE FOUNDATION', ko:'커리어에서는 쌓아온 경험을 바탕으로 자신만의 방식을 정리하고 확장하는 해입니다. 새로운 역할보다 현재 위치에서의 전문성 재정의가 더 큰 성과로 이어집니다. 내부에서 확신이 쌓일수록 기회가 따라옵니다.'},
+    relationship:{en:'CONSISTENCY WITH TRUST', ko:'올해는 관계를 유지하는 방식에 대해 돌아보는 시기입니다. 감정보다 신뢰와 지속성을 우선시하며, 대화로 관계의 구조를 재정의하려는 경향이 나타납니다. 오래된 관계에서 변화가 필요한 지점을 직시하세요.'},
+    finance:{en:'REFINING DECISIONS', ko:'재정에서는 결단의 정확도가 결과를 가르는 해입니다. 즉흥적 판단보다 누적된 분석에 기반한 결정을 내릴 때, 안정적인 자산 관리가 가능해집니다. 검토 없이 움직이는 소비 패턴을 점검해두는 것이 중요합니다.'},
+    health:{en:'KEEPING THE RHYTHM', ko:'과도한 긴장 상태가 누적되기 쉬운 해입니다. 지속적인 피로, 소화·근육 계열의 불균형에 주의가 필요하며, 리듬을 일정하게 유지하는 것이 핵심입니다. 몸의 긴장 신호를 빠르게 알아차리는 것이 중요합니다.'},
+    love:{en:'CLEAR INTENTIONS', ko:'연애에서는 명확한 의사 표현이 중요해지는 시기입니다. 모호한 관계를 정리하고 분명한 입장을 정해두는 것이 한 해의 흐름을 단단하게 만듭니다. 지금 위치를 정확히 파악하고 다음 스텝을 설정하는 것이 좋습니다.'},
+    family:{en:'ROLE REALIGNMENT', ko:'가족이나 오래된 관계에서 책임을 다시 인식하게 되는 흐름이 들어옵니다. 역할 조정이 주요 테마이며, 감정적 대응보다는 구조적인 정리가 효과적입니다. 구체적인 역할을 명확히 정해두는 것이 갈등을 줄여줍니다.'}
   },
   water:{
     general:{en:'FLOWING DEPTH', ko:[
@@ -452,12 +454,12 @@ const GUIDANCE={
       '외부의 자극에 즉시 반응하기보다, 흐름을 지켜보다가 결정을 내리는 방식이 자연스러워집니다. 결정 이전의 관찰이 가장 중요한 작업이 되며, 서두름 없이 정보를 모으고 판단을 숙성시키는 과정이 결과의 정밀도를 높여줍니다.',
       '가시적인 변화는 후반부에 드러나지만, 내면의 변화는 초반부터 시작됩니다. 흘러가는 과정 자체에 집중할 때 올해의 가능성이 가장 잘 드러나며, 성급하게 결과를 확인하려는 시도보다 꾸준히 흐름을 쌓아가는 것이 올해의 핵심 전략입니다.'
     ]},
-    career:{en:'QUIET INTUITION', ko:'커리어에서는 큰 결정보다 흐름을 읽는 감각이 더 결정적입니다. 외부 변화에 유연하게 반응하면서도 깊은 분석을 통해 차별화된 판단을 내리게 됩니다.'},
-    relationship:{en:'READING BETWEEN LINES', ko:'관계에서는 직설적인 표현보다 분위기와 맥락을 읽어내는 감각이 중요해집니다. 깊은 대화를 통해 서로의 이면을 이해하게 되는 흐름이 강합니다.'},
-    finance:{en:'FLEXIBLE FLOW', ko:'재정에서는 한 곳에 묶어두기보다 흐름에 따라 유연하게 분산해두는 것이 유리한 해입니다. 시장의 변화를 깊이 관찰하는 시간이 결정적인 기회를 만들어줍니다.'},
-    health:{en:'FLUID BALANCE', ko:'수분과 신장·방광 계열의 흐름에 신경 써야 하는 해입니다. 잠을 충분히 자고, 차분한 호흡으로 정신적 에너지를 회복하는 것이 핵심입니다.'},
-    love:{en:'SUBTLE UNDERSTANDING', ko:'연애에서는 말로 다 표현되지 않는 감정의 흐름이 중요해집니다. 서로를 이해하는 깊이가 깊어지지만, 동시에 오해의 여지도 늘어나는 한 해입니다.'},
-    family:{en:'DEEPENING BOND', ko:'가족과의 관계에서 말로 표현되지 않는 부분까지 이해하게 되는 시기입니다. 함께 보내는 조용한 시간이 관계의 깊이를 한층 더해줍니다.'}
+    career:{en:'QUIET INTUITION', ko:'커리어에서는 흐름을 읽는 감각이 결정적으로 작용합니다. 외부 변화에 유연하게 반응하면서도 깊은 분석으로 차별화된 판단을 내리게 됩니다. 직관과 데이터를 함께 활용할 때 가장 좋은 결정을 내릴 수 있습니다.'},
+    relationship:{en:'READING BETWEEN LINES', ko:'관계에서는 직설적인 표현보다 분위기와 맥락을 읽어내는 감각이 중요해집니다. 깊은 대화를 통해 서로의 이면을 이해하게 되는 흐름이 강합니다. 말 대신 태도와 행동으로 감정을 전달하는 방식이 효과적입니다.'},
+    finance:{en:'FLEXIBLE FLOW', ko:'재정에서는 흐름에 따라 유연하게 분산해두는 것이 유리합니다. 시장의 변화를 깊이 관찰하는 시간이 결정적인 기회를 만들어줍니다. 한 곳에 집중하기보다 여러 방향으로 자산을 배분해두는 것이 안정적입니다.'},
+    health:{en:'FLUID BALANCE', ko:'수분과 신장·방광 계열의 흐름에 신경 써야 하는 해입니다. 잠을 충분히 자고, 차분한 호흡으로 정신적 에너지를 회복하는 것이 핵심입니다. 몸의 수분 균형을 일상 속에서 꾸준히 유지하는 것이 중요합니다.'},
+    love:{en:'SUBTLE UNDERSTANDING', ko:'연애에서는 말로 다 표현되지 않는 감정의 흐름이 중요해집니다. 서로를 이해하는 깊이가 깊어지지만, 동시에 오해의 여지도 늘어나는 한 해입니다. 작은 의사소통 하나가 관계를 훨씬 선명하게 만들어줍니다.'},
+    family:{en:'DEEPENING BOND', ko:'가족과의 관계에서 말로 표현되지 않는 부분까지 이해하게 되는 시기입니다. 함께 보내는 조용한 시간이 관계의 깊이를 한층 더해줍니다. 먼저 다가가는 작은 행동이 보이지 않던 벽을 허물어줍니다.'}
   }
 };
 
@@ -506,7 +508,9 @@ function loadResult(){
   mainCard.classList.add('el-'+dayStem.element);
   document.getElementById('mlName').textContent=EL_EN[dayStem.element];
 
-  document.getElementById('mlDesc').textContent=dayStem.desc||SUMMARY[dayStem.element]||SUMMARY.metal;
+  const EL_KO_PLAIN={wood:'목',fire:'화',earth:'토',metal:'금',water:'수'};
+  const introLine=(name?name+'님의':'당신의')+' 주된 기운은 '+EL_KO_PLAIN[dayStem.element]+'이며, '+dayStem.name+' 일간에 해당합니다. ';
+  document.getElementById('mlDesc').textContent=introLine+(dayStem.desc||SUMMARY[dayStem.element]||SUMMARY.metal);
   const mainVisual=document.getElementById('mainVisual');
   mainVisual.classList.remove('el-wood','el-fire','el-earth','el-metal','el-water');
   mainVisual.classList.add('el-'+dayStem.element);

@@ -44,10 +44,8 @@
       align-items: center;
       gap: 18px;
     }
-    .nav-left  { left: 40px; gap: 28px; padding: 8px 20px 8px 10px; }
+    .nav-left  { left: 40px; }
     .nav-right { right: 40px; }
-
-    .nav-left .group { display: flex; align-items: center; gap: 18px; }
 
     .nav-link {
       font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
@@ -57,7 +55,7 @@
       letter-spacing: -0.4px;
       color: #464646;
       text-decoration: none;
-      padding: 6px 0;
+      padding: 6px 10px;
       white-space: nowrap;
       background: none;
       border: none;
@@ -66,7 +64,6 @@
     }
     .nav-link:hover { color: #ffffff; }
     .nav-link.active {
-      padding: 6px 10px;
       border-radius: 6px;
       background: #454545;
       color: #ffffff;
@@ -321,10 +318,8 @@
 
       <!-- Nav left -->
       <div class="nav-left">
-        <div class="group">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="about.html" class="nav-link">About</a>
-        </div>
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </div>
 

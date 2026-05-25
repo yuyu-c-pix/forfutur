@@ -228,7 +228,7 @@
   <div id="noDataScreen" style="display:none">
     <a href="index.html" style="position:absolute;left:141px;top:391px;font-size:14px;color:#8a9199;text-decoration:none;letter-spacing:-0.21px;transition:color .2s">← Home</a>
     <h2 style="position:absolute;left:138px;top:420px;font-weight:400;font-size:53px;letter-spacing:-1.325px;line-height:1;color:#fff">Nothing Here Yet</h2>
-    <p style="position:absolute;left:141px;top:491px;font-weight:400;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:#8a9199;width:447px">아직 사주 분석 전이에요. 분석을 마치면 내게 부족한 오행을 채워줄 오브제를 추천받을 수 있습니다.</p>
+    <p style="position:absolute;left:141px;top:491px;font-weight:400;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:#8a9199;width:447px">아직 사주 분석 전 입니다. 분석을 마치면 내게 부족한 오행을 채워줄 오브제를 추천받을 수 있습니다.</p>
     <a href="saju-analysis.html" class="no-data-btn" style="position:absolute;left:139px;top:639px">분석 시작하기 →</a>
   </div>
 
@@ -532,7 +532,9 @@ const banner = document.getElementById('banner');
 ['el-wood','el-fire','el-earth','el-metal','el-water'].forEach(c=>banner.classList.remove(c));
 banner.classList.add('el-'+lacking);
 document.getElementById('bannerTitle').textContent = EL_TITLE[lacking];
-document.getElementById('bannerHeadline').textContent = '당신에게 부족한 기운은 ' + EL_TITLE[lacking] + ' 입니다.';
+const _inp=(function(){try{return JSON.parse(localStorage.getItem('ff_saju_input')||'null');}catch(e){return null;}})();
+const _uname=_inp&&_inp.name?_inp.name:null;
+document.getElementById('bannerHeadline').textContent = (_uname?_uname+'님에게':' 당신에게')+' 부족한 기운은 ' + EL_TITLE[lacking] + ' 입니다.';
 document.getElementById('bannerDesc').textContent = EL_DESC[lacking];
 document.getElementById('bannerIcon').src = 'assets/' + EL_ICON[lacking];
 

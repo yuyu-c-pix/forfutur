@@ -264,12 +264,132 @@
       height: 8.106px;
       pointer-events: none;
     }
+
+    .mob-bar{display:none}
+    .mob-drawer{display:none}
+
+    /* ═════════════ MOBILE ═════════════ */
+    @media (max-width: 768px) {
+      .stage-wrap { height: auto !important; }
+      .stage {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto !important;
+        transform: none !important;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Desktop nav hidden on mobile */
+      .nl, .nr, .logo { display: none !important; }
+      .mob-bar { display: flex !important; position: fixed; top: 0; left: 0; right: 0; height: 52px; background: rgba(15,15,15,.97); border-bottom: 1px solid rgba(255,255,255,.07); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 200; }
+      .mob-logo-link { display: flex; align-items: center; }
+      .mob-logo-img { width: 68px; height: 22px; object-fit: contain; display: block; }
+      .mob-ham { background: none; border: none; cursor: pointer; padding: 8px; display: flex; flex-direction: column; gap: 5.5px; }
+      .mob-ham span { display: block; width: 20px; height: 1.5px; background: #fff; transition: transform .25s, opacity .25s; }
+      .mob-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .mob-ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .mob-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .mob-drawer { position: fixed !important; top: 52px; left: 0; right: 0; bottom: 0; background: #0f0f0f; z-index: 199; flex-direction: column; padding: 40px 28px 32px; }
+      .mob-drawer.open { display: flex !important; }
+      .mob-nav-links { display: flex; flex-direction: column; }
+      .mob-link { font-family: 'Pretendard Variable','Pretendard',sans-serif; font-size: 28px; font-weight: 500; letter-spacing: -0.7px; color: #464646; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.07); transition: color .2s; }
+      .mob-link:hover { color: #fff; }
+      .mob-lang-row { display: flex; gap: 10px; padding-top: 32px; }
+      .mob-lang-row .lb { font-size: 15px !important; padding: 10px 20px !important; color: #464646 !important; background: none !important; }
+      .mob-lang-row .lb.on { color: #fff !important; background: none !important; border-bottom: 1px solid rgba(255,255,255,.4) !important; }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 120px 24px 0;
+        order: 1;
+      }
+      .hero h1 {
+        position: relative;
+        left: 0;
+        top: 0;
+        font-size: 34px;
+        letter-spacing: -0.85px;
+        line-height: 1.15;
+        white-space: normal;
+      }
+      .hero p {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-top: 16px;
+        width: 100%;
+        font-size: 15px;
+        line-height: 22px;
+      }
+
+      /* Cards */
+      .cards-row {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 36px 20px 48px;
+        gap: 14px;
+        order: 2;
+      }
+      .card {
+        width: 100%;
+        height: 460px;
+        flex-shrink: 0;
+      }
+      .card:hover { transform: none; }
+
+      /* Graphics — keep at desktop dimensions and scale the wrapper so dots move with the graphic */
+      .graphic-cube  { left: 50%; top: 28px;  width: 344.247px; height: 280.246px; transform: translateX(-50%) scale(0.64);  transform-origin: top center; }
+      .graphic-chart { left: 50%; top: 80px;  width: 377.186px; height: 175.38px;  transform: translateX(-50%) scale(0.637); transform-origin: top center; }
+      .graphic-hex   { left: 50%; top: 16px;  width: 254.029px; height: 291.984px; transform: translateX(-50%) scale(0.709); transform-origin: top center; }
+      .card:hover .graphic-cube  { transform: translateX(-50%) scale(0.678); }
+      .card:hover .graphic-chart { transform: translateX(-50%) scale(0.675); }
+      .card:hover .graphic-hex   { transform: translateX(-50%) scale(0.752); }
+
+      /* Card text */
+      .card-text {
+        top: 262px;
+        left: 24px !important;
+        width: calc(100% - 48px);
+      }
+      .card-heading p { width: 100% !important; }
+
+      /* Corner brackets — already opacity:0 on mobile (no hover), hide explicitly */
+      .card-corner, .card-corner-bottom { display: none; }
+    }
   </style>
 </head>
 <body>
   <div class="stage-wrap">
     <div class="stage">
 
+  <div class="mob-bar">
+    <a href="index.html" class="mob-logo-link"><img src="assets/logo.svg" alt="Four Futur" class="mob-logo-img"></a>
+    <button class="mob-ham" id="mobHam" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob-drawer" id="mobDrawer">
+    <nav class="mob-nav-links">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-lang-row">
+      <button class="lb on" onclick="setLang(this)">KR</button>
+      <button class="lb" onclick="setLang(this)">EN</button>
+    </div>
+  </div>
       <!-- Nav right -->
       <div class="nr">
         <button class="lb on" onclick="setLang(this)">KR</button>
@@ -383,6 +503,11 @@
 
   <script>
     function fitStage() {
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.setProperty('--scale', 1);
+        document.querySelector('.stage-wrap').style.height = '';
+        return;
+      }
       const s = Math.min(1, window.innerWidth / 1920);
       document.documentElement.style.setProperty('--scale', s);
       document.querySelector('.stage-wrap').style.height = (1080 * s) + 'px';
@@ -415,6 +540,7 @@
         applyLang('en');
       }
     })();
+    function toggleMob(){document.getElementById('mobDrawer').classList.toggle('open');document.getElementById('mobHam').classList.toggle('open');}
   </script>
 </body>
 </html>

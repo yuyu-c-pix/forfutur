@@ -42,62 +42,14 @@
     }
 
     /* ═════════════ NAV ═════════════ */
-    .nav-left, .nav-right {
-      position: absolute;
-      top: 40px;
-      background: #212121;
-      border-radius: 8px;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .nav-left  { left: 40px; }
-    .nav-right { right: 40px; }
-
-    .nav-link {
-      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 18px;
-      letter-spacing: -0.4px;
-      color: #464646;
-      text-decoration: none;
-      padding: 6px 10px;
-      white-space: nowrap;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .nav-link:hover { color: #ffffff; }
-    .nav-link.active {
-      border-radius: 6px;
-      background: #454545;
-      color: #ffffff;
-    }
-    .lang-btn {
-      font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 18px;
-      letter-spacing: -0.4px;
-      color: #464646;
-      text-decoration: none;
-      padding: 6px 0;
-      border-radius: 6px;
-      white-space: nowrap;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .lang-btn.active {
-      padding: 6px 10px;
-      background: #454545;
-      color: #ffffff;
-    }
-    .lang-btn:hover { color: #ffffff; }
+    .nl,.nr{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px;z-index:10}
+    .nl{left:40px}.nr{right:40px}
+    .nn{font-family:'Pretendard Variable','Pretendard',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;white-space:nowrap;background:none;border:none;cursor:pointer;transition:color 0.2s}
+    .nn:hover{color:#ffffff}
+    .nn.active{border-radius:6px;background:#454545;color:#ffffff}
+    .lb{font-family:'Pretendard Variable','Pretendard',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap;background:none;border:none;cursor:pointer;transition:background 0.2s,color 0.2s}
+    .lb.on{background:#454545;color:#ffffff}
+    .lb:hover{color:#ffffff}
 
     /* Logo */
     .logo {
@@ -319,16 +271,16 @@
     <div class="stage">
 
       <!-- Nav right -->
-      <div class="nav-right">
-        <button class="lang-btn active" onclick="setLang(this)">KR</button>
-        <button class="lang-btn" onclick="setLang(this)">EN</button>
+      <div class="nr">
+        <button class="lb on" onclick="setLang(this)">KR</button>
+        <button class="lb" onclick="setLang(this)">EN</button>
       </div>
 
       <!-- Nav left -->
-      <div class="nav-left">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <div class="nl">
+        <a href="index.html" class="nn active">Home</a>
+        <a href="about.html" class="nn">About</a>
+        <a href="contact.html" class="nn">Contact</a>
       </div>
 
       <!-- Logo -->
@@ -339,7 +291,7 @@
       <!-- Hero -->
       <div class="hero">
         <h1>How We Orient The Future</h1>
-        <p>FOUR FUTUR는 개인의 패턴을 기반으로 사주를 분석하고, 집단의 흐름까지 확장해 미래의 방향을 예측합니다.</p>
+        <p data-kr="FOUR FUTUR는 개인의 패턴을 기반으로 사주를 분석하고, 집단의 흐름까지 확장해 미래의 방향을 예측합니다." data-en="FOUR FUTUR analyzes your saju based on personal patterns, expanding into collective flows to orient the direction of your future.">FOUR FUTUR는 개인의 패턴을 기반으로 사주를 분석하고, 집단의 흐름까지 확장해 미래의 방향을 예측합니다.</p>
       </div>
 
       <!-- Cards row -->
@@ -358,10 +310,10 @@
           <div class="card-text">
             <div class="card-heading">
               <h2>SAJU ANALYSIS</h2>
-              <p>생년월일로 만들어진 네 개의 축을 분석해, 나에게 반복되는 패턴과 경향이 무엇인지 파악합니다. 나만의 리포트로 결과를 확인할 수 있습니다.</p>
+              <p data-kr="생년월일로 만들어진 네 개의 축을 분석해, 나에게 반복되는 패턴과 경향이 무엇인지 파악합니다. 나만의 리포트로 결과를 확인할 수 있습니다." data-en="Four pillars from your birth data reveal recurring patterns and tendencies unique to you. Find your results in your personal report.">생년월일로 만들어진 네 개의 축을 분석해, 나에게 반복되는 패턴과 경향이 무엇인지 파악합니다. 나만의 리포트로 결과를 확인할 수 있습니다.</p>
             </div>
             <a href="saju-analysis.html" class="card-cta" onclick="event.stopPropagation()">
-              분석 시작하기 <span class="arrow">→</span>
+              <span data-kr="분석 시작하기" data-en="Start Analysis">분석 시작하기</span> <span class="arrow">→</span>
             </a>
           </div>
         </div>
@@ -387,10 +339,10 @@
           <div class="card-text">
             <div class="card-heading">
               <h2>SAJU DATA</h2>
-              <p>나와 비슷한 사주 패턴을 가진 사람들이 얼마나 되는지 확인할 수 있습니다. 분포와 겹치는 지점, 그리고 개인을 넘어선 집단의 경향을 함께 볼 수 있습니다.</p>
+              <p data-kr="나와 비슷한 사주 패턴을 가진 사람들이 얼마나 되는지 확인할 수 있습니다. 분포와 겹치는 지점, 그리고 개인을 넘어선 집단의 경향을 함께 볼 수 있습니다." data-en="See how many share a saju pattern similar to yours. Explore the distribution, overlap, and collective tendencies that extend beyond the individual.">나와 비슷한 사주 패턴을 가진 사람들이 얼마나 되는지 확인할 수 있습니다. 분포와 겹치는 지점, 그리고 개인을 넘어선 집단의 경향을 함께 볼 수 있습니다.</p>
             </div>
             <a href="saju-data.html" class="card-cta" onclick="event.stopPropagation()">
-              데이터 살펴보기 <span class="arrow">→</span>
+              <span data-kr="데이터 살펴보기" data-en="Explore Data">데이터 살펴보기</span> <span class="arrow">→</span>
             </a>
           </div>
         </div>
@@ -416,10 +368,10 @@
           <div class="card-text">
             <div class="card-heading">
               <h2>SAJU ENHANCE</h2>
-              <p>내 사주에서 약하게 나타나는 축을 파악하고, 균형을 되찾을 수 있도록 설계된 오브젝트입니다. 부족한 기운을 채워 더 안정적인 흐름을 경험해보세요.</p>
+              <p data-kr="내 사주에서 약하게 나타나는 축을 파악하고, 균형을 되찾을 수 있도록 설계된 오브젝트입니다. 부족한 기운을 채워 더 안정적인 흐름을 경험해보세요." data-en="Identify the weakened pillar in your saju and find objects designed to restore balance. Fill what is lacking for a more stable, grounded flow.">내 사주에서 약하게 나타나는 축을 파악하고, 균형을 되찾을 수 있도록 설계된 오브젝트입니다. 부족한 기운을 채워 더 안정적인 흐름을 경험해보세요.</p>
             </div>
             <a href="saju-enhance.html" class="card-cta" onclick="event.stopPropagation()">
-              기운 보완하기 <span class="arrow">→</span>
+              <span data-kr="기운 보완하기" data-en="Enhance Balance">기운 보완하기</span> <span class="arrow">→</span>
             </a>
           </div>
         </div>
@@ -439,10 +391,30 @@
     window.addEventListener('load', fitStage);
     fitStage();
 
-    function setLang(el) {
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
+    var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+
+    function setLang(el){
+      _lang=el.textContent.trim()==='KR'?'kr':'en';
+      document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+      el.classList.add('on');
+      try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+      applyLang(_lang);
     }
+
+    function applyLang(lang){
+      document.querySelectorAll('[data-kr]').forEach(function(el){
+        var txt=el.getAttribute('data-'+lang);
+        if(txt!==null)el.textContent=txt;
+      });
+    }
+
+    (function(){
+      if(_lang==='en'){
+        document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+        document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+        applyLang('en');
+      }
+    })();
   </script>
 </body>
 </html>

@@ -20,14 +20,13 @@
     .st{position:absolute;width:1920px;left:50%;top:0;background:#0f0f0f;transform:translateX(-50%) scale(var(--sc,1));transform-origin:top center}
 
     .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
-    .nl{left:40px;gap:18px;padding:8px 20px 8px 10px}.nr{right:40px}
-    .nl .g{display:flex;align-items:center;gap:28px}
-    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nl{left:40px}.nr{right:40px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
     .nn:hover{color:#fff}
-    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .nn.active{border-radius:6px;background:#454545;color:#fff}
     .nn-home{padding:6px 10px;border-radius:6px}
-    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
-    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{background:#454545;color:#fff}
     .lb:hover{color:#fff}
     .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
     .lo img{width:100%;height:100%;display:block}
@@ -104,14 +103,14 @@
 <div class="sw">
 <div class="st" id="stage">
 
-  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
-  <div class="nl"><a href="index.html" class="nn nn-home">Home</a><div class="g"><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div></div>
+  <div class="nr"><button class="lb on" onclick="setLang(this)">KR</button><button class="lb" onclick="setLang(this)">EN</button></div>
+  <div class="nl"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
 
-  <a href="index.html" class="bk">← Home</a>
-  <p class="tg">SAJU DATA</p>
-  <h1 class="tt">Collective Saju Data</h1>
-  <p class="ds">축적된 데이터를 바탕으로 개인의 사주 패턴을 체계적으로 분석합니다.<br>두 가지 분석으로 사주를 더 입체적으로 이해해보세요.</p>
+  <a href="index.html" class="bk" data-kr="← Home" data-en="← Home">← Home</a>
+  <p class="tg" data-kr="SAJU DATA" data-en="SAJU DATA">SAJU DATA</p>
+  <h1 class="tt" data-kr="집단 사주 데이터" data-en="Collective Saju Data">집단 사주 데이터</h1>
+  <p class="ds" data-kr="축적된 데이터를 바탕으로 개인의 사주 패턴을 체계적으로 분석합니다. 두 가지 분석으로 사주를 더 입체적으로 이해해보세요." data-en="We systematically analyze individual saju patterns using accumulated data. Explore your saju from two distinct angles.">축적된 데이터를 바탕으로 개인의 사주 패턴을 체계적으로 분석합니다.<br>두 가지 분석으로 사주를 더 입체적으로 이해해보세요.</p>
 
   <!-- NO DATA SCREEN -->
   <div id="noDataScreen" style="display:none">
@@ -145,16 +144,16 @@
         <div>
           <p class="ec-title">THE DAY MASTER<br>DECISION TENDENCIES</p>
         </div>
-        <p class="ec-sub">10개 일간이 각각 어떤 결정 패턴을 보이는지, 그 안에서 당신의 일간은 어떤 위치인지 비교해보세요.</p>
+        <p class="ec-sub" data-kr="10개 일간이 각각 어떤 결정 패턴을 보이는지, 그 안에서 당신의 일간은 어떤 위치인지 비교해보세요." data-en="Compare how each of the 10 day masters expresses distinct decision patterns, and see where your day master stands among them.">10개 일간이 각각 어떤 결정 패턴을 보이는지, 그 안에서 당신의 일간은 어떤 위치인지 비교해보세요.</p>
       </div>
-      <span class="ec-cta">경향 살펴보기 <span class="arrow">→</span></span>
+      <span class="ec-cta" data-kr="경향 살펴보기 →" data-en="Explore Tendencies →">경향 살펴보기 <span class="arrow">→</span></span>
     </div>
   </a>
 
   <!-- CTAs -->
   <div class="cta-row" id="ctaRow">
-    <a href="saju-enhance.html" class="cta-btn">기운 보완하기 →</a>
-    <a href="saju-analysis.html" class="cta-btn" onclick="resetAll(event)">다시 분석하기 →</a>
+    <a href="saju-enhance.html" class="cta-btn" data-kr="기운 보완하기 →" data-en="Enhance Balance →">기운 보완하기 →</a>
+    <a href="saju-analysis.html" class="cta-btn" onclick="resetAll(event)" data-kr="다시 분석하기 →" data-en="Analyze Again →">다시 분석하기 →</a>
   </div>
 
   <!-- Card 2 -->
@@ -189,9 +188,9 @@
         <div>
           <p class="ec-title">DAY MASTER<br>COMPATIBILITY</p>
         </div>
-        <p class="ec-sub">화 기운이 강한 2026년, 무토 일간의 관계 경향과 올해 가장 관계 가치가 잘 통하는 일간을 확인해보세요.</p>
+        <p class="ec-sub" data-kr="화 기운이 강한 2026년, 무토 일간의 관계 경향과 올해 가장 관계 가치가 잘 통하는 일간을 확인해보세요." data-en="In 2026, a year of strong Fire energy, explore your day master's relationship tendencies and which day masters align best this year.">화 기운이 강한 2026년, 무토 일간의 관계 경향과 올해 가장 관계 가치가 잘 통하는 일간을 확인해보세요.</p>
       </div>
-      <span class="ec-cta">관계도 살펴보기 <span class="arrow">→</span></span>
+      <span class="ec-cta" data-kr="관계도 살펴보기 →" data-en="Explore Compatibility →">관계도 살펴보기 <span class="arrow">→</span></span>
     </div>
   </a>
 
@@ -199,6 +198,23 @@
 </div>
 
 <script>
+var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+
+function setLang(el){
+  _lang=el.textContent.trim()==='KR'?'kr':'en';
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+  applyLang(_lang);
+}
+
+function applyLang(lang){
+  document.querySelectorAll('[data-kr]').forEach(function(el){
+    var txt=el.getAttribute('data-'+lang);
+    if(txt!==null)el.textContent=txt;
+  });
+}
+
 (function(){
   try{
     var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');
@@ -212,21 +228,7 @@
 function fit(){
   var hasData=false;
   try{var r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');hasData=!!(r&&r.lacking);}catch(e){}
-  if(!hasData){
-    document.getElementById('noDataScreen').style.display='block';
-    document.querySelectorAll('.entry-card').forEach(function(el){el.style.display='none';});
-    document.getElementById('ctaRow').style.display='none';
-    document.querySelector('.tt').style.display='none';
-    document.querySelector('.ds').style.display='none';
-    document.querySelector('.tg').style.display='none';
-    document.querySelector('.bk').style.display='none';
-    var stageH=800;
-    var s=Math.min(1,window.innerWidth/1920);
-    document.documentElement.style.setProperty('--sc',s);
-    document.getElementById('stage').style.height=stageH+'px';
-    document.querySelector('.sw').style.height=(stageH*s)+'px';
-    return;
-  }
+  if(!hasData){ location.replace('saju-analysis.html'); return; }
   var stageH=980;
   var s=Math.min(1,window.innerWidth/1920);
   document.documentElement.style.setProperty('--sc',s);
@@ -234,6 +236,14 @@ function fit(){
   document.querySelector('.sw').style.height=(stageH*s)+'px';
 }
 window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+(function(){
+  if(_lang==='en'){
+    document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+    document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+    applyLang('en');
+  }
+})();
 
 function resetAll(e){
   e.preventDefault();

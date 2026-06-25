@@ -28,14 +28,13 @@
 
     /* NAV */
     .nr,.nl{position:absolute;top:40px;background:#212121;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:18px}
-    .nl{left:40px;gap:18px;padding:8px 20px 8px 10px}.nr{right:40px}
-    .nl .g{display:flex;align-items:center;gap:28px}
-    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
+    .nl{left:40px}.nr{right:40px}
+    .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
     .nn:hover{color:#fff}
-    .nn.active{padding:6px 10px;border-radius:6px;background:#454545;color:#fff}
+    .nn.active{border-radius:6px;background:#454545;color:#fff}
     .nn-home{padding:6px 10px;border-radius:6px}
-    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
-    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{background:#454545;color:#fff}
     .lb:hover{color:#fff}
     .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
     .lo img{width:100%;height:100%;display:block}
@@ -127,33 +126,33 @@
 <div class="sw">
 <div class="st" id="stage">
 
-  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
-  <div class="nl"><a href="index.html" class="nn nn-home">Home</a><div class="g"><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div></div>
+  <div class="nr"><button class="lb on" onclick="setLang(this)">KR</button><button class="lb" onclick="setLang(this)">EN</button></div>
+  <div class="nl"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
 
   <a href="index.html" class="bk">← Home</a>
   <p class="tg">SAJU ANALYSIS</p>
   <h1 class="tt">Saju Analyzer</h1>
-  <p class="ds">입력된 정보를 활용하여 미래의 방향을 분석하고 제안합니다. 고민 사항에 맞춰 개인화된 리포트를 받아볼 수 있습니다.</p>
+  <p class="ds" data-kr="입력된 정보를 활용하여 미래의 방향을 분석하고 제안합니다. 고민 사항에 맞춰 개인화된 리포트를 받아볼 수 있습니다." data-en="We analyze your entered information to suggest directions for your future. Receive a personalized report tailored to the concerns you select.">입력된 정보를 활용하여 미래의 방향을 분석하고 제안합니다. 고민 사항에 맞춰 개인화된 리포트를 받아볼 수 있습니다.</p>
 
   <form id="af" onsubmit="go(event)">
     <!-- 이름 -->
     <div class="fd f1">
-      <label class="fl">이름</label>
-      <div class="fw"><input type="text" id="name" placeholder="홍길동" required></div>
+      <label class="fl" data-kr="이름" data-en="Name">이름</label>
+      <div class="fw"><input type="text" id="name" placeholder="홍길동" data-kr="홍길동" data-en="Your name" required></div>
     </div>
     <!-- 성별 -->
     <div class="fd f2">
-      <label class="fl">성별</label>
-      <div class="fw" onclick="oDD('gender')"><input type="text" id="gender" placeholder="선택" readonly required></div>
+      <label class="fl" data-kr="성별" data-en="Gender">성별</label>
+      <div class="fw" onclick="oDD('gender')"><input type="text" id="gender" placeholder="선택" data-kr="선택" data-en="Select" readonly required></div>
       <div class="dd" id="dd-gender">
-        <div class="di" onclick="sDD('gender','남','남성')">남성</div>
-        <div class="di" onclick="sDD('gender','여','여성')">여성</div>
+        <div class="di" data-kr="남성" data-en="Male" onclick="sDD('gender','남',this.textContent)">남성</div>
+        <div class="di" data-kr="여성" data-en="Female" onclick="sDD('gender','여',this.textContent)">여성</div>
       </div>
     </div>
     <!-- 생년월일 -->
     <div class="fd f3">
-      <label class="fl">생년월일</label>
+      <label class="fl" data-kr="생년월일" data-en="Date of Birth">생년월일</label>
       <div class="fw" onclick="oDP()"><input type="text" id="birthdate" placeholder="YYYY-MM-DD" readonly required></div>
       <div class="dp-ov" id="dpOv" onclick="cDP()"></div>
       <div class="dp" id="dpEl">
@@ -162,67 +161,67 @@
           <span class="dp-hd-mo"><span class="dp-mo" id="dpYr" onclick="dpGoYr()"></span><span class="dp-mo" id="dpMth" onclick="dpGoMth()"></span></span>
           <button class="dp-nv" type="button" onclick="dpN(1)">›</button>
         </div>
-        <div class="dp-dw" id="dpDow"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+        <div class="dp-dw" id="dpDow"><span data-kr="일" data-en="S">일</span><span data-kr="월" data-en="M">월</span><span data-kr="화" data-en="T">화</span><span data-kr="수" data-en="W">수</span><span data-kr="목" data-en="T">목</span><span data-kr="금" data-en="F">금</span><span data-kr="토" data-en="S">토</span></div>
         <div class="dp-dy" id="dpDy"></div>
         <div class="dp-ft">
-          <button type="button" onclick="dpTdy()">오늘</button>
+          <button type="button" onclick="dpTdy()" data-kr="오늘" data-en="Today">오늘</button>
         </div>
       </div>
     </div>
     <!-- 출생 지역 -->
     <div class="fd f4">
-      <label class="fl">출생 지역</label>
-      <div class="fw" onclick="oDD('bp')"><input type="text" id="bp" placeholder="선택" readonly></div>
+      <label class="fl" data-kr="출생 지역" data-en="Place of Birth">출생 지역</label>
+      <div class="fw" onclick="oDD('bp')"><input type="text" id="bp" placeholder="선택" data-kr="선택" data-en="Select" readonly></div>
       <div class="dd" id="dd-bp">
-        <div class="di" onclick="sDD('bp','서울','서울')">서울</div><div class="di" onclick="sDD('bp','부산','부산')">부산</div>
-        <div class="di" onclick="sDD('bp','대구','대구')">대구</div><div class="di" onclick="sDD('bp','인천','인천')">인천</div>
-        <div class="di" onclick="sDD('bp','광주','광주')">광주</div><div class="di" onclick="sDD('bp','대전','대전')">대전</div>
-        <div class="di" onclick="sDD('bp','울산','울산')">울산</div><div class="di" onclick="sDD('bp','세종','세종')">세종</div>
-        <div class="di" onclick="sDD('bp','경기','경기')">경기</div><div class="di" onclick="sDD('bp','강원','강원')">강원</div>
-        <div class="di" onclick="sDD('bp','충북','충북')">충북</div><div class="di" onclick="sDD('bp','충남','충남')">충남</div>
-        <div class="di" onclick="sDD('bp','전북','전북')">전북</div><div class="di" onclick="sDD('bp','전남','전남')">전남</div>
-        <div class="di" onclick="sDD('bp','경북','경북')">경북</div><div class="di" onclick="sDD('bp','경남','경남')">경남</div>
-        <div class="di" onclick="sDD('bp','제주','제주')">제주</div><div class="di" onclick="sDD('bp','해외','해외')">해외</div>
+        <div class="di" data-kr="서울" data-en="Seoul" onclick="sDD('bp','서울',this.textContent)">서울</div><div class="di" data-kr="부산" data-en="Busan" onclick="sDD('bp','부산',this.textContent)">부산</div>
+        <div class="di" data-kr="대구" data-en="Daegu" onclick="sDD('bp','대구',this.textContent)">대구</div><div class="di" data-kr="인천" data-en="Incheon" onclick="sDD('bp','인천',this.textContent)">인천</div>
+        <div class="di" data-kr="광주" data-en="Gwangju" onclick="sDD('bp','광주',this.textContent)">광주</div><div class="di" data-kr="대전" data-en="Daejeon" onclick="sDD('bp','대전',this.textContent)">대전</div>
+        <div class="di" data-kr="울산" data-en="Ulsan" onclick="sDD('bp','울산',this.textContent)">울산</div><div class="di" data-kr="세종" data-en="Sejong" onclick="sDD('bp','세종',this.textContent)">세종</div>
+        <div class="di" data-kr="경기" data-en="Gyeonggi" onclick="sDD('bp','경기',this.textContent)">경기</div><div class="di" data-kr="강원" data-en="Gangwon" onclick="sDD('bp','강원',this.textContent)">강원</div>
+        <div class="di" data-kr="충북" data-en="Chungbuk" onclick="sDD('bp','충북',this.textContent)">충북</div><div class="di" data-kr="충남" data-en="Chungnam" onclick="sDD('bp','충남',this.textContent)">충남</div>
+        <div class="di" data-kr="전북" data-en="Jeonbuk" onclick="sDD('bp','전북',this.textContent)">전북</div><div class="di" data-kr="전남" data-en="Jeonnam" onclick="sDD('bp','전남',this.textContent)">전남</div>
+        <div class="di" data-kr="경북" data-en="Gyeongbuk" onclick="sDD('bp','경북',this.textContent)">경북</div><div class="di" data-kr="경남" data-en="Gyeongnam" onclick="sDD('bp','경남',this.textContent)">경남</div>
+        <div class="di" data-kr="제주" data-en="Jeju" onclick="sDD('bp','제주',this.textContent)">제주</div><div class="di" data-kr="해외" data-en="International" onclick="sDD('bp','해외',this.textContent)">해외</div>
       </div>
     </div>
     <!-- 출생 시간 -->
     <div class="fd f5">
-      <label class="fl">출생 시간</label>
-      <div class="fw" onclick="oDD('bt')"><input type="text" id="bt" placeholder="선택" readonly required></div>
+      <label class="fl" data-kr="출생 시간" data-en="Time of Birth">출생 시간</label>
+      <div class="fw" onclick="oDD('bt')"><input type="text" id="bt" placeholder="선택" data-kr="선택" data-en="Select" readonly required></div>
       <div class="dd" id="dd-bt">
-        <div class="di" onclick="sDD('bt','자시','자시 (23:00–01:00)')">자시 (23:00–01:00)</div>
-        <div class="di" onclick="sDD('bt','축시','축시 (01:00–03:00)')">축시 (01:00–03:00)</div>
-        <div class="di" onclick="sDD('bt','인시','인시 (03:00–05:00)')">인시 (03:00–05:00)</div>
-        <div class="di" onclick="sDD('bt','묘시','묘시 (05:00–07:00)')">묘시 (05:00–07:00)</div>
-        <div class="di" onclick="sDD('bt','진시','진시 (07:00–09:00)')">진시 (07:00–09:00)</div>
-        <div class="di" onclick="sDD('bt','사시','사시 (09:00–11:00)')">사시 (09:00–11:00)</div>
-        <div class="di" onclick="sDD('bt','오시','오시 (11:00–13:00)')">오시 (11:00–13:00)</div>
-        <div class="di" onclick="sDD('bt','미시','미시 (13:00–15:00)')">미시 (13:00–15:00)</div>
-        <div class="di" onclick="sDD('bt','신시','신시 (15:00–17:00)')">신시 (15:00–17:00)</div>
-        <div class="di" onclick="sDD('bt','유시','유시 (17:00–19:00)')">유시 (17:00–19:00)</div>
-        <div class="di" onclick="sDD('bt','술시','술시 (19:00–21:00)')">술시 (19:00–21:00)</div>
-        <div class="di" onclick="sDD('bt','해시','해시 (21:00–23:00)')">해시 (21:00–23:00)</div>
-        <div class="di" onclick="sDD('bt','모름','모름')">모름</div>
+        <div class="di" data-kr="자시 (23:00–01:00)" data-en="Rat Hour (23:00–01:00)" onclick="sDD('bt','자시',this.textContent)">자시 (23:00–01:00)</div>
+        <div class="di" data-kr="축시 (01:00–03:00)" data-en="Ox Hour (01:00–03:00)" onclick="sDD('bt','축시',this.textContent)">축시 (01:00–03:00)</div>
+        <div class="di" data-kr="인시 (03:00–05:00)" data-en="Tiger Hour (03:00–05:00)" onclick="sDD('bt','인시',this.textContent)">인시 (03:00–05:00)</div>
+        <div class="di" data-kr="묘시 (05:00–07:00)" data-en="Rabbit Hour (05:00–07:00)" onclick="sDD('bt','묘시',this.textContent)">묘시 (05:00–07:00)</div>
+        <div class="di" data-kr="진시 (07:00–09:00)" data-en="Dragon Hour (07:00–09:00)" onclick="sDD('bt','진시',this.textContent)">진시 (07:00–09:00)</div>
+        <div class="di" data-kr="사시 (09:00–11:00)" data-en="Snake Hour (09:00–11:00)" onclick="sDD('bt','사시',this.textContent)">사시 (09:00–11:00)</div>
+        <div class="di" data-kr="오시 (11:00–13:00)" data-en="Horse Hour (11:00–13:00)" onclick="sDD('bt','오시',this.textContent)">오시 (11:00–13:00)</div>
+        <div class="di" data-kr="미시 (13:00–15:00)" data-en="Goat Hour (13:00–15:00)" onclick="sDD('bt','미시',this.textContent)">미시 (13:00–15:00)</div>
+        <div class="di" data-kr="신시 (15:00–17:00)" data-en="Monkey Hour (15:00–17:00)" onclick="sDD('bt','신시',this.textContent)">신시 (15:00–17:00)</div>
+        <div class="di" data-kr="유시 (17:00–19:00)" data-en="Rooster Hour (17:00–19:00)" onclick="sDD('bt','유시',this.textContent)">유시 (17:00–19:00)</div>
+        <div class="di" data-kr="술시 (19:00–21:00)" data-en="Dog Hour (19:00–21:00)" onclick="sDD('bt','술시',this.textContent)">술시 (19:00–21:00)</div>
+        <div class="di" data-kr="해시 (21:00–23:00)" data-en="Boar Hour (21:00–23:00)" onclick="sDD('bt','해시',this.textContent)">해시 (21:00–23:00)</div>
+        <div class="di" data-kr="모름" data-en="Unknown" onclick="sDD('bt','모름',this.textContent)">모름</div>
       </div>
     </div>
     <!-- 고민사항 (4개 필수 선택, 외부 클릭으로 닫힘) -->
     <div class="fd f6">
-      <label class="fl">고민사항 (4개 필수)</label>
-      <div class="fw" onclick="oCC(event)"><input type="text" id="cn" placeholder="4개 선택" readonly required></div>
+      <label class="fl" data-kr="고민사항 (4개 필수)" data-en="Focus Areas (Choose 4)">고민사항 (4개 필수)</label>
+      <div class="fw" onclick="oCC(event)"><input type="text" id="cn" placeholder="4개 선택" data-kr="4개 선택" data-en="Select 4" readonly required></div>
       <div class="cc" id="ccEl">
-        <div class="cc-info" id="ccInfo"><span>4개를 선택해주세요</span><span><span class="ct" id="ccCount">0</span>/4</span></div>
+        <div class="cc-info" id="ccInfo"><span id="ccInfoMsg" data-kr="4개를 선택해주세요" data-en="Please choose 4 areas">4개를 선택해주세요</span><span><span class="ct" id="ccCount">0</span>/4</span></div>
         <div class="cc-grid">
-          <button type="button" class="cc-chip" data-v="career" onclick="tCC(this)">진로 · 직업</button>
-          <button type="button" class="cc-chip" data-v="relationship" onclick="tCC(this)">대인관계</button>
-          <button type="button" class="cc-chip" data-v="finance" onclick="tCC(this)">재물 · 재정</button>
-          <button type="button" class="cc-chip" data-v="health" onclick="tCC(this)">건강</button>
-          <button type="button" class="cc-chip" data-v="love" onclick="tCC(this)">연애 · 결혼</button>
-          <button type="button" class="cc-chip" data-v="family" onclick="tCC(this)">가족 · 친지</button>
+          <button type="button" class="cc-chip" data-v="career" data-kr="진로 · 직업" data-en="Career" onclick="tCC(this)">진로 · 직업</button>
+          <button type="button" class="cc-chip" data-v="relationship" data-kr="대인관계" data-en="Relationships" onclick="tCC(this)">대인관계</button>
+          <button type="button" class="cc-chip" data-v="finance" data-kr="재물 · 재정" data-en="Finance" onclick="tCC(this)">재물 · 재정</button>
+          <button type="button" class="cc-chip" data-v="health" data-kr="건강" data-en="Health" onclick="tCC(this)">건강</button>
+          <button type="button" class="cc-chip" data-v="love" data-kr="연애 · 결혼" data-en="Love" onclick="tCC(this)">연애 · 결혼</button>
+          <button type="button" class="cc-chip" data-v="family" data-kr="가족 · 친지" data-en="Family" onclick="tCC(this)">가족 · 친지</button>
         </div>
       </div>
     </div>
 
-    <button type="submit" class="sb">분석 시작하기 →</button>
+    <button type="submit" class="sb" data-kr="분석 시작하기 →" data-en="Start Analysis →">분석 시작하기 →</button>
   </form>
 
 </div>
@@ -237,6 +236,23 @@
   }catch(e){}
 })();
 
+var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+function setLang(el){
+  _lang=el.textContent.trim()==='KR'?'kr':'en';
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+  applyLang(_lang);
+}
+function applyLang(lang){
+  document.querySelectorAll('[data-kr]').forEach(function(el){
+    var txt=el.getAttribute('data-'+lang);
+    if(txt===null) return;
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=txt;
+    else el.textContent=txt;
+  });
+  renderCal();
+}
 /* Scale */
 var SH=1127;
 function fit(){var s=Math.min(1,window.innerWidth/1920);document.documentElement.style.setProperty('--sc',s);document.getElementById('stage').style.height=SH+'px';document.querySelector('.sw').style.height=(SH*s)+'px';}
@@ -257,15 +273,24 @@ function cDP(){document.getElementById('dpEl').classList.remove('open');document
 function dpN(d){if(dpMode==='years'){dpY+=d*12;renderYrs();}else if(dpMode==='months'){dpY+=d;renderMths();}else{dpM+=d;if(dpM>11){dpM=0;dpY++;}if(dpM<0){dpM=11;dpY--;}renderCal();}}
 function dpGoYr(){if(dpMode==='years'){dpMode='days';renderCal();}else{dpMode='years';renderYrs();}}
 function dpGoMth(){if(dpMode==='months'){dpMode='days';renderCal();}else{dpMode='months';renderMths();}}
-function renderCal(){dpMode='days';var dy=document.getElementById('dpDy');dy.classList.remove('yr-mode');document.getElementById('dpDow').style.display='';document.getElementById('dpYr').textContent=dpY+'년';document.getElementById('dpMth').textContent=' '+(dpM+1)+'월';var fd=new Date(dpY,dpM,1).getDay(),dm=new Date(dpY,dpM+1,0).getDate(),t=new Date(),ts=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'),h='';for(var i=0;i<fd;i++)h+='<span class="dp-d empty">.</span>';for(var d=1;d<=dm;d++){var ds=dpY+'-'+String(dpM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),cls='dp-d';if(ds===ts)cls+=' tdy';if(document.getElementById('birthdate').value===ds)cls+=' sel';if(new Date(ds)<new Date('1900-01-01'))cls+=' empty';else if(new Date(ds)>t)cls+=' dp-disabled';h+='<span class="'+cls+'" onclick="dpSel('+d+')">'+d+'</span>';}dy.innerHTML=h;}
+var MO_KR=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+var MO_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function renderCal(){dpMode='days';var dy=document.getElementById('dpDy');dy.classList.remove('yr-mode');document.getElementById('dpDow').style.display='';var isEN=_lang==='en';document.getElementById('dpYr').textContent=isEN?String(dpY):dpY+'년';document.getElementById('dpMth').textContent=' '+(isEN?MO_EN[dpM]:MO_KR[dpM]);var fd=new Date(dpY,dpM,1).getDay(),dm=new Date(dpY,dpM+1,0).getDate(),t=new Date(),ts=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'),h='';for(var i=0;i<fd;i++)h+='<span class="dp-d empty">.</span>';for(var d=1;d<=dm;d++){var ds=dpY+'-'+String(dpM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),cls='dp-d';if(ds===ts)cls+=' tdy';if(document.getElementById('birthdate').value===ds)cls+=' sel';if(new Date(ds)<new Date('1900-01-01'))cls+=' empty';else if(new Date(ds)>t)cls+=' dp-disabled';h+='<span class="'+cls+'" onclick="dpSel('+d+')">'+d+'</span>';}dy.innerHTML=h;}
 function renderYrs(){var dy=document.getElementById('dpDy');dy.classList.add('yr-mode');document.getElementById('dpDow').style.display='none';var sy=dpY-6,t=new Date(),h='<div class="dp-yrs">';for(var y=sy;y<sy+12;y++){var cls='dp-yb';if(y===dpY)cls+=' sel';h+='<button type="button" class="'+cls+'" '+(y>t.getFullYear()?'disabled':'onclick="selYr('+y+')"')+'>'+y+'</button>';}h+='</div>';dy.innerHTML=h;document.getElementById('dpYr').textContent=sy+'–'+(sy+11);document.getElementById('dpMth').textContent='';}
-function renderMths(){dpMode='months';var dy=document.getElementById('dpDy');dy.classList.add('yr-mode');document.getElementById('dpDow').style.display='none';var h='<div class="dp-yrs">';for(var m=0;m<12;m++){var cls='dp-yb';if(m===dpM)cls+=' sel';h+='<button type="button" class="'+cls+'" onclick="selMth('+m+')">'+(m+1)+'월</button>';}h+='</div>';dy.innerHTML=h;document.getElementById('dpYr').textContent=dpY+'년';document.getElementById('dpMth').textContent=' '+(dpM+1)+'월';}
+function renderMths(){dpMode='months';var isEN=_lang==='en';var dy=document.getElementById('dpDy');dy.classList.add('yr-mode');document.getElementById('dpDow').style.display='none';var h='<div class="dp-yrs">';for(var m=0;m<12;m++){var cls='dp-yb';if(m===dpM)cls+=' sel';h+='<button type="button" class="'+cls+'" onclick="selMth('+m+')">'+(isEN?MO_EN[m]:(m+1)+'월')+'</button>';}h+='</div>';dy.innerHTML=h;document.getElementById('dpYr').textContent=isEN?String(dpY):dpY+'년';document.getElementById('dpMth').textContent=' '+(isEN?MO_EN[dpM]:MO_KR[dpM]);}
 function selYr(y){dpY=y;dpMode='days';renderCal();}
 function selMth(m){dpM=m;renderCal();}
 function dpSel(d){var ds=dpY+'-'+String(dpM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');document.getElementById('birthdate').value=ds;cDP();}
 function dpTdy(){var t=new Date();dpY=t.getFullYear();dpM=t.getMonth();dpSel(t.getDate());}
 function dpClr(){document.getElementById('birthdate').value='';cDP();}
 renderCal();
+(function(){
+  if(_lang==='en'){
+    document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+    document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+    applyLang('en');
+  }
+})();
 
 /* Concern: open on click, auto-close on outside click, exactly 4 required */
 function oCC(e){

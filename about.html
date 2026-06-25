@@ -24,8 +24,8 @@
     .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
     .nn:hover{color:#fff}
     .nn.active{border-radius:6px;background:#454545;color:#fff}
-    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
-    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{background:#454545;color:#fff}
     .lb:hover{color:#fff}
     .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px;z-index:10}
     .lo img{width:100%;height:100%;display:block}
@@ -67,7 +67,7 @@
 <div class="sw">
 <div class="st" id="stage">
 
-  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nr"><button class="lb on" onclick="setLang(this)">KR</button><button class="lb" onclick="setLang(this)">EN</button></div>
   <div class="nl"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn active">About</a><a href="contact.html" class="nn">Contact</a></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
 
@@ -76,7 +76,7 @@
 
   <p class="hero-tag">ABOUT US</p>
   <h1 class="hero-title">We Orient The Future<br>Be Systematic</h1>
-  <p class="hero-desc">사주라는 오래된 언어를 오늘의 데이터로 다시 읽습니다. 개인의 패턴을 분석하고, 집단의 흐름으로 확장해, 우리가 향하는 방향을 함께 가늠합니다.</p>
+  <p class="hero-desc" data-kr="사주라는 오래된 언어를 오늘의 데이터로 다시 읽습니다. 개인의 패턴을 분석하고, 집단의 흐름으로 확장해, 우리가 향하는 방향을 함께 가늠합니다." data-en="We reread the ancient language of saju through the lens of today's data. By analyzing individual patterns and expanding into collective flows, we orient the direction we are all heading.">사주라는 오래된 언어를 오늘의 데이터로 다시 읽습니다. 개인의 패턴을 분석하고, 집단의 흐름으로 확장해, 우리가 향하는 방향을 함께 가늠합니다.</p>
 
   <!-- Divider between hero and content -->
   <div class="divider dh" style="top:1126px"></div>
@@ -84,7 +84,7 @@
   <a href="index.html" class="bk" style="top:1220px">← Home</a>
   <p class="section-tag" style="left:140px;top:1263px">ABOUT FOUR FUTUR</p>
   <h2 class="section-title" style="left:140px;top:1291px;width:1000px">Saju By Its Nature, Data</h2>
-  <p class="section-desc" style="left:140px;top:1358px">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
+  <p class="section-desc" style="left:140px;top:1358px" data-kr="사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다." data-en="Saju is a record of observation accumulated over 3,000 years. FOUR FUTUR exposes its structure through the language of data — reading individual patterns within collective flows with clarity and confidence.">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
 
   <!-- Pillar dividers -->
   <div class="divider dw" style="top:1512px"></div>
@@ -95,28 +95,28 @@
 
   <!-- 01 / SYSTEM -->
   <span class="p-label" style="left:169px;top:1540px">01 / SYSTEM</span>
-  <p class="p-title" style="left:347px;top:1537px">3,000년의 관찰이 쌓은 신뢰</p>
-  <p class="p-desc" style="left:347px;top:1580px;width:637px">사주는 오랜 시간 수많은 삶의 패턴이 관찰되고 기록되어 온 체계입니다. FOUR FUTUR의 모든 해석은 이 축적된 데이터 위에서 시작됩니다.</p>
+  <p class="p-title" style="left:347px;top:1537px" data-kr="3,000년의 관찰이 쌓은 신뢰" data-en="Trust Built on 3,000 Years of Observation">3,000년의 관찰이 쌓은 신뢰</p>
+  <p class="p-desc" style="left:347px;top:1580px;width:637px" data-kr="사주는 오랜 시간 수많은 삶의 패턴이 관찰되고 기록되어 온 체계입니다. FOUR FUTUR의 모든 해석은 이 축적된 데이터 위에서 시작됩니다." data-en="Saju is a system in which countless life patterns have been observed and recorded over a long period. Every interpretation at FOUR FUTUR begins from this accumulated body of data.">사주는 오랜 시간 수많은 삶의 패턴이 관찰되고 기록되어 온 체계입니다. FOUR FUTUR의 모든 해석은 이 축적된 데이터 위에서 시작됩니다.</p>
 
   <!-- 02 / ANALYSIS -->
   <span class="p-label" style="left:168px;top:1670px">02 / ANALYSIS</span>
-  <p class="p-title" style="left:347px;top:1668px">사주 속 네 기둥으로 분석하는 개인</p>
-  <p class="p-desc" style="left:348px;top:1711px;width:665px">생년월일시에서 도출된 네 기둥과 오행의 비율을 분석합니다. 나의 성향과 강점, 부족한 기운, 그리고 올해의 흐름까지 하나의 리포트로 정리해 확인할 수 있습니다.</p>
+  <p class="p-title" style="left:347px;top:1668px" data-kr="사주 속 네 기둥으로 분석하는 개인" data-en="The Individual Decoded Through Four Pillars">사주 속 네 기둥으로 분석하는 개인</p>
+  <p class="p-desc" style="left:348px;top:1711px;width:665px" data-kr="생년월일시에서 도출된 네 기둥과 오행의 비율을 분석합니다. 나의 성향과 강점, 부족한 기운, 그리고 올해의 흐름까지 하나의 리포트로 정리해 확인할 수 있습니다." data-en="We analyze four pillars and elemental distribution derived from your birth date and time. Your tendencies, strengths, deficient energies, and the flow of the current year — all gathered into a single report.">생년월일시에서 도출된 네 기둥과 오행의 비율을 분석합니다. 나의 성향과 강점, 부족한 기운, 그리고 올해의 흐름까지 하나의 리포트로 정리해 확인할 수 있습니다.</p>
 
   <!-- 03 / DATA -->
   <span class="p-label" style="left:168px;top:1800px">03 / DATA</span>
-  <p class="p-title" style="left:347px;top:1800px">데이터로 관찰하는 사주의 흐름</p>
-  <p class="p-desc" style="left:347px;top:1843px;width:672px">나와 비슷한 사주를 가진 사람들이 얼마나 있고, 어떤 경향을 보이는지 함께 살펴봅니다. 혼자만의 해석을 넘어, 집단의 데이터 속에서 나의 위치를 확인할 수 있습니다.</p>
+  <p class="p-title" style="left:347px;top:1800px" data-kr="데이터로 관찰하는 사주의 흐름" data-en="Saju Patterns Observed Through Data">데이터로 관찰하는 사주의 흐름</p>
+  <p class="p-desc" style="left:347px;top:1843px;width:672px" data-kr="나와 비슷한 사주를 가진 사람들이 얼마나 있고, 어떤 경향을 보이는지 함께 살펴봅니다. 혼자만의 해석을 넘어, 집단의 데이터 속에서 나의 위치를 확인할 수 있습니다." data-en="See how many people share a similar saju and what patterns they exhibit. Beyond personal interpretation, this is where you locate your position within the data of the collective.">나와 비슷한 사주를 가진 사람들이 얼마나 있고, 어떤 경향을 보이는지 함께 살펴봅니다. 혼자만의 해석을 넘어, 집단의 데이터 속에서 나의 위치를 확인할 수 있습니다.</p>
 
   <!-- 04 / ENHANCE -->
   <span class="p-label" style="left:168px;top:1930px">04 / ENHANCE</span>
-  <p class="p-title" style="left:347px;top:1929px">기운의 균형을 맞추는 오브젝트</p>
-  <p class="p-desc" style="left:348px;top:1972px;width:940px">분석만으로는 충분하지 않습니다. 내 사주에 맞게 설계된 오브젝트와 실천으로, 부족한 기운을 일상에서 채워갈 수 있습니다.</p>
+  <p class="p-title" style="left:347px;top:1929px" data-kr="기운의 균형을 맞추는 오브젝트" data-en="Objects That Bring Energy Into Balance">기운의 균형을 맞추는 오브젝트</p>
+  <p class="p-desc" style="left:348px;top:1972px;width:940px" data-kr="분석만으로는 충분하지 않습니다. 내 사주에 맞게 설계된 오브젝트와 실천으로, 부족한 기운을 일상에서 채워갈 수 있습니다." data-en="Analysis alone is not enough. With objects designed to match your saju and practices built into daily life, you can fill what is lacking in real time.">분석만으로는 충분하지 않습니다. 내 사주에 맞게 설계된 오브젝트와 실천으로, 부족한 기운을 일상에서 채워갈 수 있습니다.</p>
 
   <!-- Values section -->
   <p class="section-tag" style="left:140px;top:2126px">OUR VALUES</p>
   <h2 class="section-title" style="left:138px;top:2154px">Our Core Values</h2>
-  <p class="section-desc" style="left:140px;top:2221px">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
+  <p class="section-desc" style="left:140px;top:2221px" data-kr="사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다." data-en="Saju is a record of observation accumulated over 3,000 years. FOUR FUTUR exposes its structure through the language of data — reading individual patterns within collective flows with clarity and confidence.">사주는 3,000년 동안 축적된 관찰의 기록입니다. FOUR FUTUR는 그 구조를 데이터의 언어로 드러내, 개인의 패턴을 집단의 흐름 속에서 신뢰감 있게 읽어냅니다.</p>
 
   <!-- Value card 1 -->
   <div class="vcard" style="left:139px;top:2375px;width:523px">
@@ -125,7 +125,7 @@
       <span class="vcard-num">01</span>
       <div>
         <p class="vcard-title">Built On Structure</p>
-        <p class="vcard-desc">사주를 체계적으로 전달하는</p>
+        <p class="vcard-desc" data-kr="사주를 체계적으로 전달하는" data-en="Delivering saju with systematic clarity">사주를 체계적으로 전달하는</p>
       </div>
     </div>
   </div>
@@ -137,7 +137,7 @@
       <span class="vcard-num">02</span>
       <div>
         <p class="vcard-title">Decode By Visual</p>
-        <p class="vcard-desc">사주를 시각 언어로 해독하는</p>
+        <p class="vcard-desc" data-kr="사주를 시각 언어로 해독하는" data-en="Decoding saju through visual language">사주를 시각 언어로 해독하는</p>
       </div>
     </div>
   </div>
@@ -149,7 +149,7 @@
       <span class="vcard-num">03</span>
       <div>
         <p class="vcard-title">Trust Through Data</p>
-        <p class="vcard-desc">사주의 데이터적 본질을 드러내어 신뢰를 더하는</p>
+        <p class="vcard-desc" data-kr="사주의 데이터적 본질을 드러내어 신뢰를 더하는" data-en="Revealing the data nature of saju to deepen trust">사주의 데이터적 본질을 드러내어 신뢰를 더하는</p>
       </div>
     </div>
   </div>
@@ -166,6 +166,28 @@ function fit(){
   document.querySelector('.sw').style.height=(SH*s)+'px';
 }
 window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+
+var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+function setLang(el){
+  _lang=el.textContent.trim()==='KR'?'kr':'en';
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+  applyLang(_lang);
+}
+function applyLang(lang){
+  document.querySelectorAll('[data-kr]').forEach(function(el){
+    var txt=el.getAttribute('data-'+lang);
+    if(txt!==null) el.textContent=txt;
+  });
+}
+(function(){
+  if(_lang==='en'){
+    document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+    document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+    applyLang('en');
+  }
+})();
 </script>
 </body>
 </html>

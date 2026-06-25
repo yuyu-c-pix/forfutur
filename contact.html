@@ -24,8 +24,8 @@
     .nn{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;background:none;border:none;cursor:pointer;transition:color .2s;white-space:nowrap}
     .nn:hover{color:#fff}
     .nn.active{border-radius:6px;background:#454545;color:#fff}
-    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 0;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
-    .lb.on{padding:6px 10px;background:#454545;color:#fff}
+    .lb{font-family:'Pretendard Variable',sans-serif;font-weight:400;font-size:16px;line-height:18px;letter-spacing:-0.4px;color:#464646;text-decoration:none;padding:6px 10px;border-radius:6px;background:none;border:none;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+    .lb.on{background:#454545;color:#fff}
     .lb:hover{color:#fff}
     .lo{position:absolute;left:50%;top:48.87px;transform:translateX(-50%);width:90px;height:30px}
     .lo img{width:100%;height:100%;display:block}
@@ -72,14 +72,14 @@
 <div class="st" id="stage">
 
   <!-- NAV -->
-  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nr"><button class="lb on" onclick="setLang(this)">KR</button><button class="lb" onclick="setLang(this)">EN</button></div>
   <div class="nl"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a><a href="contact.html" class="nn active">Contact</a></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
 
   <!-- HEADER -->
   <p class="tg">CONTACT</p>
   <h1 class="tt">Let&rsquo;s Align Your Next Direction</h1>
-  <p class="ds"><span>FOUR FUTUR</span>와 함께 다음 방향을 만들고 싶으신가요?<br>궁금한 점이나 이야기하고 싶은 내용이 있다면, 편하게 남겨주세요.</p>
+  <p class="ds" data-kr="FOUR FUTUR와 함께 다음 방향을 만들고 싶으신가요? 궁금한 점이나 이야기하고 싶은 내용이 있다면, 편하게 남겨주세요." data-en="Ready to shape your next direction with FOUR FUTUR? If there is anything you are curious about or would like to discuss, feel free to reach out."><span>FOUR FUTUR</span>와 함께 다음 방향을 만들고 싶으신가요?<br>궁금한 점이나 이야기하고 싶은 내용이 있다면, 편하게 남겨주세요.</p>
 
   <!-- INFO LIST (left column) -->
   <div class="dv" style="top:532px"></div>
@@ -92,7 +92,7 @@
 
   <div class="dv" style="top:686px"></div>
   <span class="info-label" style="top:710.5px">STUDIO</span>
-  <span class="info-val" style="top:710.5px">서울 성동구 성수이로 24길<br>Four Futur Studio, 3F</span>
+  <span class="info-val" style="top:710.5px" data-kr="서울 성동구 성수이로 24길<br>Four Futur Studio, 3F" data-en="24, Seongsuiro-gil, Seongdong-gu Seoul<br>Four Futur Studio, 3F">서울 성동구 성수이로 24길<br>Four Futur Studio, 3F</span>
 
   <div class="dv" style="top:792px"></div>
   <span class="info-label" style="top:822px">HOURS</span>
@@ -109,35 +109,35 @@
     <div class="form-inner">
       <div class="form-head">
         <h2>Get In Touch</h2>
-        <p>빠른 시일 내로 답변 드리겠습니다. 파일 첨부의 경우 메일로 보내주세요.</p>
+        <p data-kr="빠른 시일 내로 답변 드리겠습니다. 파일 첨부의 경우 메일로 보내주세요." data-en="We will respond as soon as possible. For file attachments, please reach out by email.">빠른 시일 내로 답변 드리겠습니다. 파일 첨부의 경우 메일로 보내주세요.</p>
       </div>
       <div class="form-fields">
         <div class="fd">
-          <label>이름</label>
-          <input type="text" id="cName" placeholder="홍길동" required>
+          <label data-kr="이름" data-en="Name">이름</label>
+          <input type="text" id="cName" placeholder="홍길동" data-kr="홍길동" data-en="Your name" required>
         </div>
         <div class="fd">
-          <label>이메일</label>
+          <label data-kr="이메일" data-en="Email">이메일</label>
           <input type="email" id="cEmail" placeholder="you@example.com" required>
         </div>
         <div class="fd">
-          <label>문의 유형</label>
+          <label data-kr="문의 유형" data-en="Inquiry Type">문의 유형</label>
           <select id="cType">
-            <option>일반 문의</option>
-            <option>협업 제안</option>
-            <option>데이터 · 연구</option>
-            <option>미디어 · 프레스</option>
-            <option>버그 · 피드백</option>
+            <option data-kr="일반 문의" data-en="General Inquiry">일반 문의</option>
+            <option data-kr="협업 제안" data-en="Partnership Proposal">협업 제안</option>
+            <option data-kr="데이터 · 연구" data-en="Data &amp; Research">데이터 · 연구</option>
+            <option data-kr="미디어 · 프레스" data-en="Media &amp; Press">미디어 · 프레스</option>
+            <option data-kr="버그 · 피드백" data-en="Bug &amp; Feedback">버그 · 피드백</option>
           </select>
         </div>
         <div class="fd">
-          <label>내용</label>
-          <textarea id="cMsg" placeholder="내용을 입력해주세요" required></textarea>
+          <label data-kr="내용" data-en="Message">내용</label>
+          <textarea id="cMsg" placeholder="내용을 입력해주세요" data-kr="내용을 입력해주세요" data-en="Write your message" required></textarea>
         </div>
       </div>
     </div>
-    <button type="submit" class="submit-btn">메시지 보내기→</button>
-    <p class="success-msg" id="successMsg">메시지가 전송되었습니다. 감사합니다.</p>
+    <button type="submit" class="submit-btn" data-kr="메시지 보내기→" data-en="Send Message →">메시지 보내기→</button>
+    <p class="success-msg" id="successMsg" data-kr="메시지가 전송되었습니다. 감사합니다." data-en="Your message has been sent. Thank you.">메시지가 전송되었습니다. 감사합니다.</p>
   </form>
 
 </div>
@@ -161,6 +161,31 @@ function sendMsg(e){
   var sel=document.getElementById('cType');
   sel.style.color='rgba(255,255,255,.45)';
   sel.addEventListener('change',function(){this.style.color='#fff';});
+})();
+
+var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+function setLang(el){
+  _lang=el.textContent.trim()==='KR'?'kr':'en';
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+  applyLang(_lang);
+}
+function applyLang(lang){
+  document.querySelectorAll('[data-kr]').forEach(function(el){
+    var txt=el.getAttribute('data-'+lang);
+    if(txt===null) return;
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=txt;
+    else if(el.tagName==='OPTION') el.textContent=txt;
+    else el.innerHTML=txt;
+  });
+}
+(function(){
+  if(_lang==='en'){
+    document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+    document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+    applyLang('en');
+  }
 })();
 </script>
 </body>

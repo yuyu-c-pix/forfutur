@@ -78,14 +78,14 @@
 <div class="sw">
 <div class="st" id="stage">
 
-  <div class="nr"><button class="lb on">KR</button><button class="lb">EN</button></div>
+  <div class="nr"><button class="lb on" onclick="setLang(this)">KR</button><button class="lb" onclick="setLang(this)">EN</button></div>
   <div class="nl"><a href="index.html" class="nn">Home</a><a href="about.html" class="nn">About</a><a href="contact.html" class="nn">Contact</a></div>
   <a href="index.html" class="lo"><img src="assets/logo.svg" alt="Four Futur"></a>
 
   <a href="saju-data.html" class="bk">← Saju Data</a>
   <p class="s-tag">SAJU DATA</p>
   <h1 class="s-title">The Day Master<br>Decision Tendencies</h1>
-  <p class="s-sub">10개 일간이 각각 어떤 결정 성향을 보이는지, 그 안에서 당신의 일간은 어떤 수치인지 비교해보세요.</p>
+  <p class="s-sub" data-kr="10개 일간이 각각 어떤 결정 성향을 보이는지, 그 안에서 당신의 일간은 어떤 수치인지 비교해보세요." data-en="See how each of the 10 day masters approaches decision-making, and where your day master stands in the distribution.">10개 일간이 각각 어떤 결정 성향을 보이는지, 그 안에서 당신의 일간은 어떤 수치인지 비교해보세요.</p>
 
   <!-- Panel 1: Day Masters -->
   <div class="panel p1">
@@ -140,43 +140,45 @@ function fit(){
 }
 window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
 
-(function(){
-  var r=null;try{r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');}catch(e){}
-  if(!r||!r.dayMasterElement)return;
-  var el=r.dayMasterElement,nm=r.dayMasterName||'무토';
+var _lang=(function(){try{return localStorage.getItem('ff_lang')||'kr';}catch(e){return 'kr';}})();
+function setLang(el){
+  _lang=el.textContent.trim()==='KR'?'kr':'en';
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  try{localStorage.setItem('ff_lang',_lang);}catch(e){}
+  applyLang(_lang);
+  refreshContent(_lang);
+}
+function applyLang(lang){
+  document.querySelectorAll('[data-kr]').forEach(function(el){
+    var txt=el.getAttribute('data-'+lang);
+    if(txt!==null)el.textContent=txt;
+  });
+}
+
+var NM_EN={갑목:'Gap Wood',을목:'Eul Wood',병화:'Byeong Fire',정화:'Jeong Fire',무토:'Mu Earth',기토:'Gi Earth',경금:'Gyeong Metal',신금:'Sin Metal',임수:'Im Water',계수:'Gye Water'};
+var _r=null;try{_r=JSON.parse(localStorage.getItem('ff_saju_result')||'null');}catch(e){}
+
+function refreshContent(lang){
+  if(!_r||!_r.dayMasterElement)return;
+  var el=_r.dayMasterElement,nm=_r.dayMasterName||'무토';
+  var nm_en=NM_EN[nm]||'Mu Earth';
   function eun(w){var c=w.charCodeAt(w.length-1);return(c<0xAC00||c>0xD7A3)?'은':(c-0xAC00)%28===0?'는':'은';}
-  var TXT={
-    wood:{
-      p1t:nm+' 일간은 변화와 성장을 적극적으로 받아들이는 경향이 강합니다.',
-      p1s:'아래는 10개 일간이 얼마나 자주 변화형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 모든 일간 중 이 경향이 두드러지는 편입니다.',
-      p2t:'2026년, '+nm+' 일간에게 새로운 흐름이 더 강하게 찾아오고 있습니다.',
-      p2s:'올해 2026년은 불의 기운이 강한 해로, 목(木) 기운과의 시너지로 '+nm+' 일간에게 확장과 시도가 자주 찾아오는 시기예요. 2024년부터 빠르게 올라오고 있는 변화 흐름이 올해 정점에 가깝게 이어집니다.'
-    },
-    fire:{
-      p1t:nm+' 일간은 즉각적인 표현과 주도적인 결정을 택하는 경향이 강합니다.',
-      p1s:'아래는 10개 일간이 얼마나 자주 주도형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 감정과 생각을 외부로 드러내는 결정 빈도가 높은 편입니다.',
-      p2t:'2026년, '+nm+' 일간에게 발산과 표현의 기회가 더 자주 찾아오고 있습니다.',
-      p2s:'올해 2026년은 불의 기운이 강한 해로, 화(火) 일간에게 특히 표현하고 드러내는 시도가 집중되는 시기예요. 에너지를 잘 배분하면, 한 해 중반에 가장 큰 결실을 만들어낼 수 있습니다.'
-    },
-    earth:{
-      p1t:nm+' 일간은 변화보다 안정을 택하는 경향이 강합니다.',
-      p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 모든 일간 중 이 경향이 가장 두드러집니다.',
-      p2t:'2026년, '+nm+' 일간에게 변화가 더 자주 찾아오고 있습니다.',
-      p2s:'2020년부터 2023년까지 변화 시도가 눈에 띄게 줄었다가, 2024년부터 빠르게 올라오고 있어요. 올해 2026년은 불의 기운이 강한 해로, '+nm+' 일간에게 평소보다 변화가 많이 찾아오는 시기입니다.'
-    },
-    metal:{
-      p1t:nm+' 일간은 정밀한 판단과 기준 중심의 결정을 택하는 경향이 강합니다.',
-      p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 즉흥적 변화보다 누적된 판단을 신뢰하는 경향이 두드러집니다.',
-      p2t:'2026년, '+nm+' 일간에게 선택의 순간이 더 자주 찾아오고 있습니다.',
-      p2s:'올해 2026년은 불의 기운이 강한 해로, 금(金)에게 마찰과 전환의 흐름이 더 자주 들어오는 시기예요. 빠른 판단보다 원칙을 지키는 결정이 한 해를 안정적으로 이끌어줍니다.'
-    },
-    water:{
-      p1t:nm+' 일간은 유연한 흐름 읽기와 직관적 결정을 택하는 경향이 강합니다.',
-      p1s:'아래는 10개 일간이 얼마나 자주 조화형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 환경에 맞춰 방향을 바꾸는 결정 빈도가 높은 편입니다.',
-      p2t:'2026년, '+nm+' 일간에게 관계와 흐름의 변화가 더 자주 찾아오고 있습니다.',
-      p2s:'올해 2026년은 불의 기운이 강한 해로, 수(水)에게 외부 자극에 반응하는 상황이 더 많이 찾아오는 시기예요. 직관을 믿고 유연하게 방향을 잡아가는 것이 이 시기를 가장 잘 활용하는 방법입니다.'
-    }
+  var TXT_KR={
+    wood:{p1t:nm+' 일간은 변화와 성장을 적극적으로 받아들이는 경향이 강합니다.',p1s:'아래는 10개 일간이 얼마나 자주 변화형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 모든 일간 중 이 경향이 두드러지는 편입니다.',p2t:'2026년, '+nm+' 일간에게 새로운 흐름이 더 강하게 찾아오고 있습니다.',p2s:'올해 2026년은 불의 기운이 강한 해로, 목(木) 기운과의 시너지로 '+nm+' 일간에게 확장과 시도가 자주 찾아오는 시기예요. 2024년부터 빠르게 올라오고 있는 변화 흐름이 올해 정점에 가깝게 이어집니다.'},
+    fire:{p1t:nm+' 일간은 즉각적인 표현과 주도적인 결정을 택하는 경향이 강합니다.',p1s:'아래는 10개 일간이 얼마나 자주 주도형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 감정과 생각을 외부로 드러내는 결정 빈도가 높은 편입니다.',p2t:'2026년, '+nm+' 일간에게 발산과 표현의 기회가 더 자주 찾아오고 있습니다.',p2s:'올해 2026년은 불의 기운이 강한 해로, 화(火) 일간에게 특히 표현하고 드러내는 시도가 집중되는 시기예요. 에너지를 잘 배분하면, 한 해 중반에 가장 큰 결실을 만들어낼 수 있습니다.'},
+    earth:{p1t:nm+' 일간은 변화보다 안정을 택하는 경향이 강합니다.',p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 모든 일간 중 이 경향이 가장 두드러집니다.',p2t:'2026년, '+nm+' 일간에게 변화가 더 자주 찾아오고 있습니다.',p2s:'2020년부터 2023년까지 변화 시도가 눈에 띄게 줄었다가, 2024년부터 빠르게 올라오고 있어요. 올해 2026년은 불의 기운이 강한 해로, '+nm+' 일간에게 평소보다 변화가 많이 찾아오는 시기입니다.'},
+    metal:{p1t:nm+' 일간은 정밀한 판단과 기준 중심의 결정을 택하는 경향이 강합니다.',p1s:'아래는 10개 일간이 얼마나 자주 유지형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 즉흥적 변화보다 누적된 판단을 신뢰하는 경향이 두드러집니다.',p2t:'2026년, '+nm+' 일간에게 선택의 순간이 더 자주 찾아오고 있습니다.',p2s:'올해 2026년은 불의 기운이 강한 해로, 금(金)에게 마찰과 전환의 흐름이 더 자주 들어오는 시기예요. 빠른 판단보다 원칙을 지키는 결정이 한 해를 안정적으로 이끌어줍니다.'},
+    water:{p1t:nm+' 일간은 유연한 흐름 읽기와 직관적 결정을 택하는 경향이 강합니다.',p1s:'아래는 10개 일간이 얼마나 자주 조화형 결정을 하는지 나타낸 분포예요.<br>'+nm+eun(nm)+' 환경에 맞춰 방향을 바꾸는 결정 빈도가 높은 편입니다.',p2t:'2026년, '+nm+' 일간에게 관계와 흐름의 변화가 더 자주 찾아오고 있습니다.',p2s:'올해 2026년은 불의 기운이 강한 해로, 수(水)에게 외부 자극에 반응하는 상황이 더 많이 찾아오는 시기예요. 직관을 믿고 유연하게 방향을 잡아가는 것이 이 시기를 가장 잘 활용하는 방법입니다.'}
   };
+  var TXT_EN={
+    wood:{p1t:nm_en+' strongly leans toward change and growth.',p1s:'How often each day master makes change-oriented decisions.<br>'+nm_en+' stands out with the highest tendency in this category.',p2t:'In 2026, fresh momentum is building for '+nm_en+'.',p2s:'2026 pairs Wood energy with strong Fire — bringing more expansion and initiative to '+nm_en+' than usual. The momentum building since 2024 reaches near its peak this year.'},
+    fire:{p1t:nm_en+' favors direct expression and initiative.',p1s:'How often each day master makes leading-type decisions.<br>'+nm_en+' shows a notably high frequency of outward expression.',p2t:'In 2026, peak expression arrives for '+nm_en+'.',p2s:'2026 is a year of strong Fire energy — Fire day masters see concentrated opportunities to express and reveal. With well-paced energy, the largest results emerge mid-year.'},
+    earth:{p1t:nm_en+' consistently leans toward stability.',p1s:'How often each day master makes stability-oriented decisions.<br>'+nm_en+' shows the strongest stability tendency of the ten.',p2t:'In 2026, change is arriving more for '+nm_en+'.',p2s:'After a decline from 2020 to 2023, change momentum has climbed since 2024. 2026 is a year of strong Fire energy, bringing more change than usual to '+nm_en+'.'},
+    metal:{p1t:nm_en+' favors precision over spontaneity.',p1s:'How often each day master makes stability-oriented decisions.<br>'+nm_en+' consistently favors accumulated judgment over impulse.',p2t:'In 2026, key decisions arrive for '+nm_en+'.',p2s:'2026 is a year of strong Fire energy, bringing friction and transition flows to Metal day masters. Decisions grounded in principle carry the year with stability.'},
+    water:{p1t:nm_en+' reads flow and decides by intuition.',p1s:'How often each day master makes harmony-oriented decisions.<br>'+nm_en+' frequently shifts direction to match the environment.',p2t:'In 2026, more relational shifts arrive for '+nm_en+'.',p2s:'2026 is a year of strong Fire energy, bringing more situations that call for response to external stimuli for Water day masters. Trust intuition — flexibility is the key this year.'}
+  };
+  var TXT=lang==='en'?TXT_EN:TXT_KR;
   var t=TXT[el]||TXT.earth;
   var pts=document.querySelectorAll('.p-title');
   var sbs=document.querySelectorAll('.p-sub');
@@ -184,16 +186,22 @@ window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
   if(sbs[0])sbs[0].innerHTML=t.p1s;
   if(pts[1])pts[1].textContent=t.p2t;
   if(sbs[1])sbs[1].textContent=t.p2s;
-
-  // Reorder labels: user's 일간 at index 2 (tallest bar position)
   var ALL_LBL=['Gap Wood','Eul Wood','Byeong Fire','Jeong Fire','Mu Earth','Gi Earth','Gyeong Metal','Sin Metal','Im Water','Gye Water'];
-  var NM_EN={갑목:'Gap Wood',을목:'Eul Wood',병화:'Byeong Fire',정화:'Jeong Fire',무토:'Mu Earth',기토:'Gi Earth',경금:'Gyeong Metal',신금:'Sin Metal',임수:'Im Water',계수:'Gye Water'};
-  var userLbl=NM_EN[nm];
+  var userLbl=nm_en;
   if(userLbl){
     var others=ALL_LBL.filter(function(l){return l!==userLbl;});
     var ordered=others.slice(0,2).concat([userLbl]).concat(others.slice(2));
     var spans=document.querySelectorAll('.labels-abs span');
     ordered.forEach(function(lbl,i){if(spans[i])spans[i].textContent=lbl;});
+  }
+}
+
+refreshContent(_lang);
+(function(){
+  if(_lang==='en'){
+    document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+    document.querySelectorAll('.lb').forEach(function(b){if(b.textContent.trim()==='EN')b.classList.add('on');});
+    applyLang('en');
   }
 })();
 </script>
